@@ -1,0 +1,144 @@
+/* Google Fonts — must be first */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 98%;
+    --foreground: 240 10% 5%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 5%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 5%;
+    --primary: 43 74% 49%;
+    --primary-foreground: 240 10% 5%;
+    --secondary: 240 5% 96%;
+    --secondary-foreground: 240 6% 10%;
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 4% 46%;
+    --accent: 240 5% 96%;
+    --accent-foreground: 240 6% 10%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 43 74% 49%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 7%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 7%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 43 74% 52%;
+    --primary-foreground: 240 10% 5%;
+    --secondary: 240 5% 12%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 5% 12%;
+    --muted-foreground: 240 5% 55%;
+    --accent: 240 5% 15%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5% 18%;
+    --input: 240 5% 18%;
+    --ring: 43 74% 52%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+  .font-playfair {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+}
+
+/* Prose styles for markdown article content */
+@layer components {
+  .prose-photography {
+    @apply text-zinc-300 leading-relaxed;
+  }
+  .prose-photography h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    @apply text-2xl text-white mt-10 mb-4 font-semibold;
+  }
+  .prose-photography h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    @apply text-xl text-white mt-8 mb-3 font-medium;
+  }
+  .prose-photography p {
+    @apply mb-5 text-zinc-300 leading-7;
+  }
+  .prose-photography ul {
+    @apply list-disc list-outside ml-6 mb-5 space-y-2 text-zinc-300;
+  }
+  .prose-photography ol {
+    @apply list-decimal list-outside ml-6 mb-5 space-y-2 text-zinc-300;
+  }
+  .prose-photography li {
+    @apply leading-7;
+  }
+  .prose-photography blockquote {
+    @apply border-l-4 border-amber-500 pl-5 py-1 my-6 italic text-zinc-400;
+  }
+  .prose-photography blockquote p {
+    @apply mb-0;
+  }
+  .prose-photography code {
+    @apply bg-zinc-800 text-amber-300 px-1.5 py-0.5 rounded text-sm font-mono;
+  }
+  .prose-photography pre {
+    @apply bg-zinc-800 rounded-lg p-4 overflow-x-auto mb-5;
+  }
+  .prose-photography pre code {
+    @apply bg-transparent p-0 text-zinc-300;
+  }
+  .prose-photography a {
+    @apply text-amber-400 underline-offset-2 hover:underline transition-colors;
+  }
+  .prose-photography strong {
+    @apply text-white font-semibold;
+  }
+  .prose-photography em {
+    @apply italic;
+  }
+  .prose-photography table {
+    @apply w-full border-collapse mb-5;
+  }
+  .prose-photography th {
+    @apply bg-zinc-800 text-white text-left px-4 py-2 text-sm font-semibold border border-zinc-700;
+  }
+  .prose-photography td {
+    @apply px-4 py-2 text-sm border border-zinc-800 text-zinc-300;
+  }
+  .prose-photography tr:nth-child(even) td {
+    @apply bg-zinc-900/50;
+  }
+  .prose-photography hr {
+    @apply border-zinc-800 my-8;
+  }
+  .prose-photography img {
+    @apply rounded-lg my-6 w-full;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #09090b; }
+::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: #52525b; }

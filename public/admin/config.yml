@@ -1,0 +1,186 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Where uploaded media files go in the repo
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+# Slug generation for file names
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "-"
+
+collections:
+
+  # ─── MEMBERS ───────────────────────────────────────────────────────────────
+  - name: "members"
+    label: "Members"
+    label_singular: "Member"
+    folder: "content/members"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    media_folder: "/public/uploads/members"
+    public_folder: "/uploads/members"
+    summary: "{{name}} — joined {{joinedYear}}"
+    fields:
+      - { label: "Full Name", name: "name", widget: "string" }
+      - { label: "Bio (short intro)", name: "bio", widget: "text" }
+      - label: "Profile Photo"
+        name: "profilePhoto"
+        widget: "image"
+        media_folder: "/public/uploads/members"
+        public_folder: "/uploads/members"
+      - { label: "Featured Member", name: "featured", widget: "boolean", default: false }
+      - { label: "Year Joined", name: "joinedYear", widget: "number", value_type: "int", required: false }
+      - { label: "Website URL", name: "website", widget: "string", required: false }
+      - { label: "Instagram (e.g. @username)", name: "instagram", widget: "string", required: false }
+      - { label: "Twitter / X (e.g. @username)", name: "twitter", widget: "string", required: false }
+      - label: "Specialties"
+        name: "specialties"
+        widget: "list"
+        field: { label: "Specialty", name: "specialty", widget: "string" }
+        required: false
+      - label: "Galleries"
+        name: "galleries"
+        widget: "list"
+        label_singular: "Gallery"
+        summary: "{{fields.name}} ({{fields.photos.length}} photos)"
+        fields:
+          - { label: "Gallery Name", name: "name", widget: "string", hint: "e.g. Landscapes, Wildlife, Travel" }
+          - { label: "Gallery Description", name: "description", widget: "text", required: false }
+          - label: "Cover Photo"
+            name: "coverPhoto"
+            widget: "image"
+            media_folder: "/public/uploads/members"
+            public_folder: "/uploads/members"
+            required: false
+          - label: "Photos"
+            name: "photos"
+            widget: "list"
+            label_singular: "Photo"
+            summary: "{{fields.title}}"
+            fields:
+              - label: "Photo"
+                name: "url"
+                widget: "image"
+                media_folder: "/public/uploads/members"
+                public_folder: "/uploads/members"
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Description / Caption", name: "description", widget: "text", required: false }
+      - label: "Extended Bio"
+        name: "body"
+        widget: "markdown"
+        required: false
+        hint: "Full biography shown on the member detail page. Supports markdown formatting."
+
+  # ─── MONTHLY SHOWCASE ──────────────────────────────────────────────────────
+  - name: "showcase"
+    label: "Monthly Showcase"
+    label_singular: "Showcase"
+    folder: "content/showcase"
+    create: true
+    delete: true
+    nested:
+      depth: 2
+    meta: { path: { widget: "string", label: "File path (e.g. 2025/june)", index_file: "index" } }
+    slug: "{{slug}}"
+    media_folder: "/public/uploads/showcase"
+    public_folder: "/uploads/showcase"
+    summary: "{{month}} {{year}} — {{theme}}"
+    fields:
+      - { label: "Month", name: "month", widget: "select",
+          options: ["January","February","March","April","May","June",
+                    "July","August","September","October","November","December"] }
+      - { label: "Year", name: "year", widget: "number", value_type: "int", default: 2025 }
+      - { label: "Theme / Title", name: "theme", widget: "string" }
+      - label: "Featured Image"
+        name: "featuredImage"
+        widget: "image"
+        media_folder: "/public/uploads/showcase"
+        public_folder: "/uploads/showcase"
+      - { label: "Short Description", name: "description", widget: "text" }
+      - label: "Photos"
+        name: "photos"
+        widget: "list"
+        label_singular: "Photo"
+        summary: "{{fields.title}} by {{fields.photographer}}"
+        fields:
+          - label: "Photo File"
+            name: "url"
+            widget: "image"
+            media_folder: "/public/uploads/showcase"
+            public_folder: "/uploads/showcase"
+          - { label: "Title", name: "title", widget: "string", required: false }
+          - { label: "Photographer Name", name: "photographer", widget: "string", required: false }
+          - { label: "Photographer Slug (for link)", name: "photographerSlug", widget: "string", required: false,
+              hint: "Matches the member file name, e.g. elena-vasquez" }
+          - { label: "Description / Caption", name: "description", widget: "text", required: false }
+      - label: "Curator Notes"
+        name: "body"
+        widget: "markdown"
+        required: false
+        hint: "Detailed commentary shown below the photo grid."
+
+  # ─── TUTORIALS ─────────────────────────────────────────────────────────────
+  - name: "tutorials"
+    label: "Tutorials"
+    label_singular: "Tutorial"
+    folder: "content/tutorials"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    media_folder: "/public/uploads/tutorials"
+    public_folder: "/uploads/tutorials"
+    summary: "{{title}} — {{author}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Author", name: "author", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - label: "Featured Image"
+        name: "featuredImage"
+        widget: "image"
+        media_folder: "/public/uploads/tutorials"
+        public_folder: "/uploads/tutorials"
+      - { label: "Excerpt", name: "excerpt", widget: "text" }
+      - label: "Difficulty"
+        name: "difficulty"
+        widget: "select"
+        options: ["Beginner", "Intermediate", "Advanced"]
+        required: false
+      - { label: "Read Time (e.g. 8 min read)", name: "readTime", widget: "string", required: false }
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        field: { label: "Tag", name: "tag", widget: "string" }
+        required: false
+      - { label: "Content", name: "body", widget: "markdown" }
+
+  # ─── NEWS ──────────────────────────────────────────────────────────────────
+  - name: "news"
+    label: "News"
+    label_singular: "News Article"
+    folder: "content/news"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    media_folder: "/public/uploads/news"
+    public_folder: "/uploads/news"
+    summary: "{{title}} — {{date}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - label: "Featured Image"
+        name: "featuredImage"
+        widget: "image"
+        media_folder: "/public/uploads/news"
+        public_folder: "/uploads/news"
+      - { label: "Excerpt", name: "excerpt", widget: "text" }
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options: ["Announcement", "Event", "Competition", "Awards", "Workshop", "Community"]
+        required: false
+      - { label: "Content", name: "body", widget: "markdown" }
