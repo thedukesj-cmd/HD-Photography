@@ -43,10 +43,15 @@ collections:
         widget: "list"
         field: { label: "Specialty", name: "specialty", widget: "string" }
         required: false
-      - label: "Galleries"
-        name: "galleries"
-        widget: "list"
-        label_singular: "Gallery"
+      - label: "Gallery Photos"
+        name: "galleryPhotos"
+        widget: "relation"
+        collection: "photos"
+        search_fields: ["title", "photographer", "tags"]
+        value_field: "{{slug}}"
+        display_fields: ["title"]
+        multiple: true
+
         summary: "{{fields.name}} ({{fields.photos.length}} photos)"
         fields:
           - { label: "Gallery Name", name: "name", widget: "string", hint: "e.g. Landscapes, Wildlife, Travel" }
@@ -184,3 +189,16 @@ collections:
         options: ["Announcement", "Event", "Competition", "Awards", "Workshop", "Community"]
         required: false
       - { label: "Content", name: "body", widget: "markdown" }
+
+  - name: "photos"
+    label: "Photos"
+    folder: "content/photos"
+    create: true
+    slug: "{{slug}}"
+
+    fields:
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Title", name: "title", widget: "string", required: false }
+      - { label: "Photographer", name: "photographer", widget: "string" }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Date Taken", name: "date", widget: "datetime", required: false }
