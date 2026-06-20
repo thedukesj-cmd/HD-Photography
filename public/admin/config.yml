@@ -187,5 +187,18 @@ collections:
         name: "category"
         widget: "select"
         options: ["Announcement", "Event", "Competition", "Awards", "Workshop", "Community"]
+
+          - name: "photos"
+    label: "Photos"
+    folder: "content/photos"
+    create: true
+    slug: "{{slug}}"
+
+    fields:
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Title", name: "title", widget: "string", required: false }
+      - { label: "Photographer", name: "photographer", widget: "string" }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Date Taken", name: "date", widget: "datetime", required: false }
         required: false
       - { label: "Content", name: "body", widget: "markdown" }
