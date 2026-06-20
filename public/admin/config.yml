@@ -43,9 +43,13 @@ collections:
         widget: "list"
         field: { label: "Specialty", name: "specialty", widget: "string" }
         required: false
-      - label: "Galleries"
-        name: "galleries"
-        widget: "list"
+      - label: "Gallery Photos"
+  name: "galleryPhotos"
+  widget: "list"
+  field:
+    label: "Photo"
+    name: "url"
+    widget: "image"
         label_singular: "Gallery"
         summary: "{{fields.name}} ({{fields.photos.length}} photos)"
         fields:
