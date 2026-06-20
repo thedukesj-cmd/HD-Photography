@@ -45,11 +45,12 @@ collections:
         required: false
       - label: "Gallery Photos"
         name: "galleryPhotos"
-        widget: "list"
-        field:
-          label: "Photo"
-          name: "url"
-          widget: "image"
+        widget: "relation"
+        collection: "photos"
+        search_fields: ["title", "photographer", "tags"]
+        value_field: "{{slug}}"
+        display_fields: ["title"]
+        multiple: true
 
         summary: "{{fields.name}} ({{fields.photos.length}} photos)"
         fields:
