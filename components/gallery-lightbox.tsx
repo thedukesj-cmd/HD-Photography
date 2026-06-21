@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import Image from "next/image"
 import Lightbox from "yet-another-react-lightbox"
 import Captions from "yet-another-react-lightbox/plugins/captions"
 import "yet-another-react-lightbox/styles.css"
@@ -34,20 +33,12 @@ export function GalleryLightbox({ photos, columns = 3 }: GalleryLightboxProps) {
             onClick={() => { setIndex(i); setOpen(true) }}
             aria-label={photo.title || `Photo ${i + 1}`}
           >
-            <Image
-              src={photo.url}
-              alt={photo.title || `Gallery photo ${i + 1}`}
-              fill
-              sizes={
-                columns === 2
-                  ? "(max-width: 640px) 100vw, 50vw"
-                  : columns === 3
-                  ? "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  : "(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-              }
-              className="object-cover transition-transform duration-500 group-hover:scale-110"
-              loading="lazy"
-            />
+           <img
+            	 src={encodeURI(photo.url)}
+ 		 alt={photo.title || `Gallery photo ${i + 1}`}
+ 		 className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+ 		 loading="lazy"
+	/>
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex flex-col justify-end p-3">
               {photo.title && (
                 <span className="text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-2 group-hover:translate-y-0 transition-transform">
@@ -69,7 +60,7 @@ export function GalleryLightbox({ photos, columns = 3 }: GalleryLightboxProps) {
         close={() => setOpen(false)}
         index={index}
         slides={photos.map(p => ({
-          src: p.url,
+          src: encodeURI(p.url),
           title: p.title,
           description: p.description,
         }))}
