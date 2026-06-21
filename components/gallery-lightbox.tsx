@@ -35,7 +35,7 @@ export function GalleryLightbox({ photos, columns = 3 }: GalleryLightboxProps) {
             aria-label={photo.title || `Photo ${i + 1}`}
           >
            <img
-            	 src: encodeURI(p.url || "")
+            	  src={photo.url}
  		 alt={photo.title || `Gallery photo ${i + 1}`}
  		 className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
  		 loading="lazy"
@@ -61,7 +61,7 @@ export function GalleryLightbox({ photos, columns = 3 }: GalleryLightboxProps) {
         close={() => setOpen(false)}
         index={index}
         slides={photos.map(p => ({
-          src: encodeURI(p.url || ""),
+          src: p.url,
           title: p.title,
           description: p.description,
         }))}
