@@ -13,6 +13,7 @@ interface GalleryLightboxProps {
   columns?: 2 | 3 | 4
 }
 
+
 export function GalleryLightbox({ photos, columns = 3 }: GalleryLightboxProps) {
   const [open, setOpen] = useState(false)
   const [index, setIndex] = useState(0)
