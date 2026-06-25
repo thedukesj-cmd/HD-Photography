@@ -12,6 +12,7 @@ export interface MemberGallery {
 }
 
 export interface Member {
+owner?: boolean
   slug: string
   name: string
   bio: string
