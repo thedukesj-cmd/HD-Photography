@@ -127,20 +127,47 @@ export function getAllShowcases(): Showcase[] {
 }
 
 function parseShowcase(slug: string, data: any): Showcase {
+  const folder = data.folder || data.photoFolder || ""
+
+  let autoPhotos: any[] = []
+
+  if (folder) {
+    try {
+      const relativeFolder = folder.replace(/^\/uploads\//, "")
+      const folderPath = path.join(process.cwd(), "public", "uploads", relativeFolder)
+
+      if (fs.existsSync(folderPath)) {
+        autoPhotos = fs.readdirSync(folderPath)
+          .filter(file => /\.(jpg|jpeg|png|webp|gif)$/i.test(file))
+          .sort()
+          .map(file => ({
+            url: `${folder}/${file}`,
+            title: file.replace(/\.[^/.]+$/, ""),
+          }))
+      }
+    } catch (error) {
+      autoPhotos = []
+    }
+  }
+
+  const manualPhotos = (data.photos || []).map((p: any) => ({
+    url: typeof p === "string" ? p : p.url || "",
+    title: typeof p === "string" ? undefined : p.title,
+    photographer: typeof p === "string" ? undefined : p.photographer,
+    photographerSlug: typeof p === "string" ? undefined : p.photographerSlug,
+    description: typeof p === "string" ? undefined : p.description,
+  }))
+
+  const photos = autoPhotos.length > 0 ? autoPhotos : manualPhotos
+
   return {
     slug,
     month: data.month || "",
     year: data.year || new Date().getFullYear(),
     theme: data.theme || "",
     description: data.description || "",
-    featuredImage: data.featuredImage || data.featured_image || "",
-    photos: (data.photos || []).map((p: any) => ({
-      url: typeof p === "string" ? p : p.url || "",
-      title: typeof p === "string" ? undefined : p.title,
-      photographer: typeof p === "string" ? undefined : p.photographer,
-      photographerSlug: typeof p === "string" ? undefined : p.photographerSlug,
-      description: typeof p === "string" ? undefined : p.description,
-    })),
+    featuredImage: data.featuredImage || data.featured_image || photos[0]?.url || "",
+    photos,
   }
 }
 
