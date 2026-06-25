@@ -1,5 +1,6 @@
 ---
 name: Hong Duc
+owner: true
 featured: true
 folder: "/uploads/members/Hong-Duc"
 

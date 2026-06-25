@@ -30,7 +30,11 @@ export function getAllMembers(): Member[] {
       const { data } = matter(fs.readFileSync(path.join(dir, f), "utf-8"))
       return parseMember(slug, data)
     })
-    .sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0))
+    .sort((a, b) => {
+  if ((a as any).owner && !(b as any).owner) return -1
+  if (!(a as any).owner && (b as any).owner) return 1
+  return a.name.localeCompare(b.name)
+})
 }
 
 
@@ -100,6 +104,7 @@ function parseMember(slug: string, data: any): Member {
   const galleries = autoGalleries.length > 0 ? autoGalleries : manualGalleries
 
   return {
+	owner: data.owner || false,
     slug,
     name: data.name || "",
     bio: data.bio || "",
