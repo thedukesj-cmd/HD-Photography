@@ -33,11 +33,50 @@ export function getAllMembers(): Member[] {
     .sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0))
 }
 
+
 function parseMember(slug: string, data: any): Member {
-  // Prefer new "galleries" field; fall back to legacy "galleryPhotos"
-  let galleries: MemberGallery[] = []
+  const folder = data.folder || data.photoFolder || ""
+
+  let autoGalleries: MemberGallery[] = []
+
+  if (folder) {
+    try {
+      const relativeFolder = folder.replace(/^\/uploads\//, "")
+      const memberFolderPath = path.join(process.cwd(), "public", "uploads", relativeFolder)
+
+      if (fs.existsSync(memberFolderPath)) {
+        autoGalleries = fs.readdirSync(memberFolderPath)
+          .filter(entry => fs.statSync(path.join(memberFolderPath, entry)).isDirectory())
+          .sort()
+          .map(galleryName => {
+            const galleryPath = path.join(memberFolderPath, galleryName)
+
+            const photos = fs.readdirSync(galleryPath)
+              .filter(file => /\.(jpg|jpeg|png|webp|gif)$/i.test(file))
+              .sort()
+              .map(file => ({
+                url: `${folder}/${galleryName}/${file}`,
+                title: file.replace(/\.[^/.]+$/, ""),
+              }))
+
+            return {
+              name: galleryName,
+              description: "",
+              coverPhoto: photos[0]?.url || "",
+              photos,
+            }
+          })
+          .filter(gallery => gallery.photos.length > 0)
+      }
+    } catch (error) {
+      autoGalleries = []
+    }
+  }
+
+  let manualGalleries: MemberGallery[] = []
+
   if (data.galleries && Array.isArray(data.galleries)) {
-    galleries = data.galleries.map((g: any) => ({
+    manualGalleries = data.galleries.map((g: any) => ({
       name: g.name || "Gallery",
       description: g.description || "",
       coverPhoto: g.coverPhoto || "",
@@ -48,8 +87,7 @@ function parseMember(slug: string, data: any): Member {
       })),
     }))
   } else if (data.galleryPhotos && Array.isArray(data.galleryPhotos)) {
-    // Wrap legacy flat array as a single "Portfolio" gallery
-    galleries = [{
+    manualGalleries = [{
       name: "Portfolio",
       photos: data.galleryPhotos.map((p: any): GalleryPhoto => ({
         url: typeof p === "string" ? p : p.url || "",
@@ -59,16 +97,16 @@ function parseMember(slug: string, data: any): Member {
     }]
   }
 
+  const galleries = autoGalleries.length > 0 ? autoGalleries : manualGalleries
+
   return {
     slug,
     name: data.name || "",
     bio: data.bio || "",
-    profilePhoto: data.profilePhoto || data.profile_photo || "",
+    profilePhoto: data.profilePhoto || data.profile_photo || galleries[0]?.coverPhoto || "",
     featured: data.featured || false,
     galleries,
-    galleryPhotos: (data.galleryPhotos || []).map((p: any): GalleryPhoto => ({
-      url: typeof p === "string" ? p : p.url || "",
-    })),
+    galleryPhotos: galleries.flatMap(g => g.photos || []),
     website: data.website,
     instagram: data.instagram,
     twitter: data.twitter,
@@ -76,7 +114,6 @@ function parseMember(slug: string, data: any): Member {
     specialties: data.specialties || [],
   }
 }
-
 export function getFeaturedMember(): Member | undefined {
   return getAllMembers().find(m => m.featured)
 }
