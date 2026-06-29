@@ -37,7 +37,6 @@ export function getAllMembers(): Member[] {
 })
 }
 
-
 function parseMember(slug: string, data: any): Member {
   const folder = data.folder || data.photoFolder || ""
 
@@ -119,6 +118,8 @@ function parseMember(slug: string, data: any): Member {
     specialties: data.specialties || [],
   }
 }
+
+
 export function getFeaturedMember(): Member | undefined {
   return getAllMembers().find(m => m.featured)
 }

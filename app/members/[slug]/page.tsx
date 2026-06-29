@@ -62,11 +62,15 @@ export default async function MemberPage({ params }: Props) {
                   <Instagram className="h-4 w-4 shrink-0" /> {member.instagram}
                 </a>
               )}
-              {member.joinedYear && (
+            {member.owner ? (
+              <p className="flex items-center gap-2.5 text-zinc-500 text-sm">
+              <Calendar className="h-4 w-4" /> Founder of HD Photography
+              </p>
+              ) : (
                 <p className="flex items-center gap-2.5 text-zinc-500 text-sm">
-                  <Calendar className="h-4 w-4" /> Member since {member.joinedYear}
-                </p>
-              )}
+                <Calendar className="h-4 w-4" /> Guest Photographer
+               </p>
+               )}
             </div>
             {member.specialties && member.specialties.length > 0 && (
               <div className="flex flex-wrap gap-2">
