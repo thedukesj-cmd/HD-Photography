@@ -49,27 +49,34 @@ function parseMember(slug: string, data: any): Member {
 
       if (fs.existsSync(memberFolderPath)) {
         autoGalleries = fs.readdirSync(memberFolderPath)
-          .filter(entry => fs.statSync(path.join(memberFolderPath, entry)).isDirectory())
+          .filter(categoryName => fs.statSync(path.join(memberFolderPath, categoryName)).isDirectory())
           .sort()
-          .map(galleryName => {
-            const galleryPath = path.join(memberFolderPath, galleryName)
+          .flatMap(categoryName => {
+            const categoryPath = path.join(memberFolderPath, categoryName)
 
-            const photos = fs.readdirSync(galleryPath)
-              .filter(file => /\.(jpg|jpeg|png|webp|gif)$/i.test(file))
+            return fs.readdirSync(categoryPath)
+              .filter(albumName => fs.statSync(path.join(categoryPath, albumName)).isDirectory())
               .sort()
-              .map(file => ({
-                url: `${folder}/${galleryName}/${file}`,
-                title: file.replace(/\.[^/.]+$/, ""),
-              }))
+              .map(albumName => {
+                const albumPath = path.join(categoryPath, albumName)
 
-            return {
-              name: galleryName,
-              description: "",
-              coverPhoto: photos[0]?.url || "",
-              photos,
-            }
+                const photos = fs.readdirSync(albumPath)
+                  .filter(file => /\.(jpg|jpeg|png|webp|gif)$/i.test(file))
+                  .sort()
+                  .map(file => ({
+                    url: `${folder}/${categoryName}/${albumName}/${file}`,
+                    title: file.replace(/\.[^/.]+$/, ""),
+                  }))
+
+                return {
+                  name: `${categoryName} / ${albumName}`,
+                  description: categoryName,
+                  coverPhoto: photos[0]?.url || "",
+                  photos,
+                }
+              })
+              .filter(gallery => gallery.photos.length > 0)
           })
-          .filter(gallery => gallery.photos.length > 0)
       }
     } catch (error) {
       autoGalleries = []
@@ -103,7 +110,7 @@ function parseMember(slug: string, data: any): Member {
   const galleries = autoGalleries.length > 0 ? autoGalleries : manualGalleries
 
   return {
-	owner: data.owner || false,
+    owner: data.owner || false,
     slug,
     name: data.name || "",
     bio: data.bio || "",
@@ -118,7 +125,6 @@ function parseMember(slug: string, data: any): Member {
     specialties: data.specialties || [],
   }
 }
-
 
 export function getFeaturedMember(): Member | undefined {
   return getAllMembers().find(m => m.featured)
