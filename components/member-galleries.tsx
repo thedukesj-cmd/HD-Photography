@@ -75,7 +75,12 @@ export function MemberGalleries({ galleries }: Props) {
                 {albums.map(({ gallery, index, album }) => (
                   <button
                     key={gallery.name}
-                    onClick={() => setActive(index)}
+                    onClick={() => {
+  			setActive(index)
+ 			 setTimeout(() => {
+    			document.getElementById("active-gallery")?.scrollIntoView({ behavior: "smooth" })
+  			}, 50)
+			}}
                     className={cn(
                       "group text-left overflow-hidden rounded-xl border transition-all bg-zinc-900/40",
                       index === active
@@ -113,7 +118,7 @@ export function MemberGalleries({ galleries }: Props) {
         })}
       </div>
 
-      <div className="mb-6">
+      <div id="active-gallery" className="mb-6 scroll-mt-24">
         <p className="text-amber-400 text-xs uppercase tracking-widest mb-2">
           {currentParts.category}
         </p>
