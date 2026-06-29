@@ -51,27 +51,17 @@ export function MemberGalleries({ galleries }: Props) {
 
           return (
             <section key={category} className="space-y-6">
-              <div className="relative overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900">
-                {banner && (
-                  <img
-                    src={banner}
-                    alt={category}
-                    className="h-48 w-full object-cover opacity-45"
-                    loading="lazy"
-                  />
-                )}
-                <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/60 to-transparent" />
-                <div className="absolute bottom-6 left-6">
-                  <p className="text-amber-400 text-xs uppercase tracking-widest mb-2">
-                    Collection
-                  </p>
-                  <h3 className="font-playfair text-4xl text-white font-bold">
-                    {category}
-                  </h3>
-                </div>
-              </div>
+              <div className="flex items-center justify-between mb-5">
+    <h3 className="font-playfair text-3xl text-white font-bold">
+        {category}
+    </h3>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+    <span className="text-zinc-500 text-sm">
+        {albums.length} {albums.length === 1 ? "album" : "albums"}
+    </span>
+</div>
+
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                 {albums.map(({ gallery, index, album }) => (
                   <button
                     key={gallery.name}
@@ -88,7 +78,7 @@ export function MemberGalleries({ galleries }: Props) {
                         : "border-zinc-800 hover:border-amber-500/60"
                     )}
                   >
-                    <div className="relative aspect-[4/3] overflow-hidden bg-zinc-900">
+                    <div className="relative aspect-[16/10] overflow-hidden bg-zinc-900">
                       {gallery.coverPhoto ? (
                         <img
                           src={gallery.coverPhoto}
