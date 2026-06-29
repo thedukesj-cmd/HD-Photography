@@ -4,7 +4,6 @@ import { useState } from "react"
 import { GalleryLightbox } from "@/components/gallery-lightbox"
 import type { MemberGallery } from "@/types"
 import { cn } from "@/lib/utils"
-import { Images } from "lucide-react"
 
 interface Props {
   galleries: MemberGallery[]
@@ -38,70 +37,74 @@ export function MemberGalleries({ galleries }: Props) {
 
   return (
     <div>
-      {/* Collection navigation */}
-      {galleries.length > 1 && (
-        <div className="mb-10 space-y-6">
-          <p className="text-amber-400 text-xs font-semibold uppercase tracking-widest">
-            Portfolio Collections
-          </p>
+      <div className="mb-12 space-y-12">
+        <p className="text-amber-400 text-xs font-semibold uppercase tracking-widest">
+          Portfolio Collections
+        </p>
 
-          {Object.entries(grouped).map(([category, albums]) => (
-            <div key={category}>
-              <h3 className="text-zinc-300 text-sm font-semibold uppercase tracking-widest mb-3">
-                {category}
-              </h3>
+        {Object.entries(grouped).map(([category, albums]) => (
+          <div key={category}>
+            <h3 className="font-playfair text-3xl text-white font-bold mb-5">
+              {category}
+            </h3>
 
-              <div className="flex flex-wrap gap-2">
-                {albums.map(({ gallery, index, album }) => (
-                  <button
-                    key={gallery.name}
-                    onClick={() => setActive(index)}
-                    className={cn(
-                      "flex items-center gap-2 px-4 py-2 text-sm rounded-full border transition-colors",
-                      index === active
-                        ? "bg-amber-500 text-zinc-950 border-amber-500"
-                        : "bg-amber-500/10 text-amber-400 border-amber-500/20 hover:bg-amber-500/20"
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {albums.map(({ gallery, index, album }) => (
+                <button
+                  key={gallery.name}
+                  onClick={() => setActive(index)}
+                  className={cn(
+                    "group text-left overflow-hidden rounded-xl border transition-all bg-zinc-900/40",
+                    index === active
+                      ? "border-amber-500"
+                      : "border-zinc-800 hover:border-amber-500/60"
+                  )}
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden bg-zinc-900">
+                    {gallery.coverPhoto ? (
+                      <img
+                        src={gallery.coverPhoto}
+                        alt={album}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-zinc-600">
+                        No cover
+                      </div>
                     )}
-                  >
-                    <Images className="h-4 w-4" />
-                    {album}
-                    <span className={cn(
-                      "ml-1 text-xs",
-                      index === active ? "text-zinc-800" : "text-zinc-500"
-                    )}>
-                      ({gallery.photos.length})
-                    </span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
+                  </div>
 
-      {/* Active album title */}
+                  <div className="p-4">
+                    <h4 className="text-white font-semibold text-lg">{album}</h4>
+                    <p className="text-zinc-500 text-sm mt-1">
+                      {gallery.photos.length} photographs
+                    </p>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
       <div className="mb-6">
-        <p className="text-zinc-500 text-xs uppercase tracking-widest mb-2">
+        <p className="text-amber-400 text-xs uppercase tracking-widest mb-2">
           {currentParts.category}
         </p>
-        <h2 className="font-playfair text-3xl text-white font-bold">
+        <h2 className="font-playfair text-4xl text-white font-bold">
           {currentParts.album}
         </h2>
       </div>
 
-      {/* Lightbox grid */}
-      {current.photos.length > 0 ? (
-        <GalleryLightbox
-          photos={current.photos.map(p => ({
-            url: p.url,
-            title: p.title,
-            description: p.description,
-          }))}
-          columns={3}
-        />
-      ) : (
-        <p className="text-zinc-600 italic text-sm py-12 text-center">No photos in this gallery yet.</p>
-      )}
+      <GalleryLightbox
+        photos={current.photos.map(p => ({
+          url: p.url,
+          title: p.title,
+          description: p.description,
+        }))}
+        columns={3}
+      />
     </div>
   )
 }
