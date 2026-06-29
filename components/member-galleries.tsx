@@ -10,41 +10,84 @@ interface Props {
   galleries: MemberGallery[]
 }
 
+function splitGalleryName(name: string) {
+  const parts = name.split("/").map(p => p.trim())
+  return {
+    category: parts[0] || "Gallery",
+    album: parts[1] || parts[0] || "Gallery",
+  }
+}
+
 export function MemberGalleries({ galleries }: Props) {
   const [active, setActive] = useState(0)
 
   if (!galleries || galleries.length === 0) return null
 
+  const grouped = galleries.reduce<Record<string, { gallery: MemberGallery; index: number; album: string }[]>>(
+    (acc, gallery, index) => {
+      const { category, album } = splitGalleryName(gallery.name)
+      acc[category] = acc[category] || []
+      acc[category].push({ gallery, index, album })
+      return acc
+    },
+    {}
+  )
+
   const current = galleries[active]
+  const currentParts = splitGalleryName(current.name)
 
   return (
     <div>
-      {/* Tab bar */}
+      {/* Collection navigation */}
       {galleries.length > 1 && (
-        <div className="flex gap-1 mb-8 border-b border-zinc-800 overflow-x-auto pb-0">
-          {galleries.map((g, i) => (
-            <button
-              key={g.name}
-              onClick={() => setActive(i)}
-              className={cn(
-                "flex items-center gap-2 px-4 py-3 text-sm font-medium whitespace-nowrap border-b-2 transition-colors",
-                i === active
-                  ? "border-amber-500 text-amber-400"
-                  : "border-transparent text-zinc-500 hover:text-zinc-300 hover:border-zinc-600"
-              )}
-            >
-              <Images className="h-4 w-4" />
-              {g.name}
-              <span className="ml-1 text-xs text-zinc-600">({g.photos.length})</span>
-            </button>
+        <div className="mb-10 space-y-6">
+          <p className="text-amber-400 text-xs font-semibold uppercase tracking-widest">
+            Portfolio Collections
+          </p>
+
+          {Object.entries(grouped).map(([category, albums]) => (
+            <div key={category}>
+              <h3 className="text-zinc-300 text-sm font-semibold uppercase tracking-widest mb-3">
+                {category}
+              </h3>
+
+              <div className="flex flex-wrap gap-2">
+                {albums.map(({ gallery, index, album }) => (
+                  <button
+                    key={gallery.name}
+                    onClick={() => setActive(index)}
+                    className={cn(
+                      "flex items-center gap-2 px-4 py-2 text-sm rounded-full border transition-colors",
+                      index === active
+                        ? "bg-amber-500 text-zinc-950 border-amber-500"
+                        : "bg-amber-500/10 text-amber-400 border-amber-500/20 hover:bg-amber-500/20"
+                    )}
+                  >
+                    <Images className="h-4 w-4" />
+                    {album}
+                    <span className={cn(
+                      "ml-1 text-xs",
+                      index === active ? "text-zinc-800" : "text-zinc-500"
+                    )}>
+                      ({gallery.photos.length})
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
       )}
 
-      {/* Gallery description */}
-      {current.description && (
-        <p className="text-zinc-400 text-sm mb-6 max-w-2xl">{current.description}</p>
-      )}
+      {/* Active album title */}
+      <div className="mb-6">
+        <p className="text-zinc-500 text-xs uppercase tracking-widest mb-2">
+          {currentParts.category}
+        </p>
+        <h2 className="font-playfair text-3xl text-white font-bold">
+          {currentParts.album}
+        </h2>
+      </div>
 
       {/* Lightbox grid */}
       {current.photos.length > 0 ? (
