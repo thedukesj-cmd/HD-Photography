@@ -41,50 +41,35 @@ export default async function MemberPage({ params }: Props) {
             <div className="relative aspect-square overflow-hidden rounded-2xl max-w-xs mx-auto md:max-w-none">
               <Image src={member.profilePhoto} alt={member.name} fill
                 sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" priority />
-              {member.featured && (
-                <span className="absolute top-3 left-3 bg-amber-500 text-zinc-950 text-xs font-bold px-2.5 py-1 rounded-full">
-                  Featured Member
-                </span>
-              )}
+              
             </div>
-            <div className="space-y-2">
-              {member.website && (
-                <a href={member.website} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-2.5 text-zinc-400 hover:text-amber-400 transition-colors text-sm">
-                  <Globe className="h-4 w-4 shrink-0" />
-                  <span className="truncate">{member.website.replace(/^https?:\/\//, "")}</span>
-                </a>
-              )}
-              {member.instagram && (
-                <a href={`https://instagram.com/${member.instagram.replace("@", "")}`}
-                  target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-2.5 text-zinc-400 hover:text-amber-400 transition-colors text-sm">
-                  <Instagram className="h-4 w-4 shrink-0" /> {member.instagram}
-                </a>
-              )}
-            {member.owner ? (
-              <p className="flex items-center gap-2.5 text-zinc-500 text-sm">
-              <Calendar className="h-4 w-4" /> Founder of HD Photography
-              </p>
-              ) : (
-                <p className="flex items-center gap-2.5 text-zinc-500 text-sm">
-                <Calendar className="h-4 w-4" /> Guest Photographer
-               </p>
-               )}
-            </div>
-            {member.specialties && member.specialties.length > 0 && (
-              <div className="flex flex-wrap gap-2">
-                {member.specialties.map((s: string) => (
-                  <span key={s} className="text-xs px-3 py-1 bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded-full">{s}</span>
-                ))}
-              </div>
-            )}
+            
+            
           </div>
 
           {/* Bio */}
           <div className="md:col-span-2">
             <h1 className="font-playfair text-4xl md:text-5xl font-bold text-white mb-3">{member.name}</h1>
-            <div className="prose-photography mt-6"
+            <div className="space-y-4 mt-4 mb-6">
+  {member.owner ? (
+    <p className="flex items-center gap-2.5 text-amber-400 text-sm">
+      <Calendar className="h-4 w-4" /> Founder of HD Photography
+    </p>
+  ) : (
+    <p className="flex items-center gap-2.5 text-amber-400 text-sm">
+      <Calendar className="h-4 w-4" /> Guest Photographer
+    </p>
+  )}
+
+  {member.specialties && member.specialties.length > 0 && (
+    <div className="flex flex-wrap gap-2">
+      {member.specialties.map((s: string) => (
+        <span key={s} className="text-xs px-3 py-1 bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded-full">{s}</span>
+      ))}
+    </div>
+  )}
+</div>
+<div className="prose-photography mt-6"
               dangerouslySetInnerHTML={{ __html: member.bioHtml || `<p>${member.bio}</p>` }} />
           </div>
         </div>
