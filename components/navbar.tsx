@@ -10,14 +10,12 @@ import { cn } from "@/lib/utils"
 
 const navLinks = [
   { href: "/", label: "Home" },
+  { href: "/members/hong-duc", label: "Hong-Duc Nguyen" },
+  { href: "/members", label: "Guest Photographers" },
+  { href: "/showcase", label: "Monthly Showcase" },
   { href: "/about", label: "About" },
-  { href: "/members", label: "Galleries" },
-  { href: "/showcase", label: "Showcase" },
-  { href: "/tutorials", label: "Tutorials" },
-  { href: "/news", label: "News" },
   { href: "/contact", label: "Contact" },
 ]
-
 export function Navbar() {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
