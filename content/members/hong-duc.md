@@ -1,16 +1,25 @@
 ---
-name: Hong Duc
+name: Hong-Duc Nguyen
+
 owner: true
-featured: true
+
 folder: "/uploads/members/Hong-Duc"
 
 bio: >
-  Guest photographer featured on HD Photography.
+  Photography has given me the opportunity to slow down, observe,
+  and appreciate the beauty that often goes unnoticed.
+  Whether exploring the quiet beauty of nature, discovering new places,
+  or capturing everyday moments, every photograph is a part of my journey.
 
-joinedYear: 2025
+  HD Photography is my personal gallery where I share that journey and
+  welcome guest photographers whose vision, creativity, and passion inspire me.
+  Together, our photographs celebrate not only the places we visit,
+  but also the stories, emotions, and memories that make each moment unique.
 
 specialties:
   - Landscape
-  - Portrait
+  - Nature
   - Travel
+  - Portrait
+
 ---

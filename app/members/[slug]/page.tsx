@@ -4,7 +4,7 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import { getAllMembers, getMemberWithHtml } from "@/lib/content"
 import { MemberGalleries } from "@/components/member-galleries"
-import { Globe, Instagram, ArrowLeft, Calendar } from "lucide-react"
+import { ArrowLeft, Calendar } from "lucide-react"
 
 interface Props { params: { slug: string } }
 
@@ -30,7 +30,7 @@ export default async function MemberPage({ params }: Props) {
     <div className="bg-zinc-950 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
         <Link href="/members" className="inline-flex items-center gap-2 text-zinc-500 hover:text-amber-400 transition-colors text-sm">
-          <ArrowLeft className="h-4 w-4" /> All Members
+          <ArrowLeft className="h-4 w-4" /> Back to Guest Photographers
         </Link>
       </div>
 
@@ -49,18 +49,20 @@ export default async function MemberPage({ params }: Props) {
 
           {/* Bio */}
           <div className="md:col-span-2">
-            <h1 className="font-playfair text-4xl md:text-5xl font-bold text-white mb-3">{member.name}</h1>
+            <h1 className="font-playfair text-4xl md:text-5xl font-bold text-white mb-3">{member.name}
+		</h1>
+	{member.owner && (
+  	<p className="mt-3 text-lg text-zinc-300 italic max-w-2xl leading-relaxed">
+   	 Exploring the beauty of nature, travel, and everyday life through photography.
+ 	 </p>
+	)}
             <div className="space-y-4 mt-4 mb-6">
-  {member.owner ? (
-    <p className="flex items-center gap-2.5 text-amber-400 text-sm">
-      <Calendar className="h-4 w-4" /> Founder of HD Photography
-    </p>
-  ) : (
-    <p className="flex items-center gap-2.5 text-amber-400 text-sm">
-      <Calendar className="h-4 w-4" /> Guest Photographer
-    </p>
-  )}
-
+  {!member.owner && (
+  <p className="flex items-center gap-2.5 text-amber-400 text-sm">
+    <Calendar className="h-4 w-4" /> Guest Photographer
+  </p>
+)}
+   
   {member.specialties && member.specialties.length > 0 && (
     <div className="flex flex-wrap gap-2">
       {member.specialties.map((s: string) => (
