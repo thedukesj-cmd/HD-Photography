@@ -38,27 +38,27 @@ export default async function HomePage() {
         </div>
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
           <p className="text-amber-400 text-sm font-semibold uppercase tracking-[0.3em] mb-6">
-            HD Photography Club
+            HD PHOTOGRAPHY
           </p>
           <h1 className="font-playfair text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-tight mb-8">
-            Where Light<br />
-            <em className="text-amber-400 not-italic">Tells Stories</em>
+            Exploring Beauty<br />
+		<em className="text-amber-400 not-italic">Through Photography</em>
           </h1>
           <p className="text-zinc-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
-            A community of passionate photographers who believe that every frame is a chance to see the world differently — and share that vision with others.
+            Every photograph begins with a moment worth remembering. HD Photography is my personal journey through nature, travel, and everyday life — and a place to feature photographers whose work inspires me.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/members"
+              href="/members/hong-duc"
               className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-zinc-950 font-semibold px-8 py-4 rounded-full transition-all duration-200 hover:shadow-lg hover:shadow-amber-500/30 hover:-translate-y-0.5"
             >
-              Explore Galleries <ArrowRight className="h-4 w-4" />
+              Explore Photography <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
-              href="/about"
+              href="/members/hong-duc"
               className="inline-flex items-center gap-2 border border-zinc-500 hover:border-white text-zinc-300 hover:text-white font-medium px-8 py-4 rounded-full transition-all duration-200"
             >
-              About Us
+              Meet Hong-Duc Nguyen
             </Link>
           </div>
         </div>
@@ -127,11 +127,12 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* ─── Featured Member ──────────────────────────────────────────── */}
+      {/* ─── Behind the Camera ──────────────────────────────────────────── */}
       {featuredMember && (
         <section className="py-20 bg-zinc-900/40 border-y border-zinc-800/60">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <p className="text-amber-400 text-xs font-semibold uppercase tracking-widest mb-10 text-center">Featured Member</p>
+            <p className="text-amber-400 text-xs font-semibold uppercase tracking-widest mb-10 text-center">Behind the Camera
+</p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div className="relative">
                 <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
@@ -169,7 +170,7 @@ export default async function HomePage() {
                     href={`/members/${featuredMember.slug}`}
                     className="inline-flex items-center gap-2 text-amber-400 hover:text-amber-300 font-medium transition-colors group mt-4"
                   >
-                    View gallery <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    Explore My Gallery <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </div>
               </div>
