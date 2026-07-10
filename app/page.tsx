@@ -37,7 +37,7 @@ export default async function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/60 via-zinc-950/30 to-zinc-950" />
         </div>
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
-          <p className="text-amber-400 text-sm font-semibold uppercase tracking-[0.3em] mb-6">
+          <p className="text-amber-400 text-xl md:text-2xl font-bold uppercase tracking-[0.45em] mb-8">
             HD PHOTOGRAPHY
           </p>
           <h1 className="font-playfair text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-tight mb-8">
@@ -62,9 +62,7 @@ export default async function HomePage() {
             </Link>
           </div>
         </div>
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
-          <div className="w-0.5 h-12 bg-gradient-to-b from-amber-400 to-transparent mx-auto" />
-        </div>
+        
       </section>
 
       {/* ─── Stats ────────────────────────────────────────────────────── */}
