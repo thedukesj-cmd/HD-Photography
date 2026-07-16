@@ -1,33 +1,84 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
+
 import { ThemeToggle } from "@/components/theme-toggle"
+import { useLanguage } from "@/components/language-provider"
+import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 
-const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/members/hong-duc", label: "Hong-Duc Nguyen" },
-  { href: "/members", label: "Guest Photographers" },
-  { href: "/showcase", label: "Showcase" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
-]
 export function Navbar() {
   const pathname = usePathname()
+  const { language, setLanguage, translations } = useLanguage()
+
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
+  const navLinks = [
+    {
+      href: "/",
+      label: translations.nav.home,
+      visible: true,
+    },
+    {
+      href: `/members/${siteConfig.ownerSlug}`,
+      label: translations.nav.photographer,
+      visible: siteConfig.navigation.showOwner,
+    },
+    {
+      href: "/members",
+      label: translations.nav.photographers,
+      visible: siteConfig.navigation.showGuestPhotographers,
+    },
+    {
+      href: "/showcase",
+      label: translations.nav.showcase,
+      visible: siteConfig.navigation.showShowcase,
+    },
+    {
+      href: "/about",
+      label: translations.nav.about,
+      visible: siteConfig.navigation.showAbout,
+    },
+    {
+      href: "/contact",
+      label: translations.nav.contact,
+      visible: siteConfig.navigation.showContact,
+    },
+  ].filter(link => link.visible)
+
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20)
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20)
+    }
+
     window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    }
   }, [])
 
-  useEffect(() => { setOpen(false) }, [pathname])
+  useEffect(() => {
+    setOpen(false)
+  }, [pathname])
+
+  function isActiveLink(href: string) {
+    if (href === "/") {
+      return pathname === "/"
+    }
+
+    return pathname === href || pathname.startsWith(`${href}/`)
+  }
+
+  function changeLanguage(newLanguage: "en" | "vi") {
+    setLanguage(newLanguage)
+    setOpen(false)
+  }
 
   return (
     <header
@@ -40,12 +91,15 @@ export function Navbar() {
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
-
           {/* Logo */}
-          <Link href="/" className="flex items-center group shrink-0">
+          <Link
+            href="/"
+            className="flex items-center group shrink-0"
+            aria-label={siteConfig.siteName}
+          >
             <Image
               src="/logo.png"
-              alt="HD Photography Club"
+              alt={siteConfig.siteName}
               width={120}
               height={40}
               className="h-10 md:h-12 w-auto object-contain"
@@ -53,7 +107,7 @@ export function Navbar() {
             />
           </Link>
 
-          {/* Desktop nav */}
+          {/* Desktop navigation */}
           <div className="hidden md:flex items-center gap-1">
             {navLinks.map(link => (
               <Link
@@ -61,7 +115,7 @@ export function Navbar() {
                 href={link.href}
                 className={cn(
                   "px-3 py-2 text-sm font-medium rounded-md transition-all duration-200",
-                  pathname === link.href
+                  isActiveLink(link.href)
                     ? "text-amber-400 bg-amber-400/10"
                     : "text-zinc-300 hover:text-white hover:bg-zinc-800/50"
                 )}
@@ -72,14 +126,54 @@ export function Navbar() {
           </div>
 
           <div className="flex items-center gap-2">
+            {/* Language switch */}
+            <div
+              className="flex items-center rounded-md border border-zinc-700 bg-zinc-900/70 p-1"
+              aria-label="Language selection"
+            >
+              <button
+                type="button"
+                onClick={() => changeLanguage("en")}
+                className={cn(
+                  "rounded px-2 py-1 text-xs font-semibold transition-colors",
+                  language === "en"
+                    ? "bg-amber-400 text-zinc-950"
+                    : "text-zinc-400 hover:text-white"
+                )}
+                aria-pressed={language === "en"}
+              >
+                EN
+              </button>
+
+              <button
+                type="button"
+                onClick={() => changeLanguage("vi")}
+                className={cn(
+                  "rounded px-2 py-1 text-xs font-semibold transition-colors",
+                  language === "vi"
+                    ? "bg-amber-400 text-zinc-950"
+                    : "text-zinc-400 hover:text-white"
+                )}
+                aria-pressed={language === "vi"}
+              >
+                VI
+              </button>
+            </div>
+
             <ThemeToggle />
+
             <button
+              type="button"
               onClick={() => setOpen(!open)}
               className="md:hidden p-2 rounded-md text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors"
               aria-label="Toggle menu"
               aria-expanded={open}
             >
-              {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              {open ? (
+                <X className="h-5 w-5" />
+              ) : (
+                <Menu className="h-5 w-5" />
+              )}
             </button>
           </div>
         </div>
@@ -98,7 +192,7 @@ export function Navbar() {
                 href={link.href}
                 className={cn(
                   "px-3 py-2.5 text-sm font-medium rounded-md transition-colors",
-                  pathname === link.href
+                  isActiveLink(link.href)
                     ? "text-amber-400 bg-amber-400/10"
                     : "text-zinc-300 hover:text-white hover:bg-zinc-800/50"
                 )}
