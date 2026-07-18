@@ -1,85 +1,24 @@
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Camera, Users, BookOpen, Image as ImageIcon } from "lucide-react"
-import { getAllMembers, getFeaturedMember, getLatestShowcase, getLatestTutorials, getLatestNews } from "@/lib/content"
-import { MemberCard } from "@/components/member-card"
-import { ShowcaseCard } from "@/components/showcase-card"
+import { ArrowRight } from "lucide-react"
+import { getFeaturedMember, getLatestShowcase, getLatestTutorials, getLatestNews } from "@/lib/content"
 import { NewsCard } from "@/components/news-card"
-import type { Tutorial } from "@/types"
+import { HomeHero } from "@/components/home-hero"
+
 
 export default async function HomePage() {
   const featuredMember = getFeaturedMember()
   const latestShowcase = getLatestShowcase()
   const tutorials = getLatestTutorials(3)
   const news = getLatestNews(2)
-  const allMembers = getAllMembers()
 
-  const stats = [
-    { icon: Users, label: "Members", value: `${allMembers.length}+` },
-    { icon: Camera, label: "Photos Shared", value: "2,400+" },
-    { icon: BookOpen, label: "Tutorials", value: "40+" },
-    { icon: ImageIcon, label: "Showcases", value: "36" },
-  ]
+
 
   return (
     <div className="bg-zinc-950 text-zinc-100">
-      {/* ─── Hero ─────────────────────────────────────────────────────── */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=2000&q=80"
-            alt="Mountain landscape at golden hour"
-            fill
-            className="object-cover"
-            priority
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/60 via-zinc-950/30 to-zinc-950" />
-        </div>
-        <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
-          <p className="text-amber-400 text-xl md:text-2xl font-bold uppercase tracking-[0.45em] mb-8">
-            HD PHOTOGRAPHY
-          </p>
-          <h1 className="font-playfair text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-tight mb-8">
-            Exploring Beauty<br />
-		<em className="text-amber-400 not-italic">Through Photography</em>
-          </h1>
-          <p className="text-zinc-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
-            Every photograph begins with a moment worth remembering. HD Photography is my personal journey through nature, travel, and everyday life — and a place to feature photographers whose work inspires me.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/members/hong-duc"
-              className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-zinc-950 font-semibold px-8 py-4 rounded-full transition-all duration-200 hover:shadow-lg hover:shadow-amber-500/30 hover:-translate-y-0.5"
-            >
-              Explore Photography <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link
-              href="/members/hong-duc"
-              className="inline-flex items-center gap-2 border border-zinc-500 hover:border-white text-zinc-300 hover:text-white font-medium px-8 py-4 rounded-full transition-all duration-200"
-            >
-              Meet Hong-Duc Nguyen
-            </Link>
-          </div>
-        </div>
-        
-      </section>
+      <HomeHero />
 
-      {/* ─── Stats ────────────────────────────────────────────────────── */}
-      <section className="py-16 border-y border-zinc-800/60">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map(({ icon: Icon, label, value }) => (
-              <div key={label} className="text-center">
-                <Icon className="h-6 w-6 text-amber-400 mx-auto mb-3" />
-                <div className="font-playfair text-3xl font-bold text-white">{value}</div>
-                <div className="text-zinc-500 text-sm mt-1">{label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
+      
       {/* ─── Featured Showcase ────────────────────────────────────────── */}
       {latestShowcase && (
         <section className="py-20 md:py-28">

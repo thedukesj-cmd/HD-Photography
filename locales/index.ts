@@ -1,13 +1,21 @@
 import { en } from "./en"
 import { vi } from "./vi"
+import { enHome } from "./en-home"
+import { viHome } from "./vi-home"
 import {
   siteConfig,
   type LanguageCode,
 } from "../config/site"
 
 export const translations = {
-  en,
-  vi,
+  en: {
+    ...en,
+    home: enHome,
+  },
+  vi: {
+    ...vi,
+    home: viHome,
+  },
 } as const
 
 export const defaultLanguage: LanguageCode =
