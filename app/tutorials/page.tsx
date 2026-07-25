@@ -1,11 +1,10 @@
 import type { Metadata } from "next"
 import { getAllTutorials } from "@/lib/content"
-import { TutorialSearch } from "@/components/tutorial-search"
+import { TutorialsContent } from "@/components/tutorials-content"
 
 export const metadata: Metadata = {
-  title: "Tutorials",
-  description: "Learn photography techniques and skills from Aperture Club members. Beginner to advanced tutorials on landscape, portrait, street, and more.",
-}
+title: "Articles",
+description: "Explore photography articles from Aperture Club members, covering technique, gear, post-processing, creative ideas, and more.",}
 
 export default function TutorialsPage() {
   const tutorials = getAllTutorials()
@@ -20,7 +19,7 @@ export default function TutorialsPage() {
             and the mindset behind great photography.
           </p>
         </div>
-        <TutorialSearch tutorials={tutorials} />
+        <TutorialsContent tutorials={tutorials} />
       </div>
     </div>
   )
