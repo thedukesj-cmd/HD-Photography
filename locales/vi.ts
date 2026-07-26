@@ -6,6 +6,8 @@ export const vi = {
     photographer: "Hong-Duc Nguyễn",
     photographers: "Nhiếp ảnh gia khách mời",
     showcase: "Ảnh triển lãm",
+    news: "Tin tức",
+    articles: "Bài viết",
     about: "Giới thiệu",
     contact: "Liên hệ",
   },

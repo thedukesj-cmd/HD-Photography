@@ -6,6 +6,8 @@ export const en = {
     photographer: "Hong-Duc Nguyen",
     photographers: "Guest Photographers",
     showcase: "Showcase",
+    news: "News",
+    articles: "Articles",
     about: "About",
     contact: "Contact",
   },

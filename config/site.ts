@@ -28,8 +28,8 @@ export const siteConfig = {
     showShowcase: true,
     showAbout: true,
     showContact: true,
-    showNews: false,
-    showTutorials: false,
+    showNews: true,
+    showTutorials: true,
   },
 
   gallery: {

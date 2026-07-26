@@ -40,6 +40,16 @@ export function Navbar() {
       visible: siteConfig.navigation.showShowcase,
     },
     {
+  href: "/news",
+  label: translations.nav.news,
+  visible: siteConfig.navigation.showNews,
+    },
+    {
+  href: "/tutorials",
+  label: translations.nav.articles,
+  visible: siteConfig.navigation.showTutorials,
+    },
+    {
       href: "/about",
       label: translations.nav.about,
       visible: siteConfig.navigation.showAbout,
