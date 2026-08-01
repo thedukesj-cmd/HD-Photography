@@ -1,4 +1,5 @@
 import { Camera, Heart, Users, Sparkles } from "lucide-react"
+import { SectionTitle } from "@/components/ui/section-title"
 
 const values = [
   {
@@ -31,15 +32,10 @@ export function AboutValues() {
   return (
     <section className="py-20 bg-zinc-900/40 border-y border-zinc-800/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-14">
-          <p className="text-amber-400 text-xs font-semibold uppercase tracking-widest mb-3">
-            WHAT GUIDES THIS SITE
-          </p>
-
-          <h2 className="font-playfair text-4xl text-white font-bold">
-            The Idea Behind HD Photography
-          </h2>
-        </div>
+        <SectionTitle
+         eyebrow="WHAT GUIDES THIS SITE"
+        title="The Idea Behind HD Photography"
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {values.map(({ icon: Icon, title, description }) => (

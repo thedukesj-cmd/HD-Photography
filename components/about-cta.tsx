@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 export function AboutCTA() {
   return (
@@ -13,12 +14,14 @@ export function AboutCTA() {
         the world with fresh eyes.
       </p>
 
-      <Link
-        href="/contact"
-        className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-zinc-950 font-semibold px-8 py-4 rounded-full transition-all duration-200 hover:shadow-lg hover:shadow-amber-500/30"
-      >
-        Contact Me <ArrowRight className="h-4 w-4" />
-      </Link>
+         <Button
+          href="/contact"
+          size="lg"
+          className="gap-2"
+          >
+        Contact Me
+        <ArrowRight className="h-4 w-4" />
+      </Button>
     </section>
   )
 }

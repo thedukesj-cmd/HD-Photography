@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { Send, CheckCircle } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 export function ContactForm() {
   const [sent, setSent] = useState(false)
@@ -151,13 +152,14 @@ export function ContactForm() {
             />
           </div>
 
-          <button
+          <Button
             type="submit"
-            className="w-full flex items-center justify-center gap-2.5 bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold px-8 py-4 rounded-xl transition-all duration-200"
-          >
+            size="lg"
+            className="w-full gap-2.5 rounded-xl font-bold"
+            >
             <Send className="h-4 w-4" />
             Prepare Email
-          </button>
+            </Button>
         </form>
       )}
     </div>
