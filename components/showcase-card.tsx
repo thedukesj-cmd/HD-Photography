@@ -2,11 +2,12 @@ import Link from "next/link"
 import Image from "next/image"
 import type { Showcase } from "@/types"
 import { Images } from "lucide-react"
+import { PhotoCard } from "@/components/ui/photo-card"
 
 export function ShowcaseCard({ showcase }: { showcase: Showcase }) {
   return (
     <Link href={`/showcase/${showcase.slug}`} className="group block">
-      <article className="bg-zinc-900/50 border border-zinc-800 rounded-xl overflow-hidden hover:border-amber-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-amber-950/20">
+      <PhotoCard className="group">
         <div className="relative aspect-video overflow-hidden">
           <Image
             src={showcase.featuredImage}
@@ -32,7 +33,7 @@ export function ShowcaseCard({ showcase }: { showcase: Showcase }) {
             <Images className="h-3.5 w-3.5" /> {showcase.photos.length}
           </span>
         </div>
-      </article>
+      </PhotoCard>
     </Link>
   )
 }

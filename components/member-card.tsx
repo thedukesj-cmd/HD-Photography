@@ -2,11 +2,12 @@ import Link from "next/link"
 import Image from "next/image"
 import type { Member } from "@/types"
 import { Globe, Instagram } from "lucide-react"
+import { PhotoCard } from "@/components/ui/photo-card"
 
 export function MemberCard({ member }: { member: Member }) {
   return (
     <Link href={`/members/${member.slug}`} className="group block">
-      <article className="bg-zinc-900/50 border border-zinc-800 rounded-xl overflow-hidden hover:border-amber-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-amber-950/20">
+      <PhotoCard className="group">
         <div className="relative aspect-[4/3] overflow-hidden">
           <Image
             src={member.profilePhoto}
@@ -48,7 +49,7 @@ export function MemberCard({ member }: { member: Member }) {
             </span>
           </div>
         </div>
-      </article>
+     </PhotoCard>
     </Link>
   )
 }

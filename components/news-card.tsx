@@ -2,10 +2,11 @@ import Link from "next/link"
 import Image from "next/image"
 import type { NewsItem } from "@/types"
 import { Calendar, ArrowRight } from "lucide-react"
+import { PhotoCard } from "@/components/ui/photo-card"
 
 export function NewsCard({ item }: { item: NewsItem }) {
   return (
-    <article className="group bg-zinc-900/50 border border-zinc-800 rounded-xl overflow-hidden hover:border-amber-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-amber-950/20">
+      <PhotoCard className="group">
       <Link href={`/news/${item.slug}`} className="block">
         <div className="relative aspect-video overflow-hidden">
           <Image
@@ -36,6 +37,6 @@ export function NewsCard({ item }: { item: NewsItem }) {
           </span>
         </div>
       </Link>
-    </article>
+    </PhotoCard>
   )
 }

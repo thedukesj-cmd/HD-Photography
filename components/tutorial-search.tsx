@@ -4,9 +4,9 @@ import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import type { Tutorial } from "@/types"
-import { Search, Calendar, Clock, User, Tag, BookOpen } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
+import { Search, Calendar, Clock, User, BookOpen } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { PhotoCard } from "@/components/ui/photo-card"
 
 const difficultyColor: Record<string, string> = {
   Beginner: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
@@ -62,9 +62,9 @@ export function TutorialSearch({ tutorials }: { tutorials: Tutorial[] }) {
       {/* Tutorial grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
         {filtered.map(tutorial => (
-          <article
-            key={tutorial.slug}
-            className="group bg-zinc-900/50 dark:bg-zinc-900/50 border border-zinc-800 rounded-xl overflow-hidden hover:border-amber-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-amber-950/20"
+          <PhotoCard
+          key={tutorial.slug}
+          className="group dark:bg-zinc-900/50"
           >
             <Link href={`/tutorials/${tutorial.slug}`} className="block">
               <div className="relative aspect-video overflow-hidden">
@@ -115,7 +115,7 @@ export function TutorialSearch({ tutorials }: { tutorials: Tutorial[] }) {
                 )}
               </div>
             </Link>
-          </article>
+          </PhotoCard>
         ))}
       </div>
 
