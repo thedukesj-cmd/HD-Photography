@@ -5,9 +5,9 @@ import Lightbox from "yet-another-react-lightbox"
 import Captions from "yet-another-react-lightbox/plugins/captions"
 import "yet-another-react-lightbox/styles.css"
 import "yet-another-react-lightbox/plugins/captions.css"
-
+import { MasonryGallery } from "@/components/masonry-gallery"
 import type { GalleryPhoto } from "@/types"
-import { cn } from "@/lib/utils"
+
 
 interface GalleryLightboxProps {
   photos: GalleryPhoto[]
@@ -23,20 +23,12 @@ export function GalleryLightbox({
 
   return (
     <>
-      <div
-        className={cn(
-          "columns-1 gap-3",
-          columns === 2 && "sm:columns-2",
-          columns === 3 && "sm:columns-2 lg:columns-3",
-          columns === 4 && "columns-2 sm:columns-3 lg:columns-4"
-        )}
-      >
+      <MasonryGallery columns={columns}>
         {photos.map((photo, i) => (
           <button
             key={i}
             type="button"
-            className="relative mb-3 block w-full break-inside-avoid overflow-hidden rounded-lg group cursor-pointer focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 focus:ring-offset-zinc-950"
-            onClick={() => {
+className="relative mb-4 block w-full break-inside-avoid overflow-hidden rounded-xl shadow-lg shadow-black/20 group cursor-pointer focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 focus:ring-offset-zinc-950"            onClick={() => {
               setIndex(i)
               setOpen(true)
             }}
@@ -45,8 +37,7 @@ export function GalleryLightbox({
             <img
               src={photo.url}
               alt={photo.title || `Gallery photo ${i + 1}`}
-              className="block h-auto w-full transition-transform duration-500 group-hover:scale-105"
-              loading="lazy"
+              className="block h-auto w-full transition-all duration-500 group-hover:scale-[1.03] group-hover:brightness-105"              loading="lazy"
             />
 
             <div className="absolute inset-0 flex flex-col justify-end bg-black/0 p-3 transition-all duration-300 group-hover:bg-black/40">
@@ -64,7 +55,7 @@ export function GalleryLightbox({
             </div>
           </button>
         ))}
-      </div>
+      </MasonryGallery>
 
       <Lightbox
         open={open}
