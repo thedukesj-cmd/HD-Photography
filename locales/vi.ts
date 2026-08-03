@@ -19,6 +19,10 @@ export const vi = {
     exploreGallery: "Khám phá bộ ảnh của tôi",
     backToPhotographers: "Trở lại danh sách nhiếp ảnh gia",
   },
+  lightbox: {
+  photo: "Ảnh",
+  of: "/",
+},
   memberGalleries: {
   portfolioCollections: "Bộ sưu tập ảnh",
   gallery: "Thư viện ảnh",

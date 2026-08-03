@@ -7,7 +7,7 @@ import "yet-another-react-lightbox/styles.css"
 import "yet-another-react-lightbox/plugins/captions.css"
 import { MasonryGallery } from "@/components/masonry-gallery"
 import type { GalleryPhoto } from "@/types"
-
+import { useLanguage } from "@/components/language-provider"
 
 interface GalleryLightboxProps {
   photos: GalleryPhoto[]
@@ -20,6 +20,7 @@ export function GalleryLightbox({
 }: GalleryLightboxProps) {
   const [open, setOpen] = useState(false)
   const [index, setIndex] = useState(0)
+  const { translations } = useLanguage()
 
   return (
     <>
@@ -61,10 +62,14 @@ className="relative mb-4 block w-full break-inside-avoid overflow-hidden rounded
         open={open}
         close={() => setOpen(false)}
         index={index}
-        slides={photos.map((photo) => ({
-          src: photo.url,
-          title: photo.title,
-          description: photo.description,
+        slides={photos.map((p, i) => ({
+        src: p.url,
+        title: p.title,
+        description: `${translations.lightbox.photo} ${i + 1} ${
+        translations.lightbox.of
+        } ${photos.length}${
+        p.description ? ` • ${p.description}` : ""
+        }`,
         }))}
         plugins={[Captions]}
         styles={{
