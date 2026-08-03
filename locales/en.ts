@@ -19,4 +19,12 @@ export const en = {
     exploreGallery: "Explore My Gallery",
     backToPhotographers: "Back to Guest Photographers",
   },
+  memberGalleries: {
+  portfolioCollections: "Portfolio Collections",
+  gallery: "Gallery",
+  album: "album",
+  albums: "albums",
+  photograph: "photograph",
+  photographs: "photographs",
+},
 }

@@ -7,7 +7,7 @@ export const siteConfig = {
 
   siteType: "personal" as "personal" | "club",
 
-  defaultLanguage: "en" as "en" | "vi",
+  defaultLanguage: "vi" as "vi" | "en",
   supportedLanguages: ["en", "vi"] as const,
 
   location: {

@@ -1,0 +1,9 @@
+# Query: showTutorials: false,
+# ContextLines: 1
+
+1 result - 1 file
+
+config\site.ts:
+  31      showNews: true,
+  32:     showTutorials: fa,
+  33    },

@@ -78,12 +78,24 @@ export function Navbar() {
   }, [pathname])
 
   function isActiveLink(href: string) {
-    if (href === "/") {
-      return pathname === "/"
-    }
+  const currentPath =
+    pathname.length > 1 && pathname.endsWith("/")
+      ? pathname.slice(0, -1)
+      : pathname
 
-    return pathname === href || pathname.startsWith(`${href}/`)
+  if (href === "/") {
+    return currentPath === "/"
   }
+
+  if (href === "/members") {
+    return currentPath === "/members"
+  }
+
+  return (
+    currentPath === href ||
+    currentPath.startsWith(`${href}/`)
+  )
+}
 
   function changeLanguage(newLanguage: "en" | "vi") {
     setLanguage(newLanguage)

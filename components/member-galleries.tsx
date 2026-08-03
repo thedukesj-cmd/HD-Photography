@@ -4,31 +4,37 @@ import { useState } from "react"
 import { GalleryLightbox } from "@/components/gallery-lightbox"
 import type { MemberGallery } from "@/types"
 import { cn } from "@/lib/utils"
+import { useLanguage } from "@/components/language-provider"
+import { text } from "stream/consumers"
 
 interface Props {
   galleries: MemberGallery[]
 }
 
-function splitGalleryName(name: string) {
-  const parts = name.split("/").map(p => p.trim())
+function splitGalleryName(name: string, fallback: string) {
+  const parts = name.split("/").map((part) => part.trim())
+
   return {
-    category: parts[0] || "Gallery",
-    album: parts[1] || parts[0] || "Gallery",
+    category: parts[0] || fallback,
+    album: parts[1] || parts[0] || fallback,
   }
 }
 
-function photoLabel(count: number) {
-  return count === 1 ? "1 photograph" : `${count} photographs`
-}
+
 
 export function MemberGalleries({ galleries }: Props) {
   const [active, setActive] = useState(0)
+  const { translations } = useLanguage()
+  const text = translations.memberGalleries
 
   if (!galleries || galleries.length === 0) return null
 
   const grouped = galleries.reduce<Record<string, { gallery: MemberGallery; index: number; album: string }[]>>(
     (acc, gallery, index) => {
-      const { category, album } = splitGalleryName(gallery.name)
+      const { category, album } = splitGalleryName(
+      gallery.name,
+      text.gallery
+      )
       acc[category] = acc[category] || []
       acc[category].push({ gallery, index, album })
       return acc
@@ -37,13 +43,16 @@ export function MemberGalleries({ galleries }: Props) {
   )
 
   const current = galleries[active]
-  const currentParts = splitGalleryName(current.name)
+  const currentParts = splitGalleryName(
+  current.name,
+  text.gallery
+)
 
   return (
     <div>
       <div className="mb-16 space-y-16">
         <p className="text-amber-400 text-xs font-semibold uppercase tracking-widest">
-          Portfolio Collections
+          {text.portfolioCollections}
         </p>
 
         {Object.entries(grouped).map(([category, albums]) => {
@@ -57,7 +66,7 @@ export function MemberGalleries({ galleries }: Props) {
     </h3>
 
     <span className="text-zinc-500 text-sm">
-        {albums.length} {albums.length === 1 ? "album" : "albums"}
+        {albums.length} {albums.length === 1 ? text.album : text.albums}
     </span>
 </div>
 
@@ -97,7 +106,8 @@ export function MemberGalleries({ galleries }: Props) {
                     <div className="p-4">
                       <h4 className="text-white font-semibold text-lg">{album}</h4>
                       <p className="text-zinc-500 text-sm mt-1">
-                        {photoLabel(gallery.photos.length)}
+                        {gallery.photos.length}{" "}
+                        {gallery.photos.length === 1 ? text.photograph : text.photographs}
                       </p>
                     </div>
                   </button>

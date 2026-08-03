@@ -19,4 +19,12 @@ export const vi = {
     exploreGallery: "Khám phá bộ ảnh của tôi",
     backToPhotographers: "Trở lại danh sách nhiếp ảnh gia",
   },
+  memberGalleries: {
+  portfolioCollections: "Bộ sưu tập ảnh",
+  gallery: "Thư viện ảnh",
+  album: "album",
+  albums: "album",
+  photograph: "bức ảnh",
+  photographs: "bức ảnh",
+},
 }
