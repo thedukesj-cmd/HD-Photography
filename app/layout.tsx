@@ -13,13 +13,18 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.shortName}`,
   },
   description:
-    "A personal photography gallery featuring the work of Hong-Duc Nguyen and invited guest photographers.",
+   "A personal photography portfolio by Hong-Duc Nguyen, featuring nature, travel, landscapes, and selected guest photographers.",
   keywords: [
     "photography",
     "photo gallery",
     "landscape photography",
     "travel photography",
-    "guest photographers",
+    "Hong-Duc Nguyen",
+"nature photography",
+"travel photography",
+"fine art photography",
+"California photography",
+"guest photographers",
     siteConfig.siteName,
   ],
   openGraph: {
@@ -27,7 +32,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.siteName,
     title: siteConfig.siteName,
     description:
-      "A personal photography gallery featuring the work of Hong-Duc Nguyen and invited guest photographers.",
+      "A personal photography portfolio by Hong-Duc Nguyen, featuring nature, travel, landscapes, and selected guest photographers.",
     images: [
       {
         url: "/logo.png",
@@ -41,7 +46,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteConfig.siteName,
     description:
-      "A personal photography gallery featuring the work of Hong-Duc Nguyen and invited guest photographers.",
+      "A personal photography portfolio by Hong-Duc Nguyen, featuring nature, travel, landscapes, and selected guest photographers.",
   },
 }
 

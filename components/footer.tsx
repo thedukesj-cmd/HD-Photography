@@ -1,16 +1,25 @@
+"use client"
+
 import Link from "next/link"
 import { Aperture, Mail, MapPin } from "lucide-react"
+import { useLanguage } from "@/components/language-provider"
 
-const quickLinks = [
-  { href: "/", label: "Home" },
-  { href: "/members/hong-duc", label: "Hong-Duc Nguyen" },
-  { href: "/members", label: "Guest Photographers" },
-  { href: "/showcase", label: "Showcase" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
-]
+
 
 export function Footer() {
+
+  const { translations } = useLanguage()
+const footer = translations.footer
+
+const quickLinks = [
+  { href: "/", label: translations.nav.home },
+  { href: "/members/hong-duc", label: translations.nav.photographer },
+  { href: "/members", label: translations.nav.photographers },
+  { href: "/showcase", label: translations.nav.showcase },
+  { href: "/about", label: translations.nav.about },
+  { href: "/contact", label: translations.nav.contact },
+]
+
   return (
     <footer className="bg-zinc-950 border-t border-zinc-800 text-zinc-400">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -26,14 +35,14 @@ export function Footer() {
             </Link>
 
             <p className="text-sm leading-relaxed max-w-xs">
-              Exploring the beauty of nature, travel, and everyday life through photography.
+              {footer.description}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
             <h3 className="text-white text-sm font-semibold uppercase tracking-widest mb-5">
-              Quick Links
+              {footer.explore}
             </h3>
 
             <ul className="space-y-2.5">
@@ -53,7 +62,7 @@ export function Footer() {
           {/* Contact */}
           <div>
             <h3 className="text-white text-sm font-semibold uppercase tracking-widest mb-5">
-              Contact
+              {footer.contact}
             </h3>
 
             <div className="space-y-3 text-sm">
@@ -67,7 +76,7 @@ export function Footer() {
                 className="flex items-center gap-2.5 hover:text-amber-400 transition-colors"
               >
                 <Mail className="h-4 w-4 text-amber-400 shrink-0" />
-                Contact Hong-Duc
+                {footer.contactMe}
               </Link>
             </div>
           </div>
@@ -75,11 +84,11 @@ export function Footer() {
 
         <div className="border-t border-zinc-800 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-zinc-600">
           <p>
-            © {new Date().getFullYear()} HD Photography. All rights reserved.
+            © {new Date().getFullYear()} HD Photography. {footer.copyright}
           </p>
 
           <p>
-            Photography by Hong-Duc Nguyen
+            {footer.by}
           </p>
         </div>
       </div>

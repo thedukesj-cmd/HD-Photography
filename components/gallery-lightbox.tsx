@@ -2,9 +2,14 @@
 
 import { useState } from "react"
 import Lightbox from "yet-another-react-lightbox"
+
 import Captions from "yet-another-react-lightbox/plugins/captions"
+import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen"
+import Zoom from "yet-another-react-lightbox/plugins/zoom"
+
 import "yet-another-react-lightbox/styles.css"
 import "yet-another-react-lightbox/plugins/captions.css"
+
 import { MasonryGallery } from "@/components/masonry-gallery"
 import type { GalleryPhoto } from "@/types"
 import { useLanguage } from "@/components/language-provider"
@@ -71,7 +76,23 @@ className="relative mb-4 block w-full break-inside-avoid overflow-hidden rounded
         p.description ? ` • ${p.description}` : ""
         }`,
         }))}
-        plugins={[Captions]}
+        plugins={[Captions, Fullscreen, Zoom]}
+        animation={{
+  fade: 300,
+  swipe: 350,
+}}
+
+zoom={{
+  maxZoomPixelRatio: 3,
+  zoomInMultiplier: 2,
+  doubleTapDelay: 300,
+  doubleClickDelay: 300,
+  doubleClickMaxStops: 2,
+  keyboardMoveDistance: 50,
+  wheelZoomDistanceFactor: 100,
+  pinchZoomDistanceFactor: 100,
+  scrollToZoom: true,
+}}
         styles={{
           container: {
             backgroundColor: "rgba(0,0,0,0.95)",
@@ -81,6 +102,7 @@ className="relative mb-4 block w-full break-inside-avoid overflow-hidden rounded
           showToggle: true,
           descriptionTextAlign: "center",
         }}
+        
       />
     </>
   )

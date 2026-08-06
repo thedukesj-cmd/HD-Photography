@@ -44,7 +44,7 @@ export function HomeHero() {
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
-            href="/members/hong-duc"
+            href="/showcase"
             className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-zinc-950 font-semibold px-8 py-4 rounded-full transition-all duration-200 hover:shadow-lg hover:shadow-amber-500/30 hover:-translate-y-0.5"
           >
             {hero.primaryButton}
