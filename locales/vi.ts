@@ -32,6 +32,8 @@ footer: {
     viewShowcase: "Xem toàn bộ triển lãm",
     exploreGallery: "Khám phá bộ ảnh của tôi",
     backToPhotographers: "Trở lại danh sách nhiếp ảnh gia",
+    backToGuestPhotographers: "Quay lại Nhiếp ảnh gia khách mời",
+    guestPhotographer: "Nhiếp ảnh gia khách mời",
   },
   lightbox: {
   photo: "Ảnh",
@@ -44,5 +46,18 @@ footer: {
   albums: "album",
   photograph: "bức ảnh",
   photographs: "bức ảnh",
+},
+
+  member: {
+  photographyInterests: "Thể Loại Nhiếp Ảnh",
+  tagline:
+    "Khám phá vẻ đẹp của thiên nhiên, du lịch và cuộc sống qua nghệ thuật nhiếp ảnh.",
+    bio: `
+  Nhiếp ảnh giúp tôi sống chậm lại, quan sát nhiều hơn và cảm nhận vẻ đẹp giản dị thường bị bỏ quên trong cuộc sống.
+
+  Dù là giữa thiên nhiên hùng vĩ, trên những hành trình khám phá hay trong những khoảnh khắc đời thường, mỗi bức ảnh đều lưu giữ một câu chuyện và một kỷ niệm đáng nhớ.
+
+  HD Photography là không gian nơi tôi chia sẻ những hành trình ấy, đồng thời giới thiệu những tác phẩm của các nhiếp ảnh gia khách mời với những góc nhìn sáng tạo và đầy cảm hứng.
+`,
 },
 }

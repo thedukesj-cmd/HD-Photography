@@ -7,19 +7,13 @@ folder: "/uploads/members/Hong-Duc"
 profilePhoto: "/uploads/members/Hong-Duc/MyPortrait.jpg"
 
 bio: >
-  Photography has given me the opportunity to slow down, observe,
-  and appreciate the beauty that often goes unnoticed.
-  Whether exploring the quiet beauty of nature, discovering new places,
-  or capturing everyday moments, every photograph becomes part of my journey.
+  Photography has taught me to slow down, observe, and appreciate the beauty that often goes unnoticed.
 
-  HD Photography is my personal gallery where I share that journey and
-  welcome guest photographers whose vision, creativity, and passion inspire me.
-  Together, we celebrate not only the places we visit, but also the stories,
-  emotions, and memories that make each moment unique.
+  Whether exploring the quiet wonders of nature, discovering new destinations, or capturing everyday life, every photograph becomes part of my journey and a story worth remembering.
 
+  HD Photography is my personal gallery—a place where I share those moments and welcome guest photographers whose creativity and unique perspectives continue to inspire me.
 specialties:
   - Landscape
   - Nature
   - Travel
   - Portrait
----

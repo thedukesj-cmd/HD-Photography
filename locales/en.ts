@@ -33,6 +33,8 @@ footer: {
     viewShowcase: "View full showcase",
     exploreGallery: "Explore My Gallery",
     backToPhotographers: "Back to Guest Photographers",
+    backToGuestPhotographers: "Back to Guest Photographers",
+    guestPhotographer: "Guest Photographer",
   },
   lightbox: {
   photo: "Photo",
@@ -46,4 +48,17 @@ footer: {
   photograph: "photograph",
   photographs: "photographs",
 },
+member: {
+  photographyInterests: "Photography Interests",
+  tagline:
+    "Exploring the beauty of nature, travel, and everyday life through photography.",
+    bio: `
+    Photography has taught me to slow down, observe, and appreciate the beauty that often goes unnoticed.
+
+    Whether exploring the quiet wonders of nature, discovering new destinations, or capturing everyday life, every photograph becomes part of my journey and a story worth remembering.
+
+    HD Photography is my personal gallery—a place where I share those moments and welcome guest photographers whose creativity and unique perspectives continue to inspire me.
+`,
+},
+
 }
