@@ -5,8 +5,9 @@ import { NewsGrid } from "@/components/news-grid"
 import { NewsEmptyState } from "@/components/news-empty-state"
 
 export const metadata: Metadata = {
-  title: "News & Events",
-  description: "Latest news, events, and announcements from Aperture Club — exhibitions, workshops, member achievements, and more.",
+  title: "News",
+  description:
+    "Latest news, updates, and announcements from HD Photography, including new photo collections, articles, and featured photographers.",
 }
 
 export default function NewsPage() {

@@ -1,58 +1,101 @@
-import { Camera, Heart, Users, Sparkles } from "lucide-react"
-import { SectionTitle } from "@/components/ui/section-title"
+"use client"
 
-const values = [
-  {
-    icon: Camera,
-    title: "Photography First",
-    description:
-      "HD Photography exists to let the photographs speak first — with a quiet, simple presentation that keeps the focus on the image.",
-  },
-  {
-    icon: Heart,
-    title: "Beauty in Everyday Moments",
-    description:
-      "I believe photography helps us slow down, observe, and appreciate the beauty that often goes unnoticed.",
-  },
-  {
-    icon: Users,
-    title: "Shared Journey",
-    description:
-      "Photography becomes richer when it is shared. HD Photography also features guest photographers whose vision and creativity inspire me.",
-  },
-  {
-    icon: Sparkles,
-    title: "A Better Home for Photography",
-    description:
-      "This site is also a prototype for a simpler photography platform — one that lets photographers organize their work naturally and present it beautifully.",
-  },
-]
+import {
+  Camera,
+  Heart,
+  Users,
+  Compass,
+} from "lucide-react"
+
+import { SectionTitle } from "@/components/ui/section-title"
+import { useLanguage } from "@/components/language-provider"
 
 export function AboutValues() {
+  const { language } = useLanguage()
+
+  const values =
+    language === "vi"
+      ? [
+          {
+            icon: Camera,
+            title: "Nhiếp Ảnh Là Trọng Tâm",
+            description:
+              "Mỗi thiết kế trên HD Photography đều hướng đến việc tôn vinh vẻ đẹp của từng bức ảnh.",
+          },
+          {
+            icon: Heart,
+            title: "Vẻ Đẹp Trong Cuộc Sống",
+            description:
+              "Tôi tin rằng nhiếp ảnh giúp chúng ta sống chậm lại và trân trọng những khoảnh khắc bình dị nhưng đầy ý nghĩa.",
+          },
+          {
+            icon: Users,
+            title: "Hành Trình Được Sẻ Chia",
+            description:
+              "Tôi luôn trân trọng cơ hội giới thiệu những tác phẩm của các nhiếp ảnh gia khách mời với những góc nhìn đầy cảm hứng.",
+          },
+          {
+            icon: Compass,
+            title: "Khám Phá Không Ngừng",
+            description:
+              "Mỗi chuyến đi đều mang đến những câu chuyện mới, những khung cảnh mới và nguồn cảm hứng mới cho hành trình nhiếp ảnh.",
+          },
+        ]
+      : [
+          {
+            icon: Camera,
+            title: "Photography First",
+            description:
+              "Every design choice on HD Photography is made to keep the focus on the photographs themselves.",
+          },
+          {
+            icon: Heart,
+            title: "Beauty in Everyday Life",
+            description:
+              "Photography reminds me to slow down, observe, and appreciate the beauty that surrounds us every day.",
+          },
+          {
+            icon: Users,
+            title: "A Shared Journey",
+            description:
+              "I'm honored to feature guest photographers whose creativity and unique perspectives enrich this collection.",
+          },
+          {
+            icon: Compass,
+            title: "Always Exploring",
+            description:
+              "Every journey brings new places, new stories, and fresh inspiration through the lens.",
+          },
+        ]
+
   return (
-    <section className="py-20 bg-zinc-900/40 border-y border-zinc-800/60">
+    <section className="py-20 bg-zinc-900/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle
-         eyebrow="WHAT GUIDES THIS SITE"
-        title="The Idea Behind HD Photography"
+          eyebrow={language === "vi" ? "GIÁ TRỊ" : "VALUES"}
+          title={
+            language === "vi"
+              ? "Điều Tôi Luôn Hướng Đến"
+              : "What Inspires My Photography"
+          }
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {values.map(({ icon: Icon, title, description }) => (
             <div
               key={title}
-              className="flex gap-5 p-6 rounded-xl bg-zinc-900/50 border border-zinc-800"
+              className="flex gap-5 rounded-xl border border-zinc-800 bg-zinc-900/50 p-6"
             >
-              <div className="shrink-0 w-12 h-12 bg-amber-500/10 border border-amber-500/20 rounded-xl flex items-center justify-center">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-amber-500/20 bg-amber-500/10">
                 <Icon className="h-5 w-5 text-amber-400" />
               </div>
 
               <div>
-                <h3 className="font-playfair text-xl text-white font-semibold mb-2">
+                <h3 className="mb-2 font-playfair text-xl font-semibold text-white">
                   {title}
                 </h3>
 
-                <p className="text-zinc-400 leading-relaxed text-sm">
+                <p className="text-sm leading-relaxed text-zinc-400">
                   {description}
                 </p>
               </div>

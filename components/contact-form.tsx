@@ -2,10 +2,14 @@
 
 import { useState } from "react"
 import { Send, CheckCircle } from "lucide-react"
+
 import { Button } from "@/components/ui/button"
+import { useLanguage } from "@/components/language-provider"
 
 export function ContactForm() {
+  const { language } = useLanguage()
   const [sent, setSent] = useState(false)
+
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -13,12 +17,17 @@ export function ContactForm() {
     message: "",
   })
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
 
-    const subject = form.subject || `Message from ${form.name}`
+    const subject =
+      form.subject ||
+      (language === "vi"
+        ? `Tin nhắn từ ${form.name}`
+        : `Message from ${form.name}`)
+
     const body = [
-      `Name: ${form.name}`,
+      `${language === "vi" ? "Tên" : "Name"}: ${form.name}`,
       `Email: ${form.email}`,
       "",
       form.message,
@@ -34,30 +43,33 @@ export function ContactForm() {
   return (
     <div className="lg:col-span-3">
       {sent ? (
-        <div className="h-full flex flex-col items-center justify-center text-center py-16 bg-zinc-900/50 border border-zinc-800 rounded-2xl">
-          <CheckCircle className="h-14 w-14 text-amber-400 mb-5" />
+        <div className="flex min-h-[420px] flex-col items-center justify-center rounded-2xl border border-zinc-800 bg-zinc-900/50 p-8 text-center">
+          <CheckCircle className="mb-5 h-12 w-12 text-amber-400" />
 
-          <h2 className="font-playfair text-3xl text-white font-bold mb-3">
-            Your email is ready
+          <h2 className="mb-3 font-playfair text-3xl font-bold text-white">
+            {language === "vi"
+              ? "Email của bạn đã sẵn sàng"
+              : "Your email is ready"}
           </h2>
 
-          <p className="text-zinc-400 max-w-sm">
-            Your email application should open with the message filled in.
-            Review it, then send it when ready.
+          <p className="max-w-sm text-zinc-400">
+            {language === "vi"
+              ? "Ứng dụng email của bạn sẽ mở với nội dung đã được điền sẵn. Vui lòng kiểm tra lại rồi gửi khi bạn sẵn sàng."
+              : "Your email application should open with the message filled in. Review it, then send it when ready."}
           </p>
         </div>
       ) : (
         <form
           onSubmit={handleSubmit}
-          className="space-y-5 bg-zinc-900/50 border border-zinc-800 rounded-2xl p-8"
+          className="space-y-5 rounded-2xl border border-zinc-800 bg-zinc-900/50 p-8"
         >
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             <div>
               <label
                 htmlFor="name"
-                className="block text-xs text-zinc-500 uppercase tracking-widest font-semibold mb-2"
+                className="mb-2 block text-xs font-semibold uppercase tracking-widest text-zinc-500"
               >
-                Name
+                {language === "vi" ? "Tên" : "Name"}
               </label>
 
               <input
@@ -72,15 +84,17 @@ export function ContactForm() {
                     name: e.target.value,
                   }))
                 }
-                className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all text-sm"
-                placeholder="Your name"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-4 py-3 text-sm text-zinc-100 placeholder:text-zinc-600 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-amber-500"
+                placeholder={
+                  language === "vi" ? "Tên của bạn" : "Your name"
+                }
               />
             </div>
 
             <div>
               <label
                 htmlFor="email"
-                className="block text-xs text-zinc-500 uppercase tracking-widest font-semibold mb-2"
+                className="mb-2 block text-xs font-semibold uppercase tracking-widest text-zinc-500"
               >
                 Email
               </label>
@@ -97,7 +111,7 @@ export function ContactForm() {
                     email: e.target.value,
                   }))
                 }
-                className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all text-sm"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-4 py-3 text-sm text-zinc-100 placeholder:text-zinc-600 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-amber-500"
                 placeholder="your@email.com"
               />
             </div>
@@ -106,9 +120,9 @@ export function ContactForm() {
           <div>
             <label
               htmlFor="subject"
-              className="block text-xs text-zinc-500 uppercase tracking-widest font-semibold mb-2"
+              className="mb-2 block text-xs font-semibold uppercase tracking-widest text-zinc-500"
             >
-              Subject
+              {language === "vi" ? "Chủ đề" : "Subject"}
             </label>
 
             <input
@@ -122,17 +136,21 @@ export function ContactForm() {
                   subject: e.target.value,
                 }))
               }
-              className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all text-sm"
-              placeholder="What would you like to discuss?"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-4 py-3 text-sm text-zinc-100 placeholder:text-zinc-600 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-amber-500"
+              placeholder={
+                language === "vi"
+                  ? "Bạn muốn trao đổi về điều gì?"
+                  : "What would you like to discuss?"
+              }
             />
           </div>
 
           <div>
             <label
               htmlFor="message"
-              className="block text-xs text-zinc-500 uppercase tracking-widest font-semibold mb-2"
+              className="mb-2 block text-xs font-semibold uppercase tracking-widest text-zinc-500"
             >
-              Message
+              {language === "vi" ? "Nội dung" : "Message"}
             </label>
 
             <textarea
@@ -147,8 +165,12 @@ export function ContactForm() {
                   message: e.target.value,
                 }))
               }
-              className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all text-sm resize-none"
-              placeholder="Write your message here..."
+              className="w-full resize-none rounded-lg border border-zinc-700 bg-zinc-800 px-4 py-3 text-sm text-zinc-100 placeholder:text-zinc-600 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-amber-500"
+              placeholder={
+                language === "vi"
+                  ? "Viết lời nhắn của bạn tại đây..."
+                  : "Write your message here..."
+              }
             />
           </div>
 
@@ -156,10 +178,10 @@ export function ContactForm() {
             type="submit"
             size="lg"
             className="w-full gap-2.5 rounded-xl font-bold"
-            >
+          >
             <Send className="h-4 w-4" />
-            Prepare Email
-            </Button>
+            {language === "vi" ? "Soạn Email" : "Prepare Email"}
+          </Button>
         </form>
       )}
     </div>

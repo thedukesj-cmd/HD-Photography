@@ -1,52 +1,75 @@
+"use client"
+
 import Image from "next/image"
 import { Mail, MapPin } from "lucide-react"
+import { useLanguage } from "@/components/language-provider"
 
 export function ContactInfo() {
+  const { language } = useLanguage()
+
   return (
-    <div className="lg:col-span-2 space-y-8">
-      <div className="relative rounded-2xl overflow-hidden aspect-[4/3]">
+    <div className="lg:col-span-2">
+      <div className="relative aspect-[4/5] overflow-hidden rounded-2xl mb-8">
         <Image
-          src="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=800&q=80"
-          alt="Photography and architecture"
+          src="/uploads/members/Hong-Duc/MyPortrait.jpg"
+          alt="Hong-Duc Nguyen"
           fill
           className="object-cover"
           sizes="(max-width: 1024px) 100vw, 40vw"
         />
       </div>
+      <div className="mb-8 text-center">
+          <h2 className="font-playfair text-2xl font-semibold text-white">
+           Hong-Duc Nguyen
+          </h2>
+
+          <p className="mt-1 text-sm text-amber-400">
+          {language === "vi"
+           ? "Nhiếp ảnh Phong cảnh • Thiên nhiên • Du lịch"
+            : "Landscape • Nature • Travel Photographer"}
+          </p>
+        </div>
 
       <div className="space-y-5">
         <div className="flex gap-4">
-          <div className="shrink-0 w-10 h-10 bg-amber-500/10 border border-amber-500/20 rounded-lg flex items-center justify-center">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-amber-500/20 bg-amber-500/10">
             <MapPin className="h-4 w-4 text-amber-400" />
           </div>
 
           <div>
-            <p className="text-xs text-zinc-600 uppercase tracking-widest font-semibold mb-0.5">
-              Location
+            <p className="mb-0.5 text-xs font-semibold uppercase tracking-widest text-zinc-600">
+              {language === "vi" ? "Địa điểm" : "Location"}
             </p>
-            <p className="text-zinc-300 text-sm">San Jose, California</p>
+
+            <p className="text-sm text-zinc-300">
+              San Jose, California
+            </p>
           </div>
         </div>
 
         <div className="flex gap-4">
-          <div className="shrink-0 w-10 h-10 bg-amber-500/10 border border-amber-500/20 rounded-lg flex items-center justify-center">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-amber-500/20 bg-amber-500/10">
             <Mail className="h-4 w-4 text-amber-400" />
           </div>
 
           <div>
-            <p className="text-xs text-zinc-600 uppercase tracking-widest font-semibold mb-0.5">
+            <p className="mb-0.5 text-xs font-semibold uppercase tracking-widest text-zinc-600">
               Email
             </p>
-            <p className="text-zinc-300 text-sm">
-              Contact me using the form
+
+            <p className="text-sm text-zinc-300">
+              {language === "vi"
+                ? "Vui lòng sử dụng biểu mẫu liên hệ."
+                : "Please use the contact form."}
             </p>
           </div>
         </div>
       </div>
 
-      <p className="text-zinc-500 text-sm leading-relaxed">
-        Photography has introduced me to wonderful places and wonderful people.
-        I hope our paths cross through photography someday.
+      <p className="mt-8 text-sm leading-relaxed text-zinc-500">
+        {language === "vi"
+          ? "Nhiếp ảnh đã đưa tôi đến nhiều vùng đất tuyệt đẹp và giúp tôi gặp gỡ nhiều con người tuyệt vời. Hy vọng một ngày nào đó chúng ta sẽ có dịp gặp nhau và cùng chia sẻ niềm đam mê nhiếp ảnh."
+          : "Photography has taken me to beautiful places and introduced me to wonderful people. I hope our paths will cross someday through our shared passion for photography."}
       </p>
     </div>
   )
