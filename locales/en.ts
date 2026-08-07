@@ -59,6 +59,15 @@ member: {
 
     HD Photography is my personal gallery—a place where I share those moments and welcome guest photographers whose creativity and unique perspectives continue to inspire me.
 `,
+ specialties: {
+    Landscape: "Landscape",
+    Nature: "Nature",
+    Travel: "Travel",
+    Portrait: "Portrait",
+  },
+
+
 },
+
 
 }

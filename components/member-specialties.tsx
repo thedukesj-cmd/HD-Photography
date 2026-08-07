@@ -21,7 +21,9 @@ export function MemberSpecialties({
             key={specialty}
             className="rounded-full border border-amber-500/20 bg-amber-500/10 px-3 py-1 text-xs text-amber-400"
           >
-            {specialty}
+            {translations.member.specialties[
+            specialty as keyof typeof translations.member.specialties
+            ] ?? specialty}
           </span>
         ))}
       </div>

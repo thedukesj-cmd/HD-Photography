@@ -59,5 +59,12 @@ footer: {
 
   HD Photography là không gian nơi tôi chia sẻ những hành trình ấy, đồng thời giới thiệu những tác phẩm của các nhiếp ảnh gia khách mời với những góc nhìn sáng tạo và đầy cảm hứng.
 `,
+
+ specialties: {
+    Landscape: "Phong cảnh",
+    Nature: "Thiên nhiên",
+    Travel: "Du lịch",
+    Portrait: "Chân dung",
+  },
 },
 }
