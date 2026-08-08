@@ -42,8 +42,8 @@ footer: {
   memberGalleries: {
   portfolioCollections: "Bộ sưu tập ảnh",
   gallery: "Thư viện ảnh",
-  album: "album",
-  albums: "album",
+  album: "bộ ảnh",
+  albums: "bộ ảnh",
   photograph: "bức ảnh",
   photographs: "bức ảnh",
 },

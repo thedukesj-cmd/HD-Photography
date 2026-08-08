@@ -26,7 +26,7 @@ export const siteConfig = {
     showOwner: true,
     showGuestPhotographers: true,
     showShowcase: true,
-    showAbout: true,
+    showAbout: false,
     showContact: true,
     showNews: true,
     showTutorials: true,
