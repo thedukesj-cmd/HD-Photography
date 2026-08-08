@@ -110,10 +110,39 @@ function parseMember(slug: string, data: any): Member {
   const galleries = autoGalleries.length > 0 ? autoGalleries : manualGalleries
 
   return {
-    owner: data.owner || false,
-    slug,
-    name: data.name || "",
-    bio: data.bio || "",
+  owner: data.owner || false,
+  slug,
+
+  name:
+    typeof data.name === "string"
+      ? data.name
+      : (data.name?.en || ""),
+
+  nameVi:
+    typeof data.name === "object"
+      ? (data.name.vi || data.name.en || "")
+      : data.name || "",
+
+  tagline:
+    typeof data.tagline === "string"
+      ? data.tagline
+      : (data.tagline?.en || ""),
+
+  taglineVi:
+    typeof data.tagline === "object"
+      ? (data.tagline.vi || data.tagline.en || "")
+      : data.tagline || "",
+
+  bio:
+    typeof data.bio === "string"
+      ? data.bio
+      : (data.bio?.en || ""),
+
+  bioVi:
+    typeof data.bio === "object"
+      ? (data.bio.vi || data.bio.en || "")
+      : data.bio || "",
+
     profilePhoto: data.profilePhoto || data.profile_photo || galleries[0]?.coverPhoto || "",
     featured: data.featured || false,
     galleries,

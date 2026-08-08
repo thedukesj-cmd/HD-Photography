@@ -1,24 +1,22 @@
 import type { Metadata } from "next"
 import { getAllTutorials } from "@/lib/content"
 import { TutorialsContent } from "@/components/tutorials-content"
+import { ArticlesHero } from "@/components/articles-hero"
 
 export const metadata: Metadata = {
-title: "Articles",
-description: "Explore photography articles from Aperture Club members, covering technique, gear, post-processing, creative ideas, and more.",}
+  title: "Articles",
+  description:
+    "Photography articles from HD Photography covering technique, creativity, travel, equipment, post-processing, and the art of photography.",
+}
 
 export default function TutorialsPage() {
   const tutorials = getAllTutorials()
+
   return (
     <div className="bg-zinc-950 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-        <div className="text-center mb-16">
-          <p className="text-amber-400 text-xs font-semibold uppercase tracking-widest mb-4">Learn & Grow</p>
-          <h1 className="font-playfair text-5xl md:text-6xl text-white font-bold">Tutorials</h1>
-          <p className="text-zinc-400 text-lg mt-5 max-w-2xl mx-auto leading-relaxed">
-            Practical guides written by our members — covering technique, gear, post-processing, 
-            and the mindset behind great photography.
-          </p>
-        </div>
+        <ArticlesHero />
+
         <TutorialsContent tutorials={tutorials} />
       </div>
     </div>

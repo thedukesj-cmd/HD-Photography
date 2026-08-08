@@ -3,7 +3,7 @@ export const vi = {
 
   nav: {
     home: "Trang chủ",
-    photographer: "Hong-Duc Nguyễn",
+    photographer: "Hồng Đức Nguyễn",
     photographers: "Nhiếp ảnh gia khách mời",
     showcase: "Ảnh triển lãm",
     news: "Tin tức",
@@ -22,15 +22,15 @@ footer: {
   explore: "Khám phá",
   contact: "Liên hệ",
   copyright: "Bảo lưu mọi quyền.",
-  by: "Ảnh của Hong-Duc Nguyen",
-  contactMe: "Liên hệ Hong-Duc",
+  by: "Ảnh của Hồng-Đức Nguyễn",
+  contactMe: "Liên hệ Hồng-Đức Nguyễn",
 },
 
   common: {
     explorePhotography: "Khám phá ảnh",
-    meetHongDuc: "Gặp gỡ Hong-Duc Nguyễn",
+    meetHongDuc: "Gặp gỡ Hồng-Đức Nguyễn",
     viewShowcase: "Xem toàn bộ triển lãm",
-    exploreGallery: "Khám phá bộ ảnh của tôi",
+    exploreGallery: "Khám phá Các bộ ảnh của tôi",
     backToPhotographers: "Trở lại danh sách nhiếp ảnh gia",
     backToGuestPhotographers: "Quay lại Nhiếp ảnh gia khách mời",
     guestPhotographer: "Nhiếp ảnh gia khách mời",
@@ -65,6 +65,7 @@ footer: {
     Nature: "Thiên nhiên",
     Travel: "Du lịch",
     Portrait: "Chân dung",
+    Flowers: "Hoa",
   },
 },
 }

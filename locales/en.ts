@@ -64,6 +64,7 @@ member: {
     Nature: "Nature",
     Travel: "Travel",
     Portrait: "Portrait",
+    Flowers: "Flowers",
   },
 
 

@@ -12,14 +12,24 @@ export interface MemberGallery {
 }
 
 export interface Member {
-owner?: boolean
+  owner?: boolean
   slug: string
+
   name: string
+  nameVi?: string
+
+  tagline?: string
+  taglineVi?: string
+
   bio: string
+  bioVi?: string
+
   profilePhoto: string
   featured: boolean
-  galleries: MemberGallery[]     // multi-gallery (primary)
-  galleryPhotos: GalleryPhoto[]  // legacy flat array — fallback
+
+  galleries: MemberGallery[]
+  galleryPhotos: GalleryPhoto[]
+
   website?: string
   instagram?: string
   twitter?: string
