@@ -1,0 +1,58 @@
+---
+# HD PHOTOGRAPHY — NEW MEMBER TEMPLATE
+#
+# HOW TO USE:
+# 1. Copy this file.
+# 2. Paste the copy into the member content folder.
+# 3. Rename the copy using the member's name.
+#    Example:
+#       bich-lien-phan.md
+# 4. Create the member's photo folder under:
+#       public/uploads/members/
+# 5. Put profile.jpg in that member folder.
+# 6. Fill in the fields below.
+# 7. Save the file.
+#
+# IMPORTANT:
+# Folder and photo paths MUST begin with /uploads/
+# and must match the actual names exactly.
+
+
+# Photographer's display name
+# Example: Bich Lien Phan
+name: ""
+
+
+# Set to false for a guest photographer.
+featured: false
+
+
+# Main member photo folder
+# Example:
+# folder: "/uploads/members/bichlien-phan"
+folder: ""
+
+
+# Profile photograph
+# Example:
+# profilePhoto: "/uploads/members/bichlien-phan/profile.jpg"
+profilePhoto: ""
+
+
+# Short biography
+bio: >
+  Enter the photographer's biography here.
+
+
+# Year the photographer joined
+joinedYear: 2026
+
+
+# Photography specialties.
+# Add, remove, or change these as needed.
+specialties:
+  - Landscape
+  - Nature
+  - Travel
+
+---

@@ -1,0 +1,48 @@
+---
+# HD PHOTOGRAPHY — MONTHLY SHOWCASE TEMPLATE
+#
+# HOW TO USE:
+# 1. Copy this file.
+# 2. Paste the copy into the correct year folder:
+#       content/showcase/2026/
+# 3. Rename the copy using the month number:
+#       01.md = January
+#       02.md = February
+#       ...
+#       12.md = December
+# 4. Fill in the fields below.
+# 5. Save the file.
+#
+# IMPORTANT:
+# The photo folder must already exist under:
+#       public/uploads/Showcase/YEAR/
+#
+# The folder path below MUST begin with /uploads/
+# and must match the actual folder name exactly.
+
+
+# Month in English
+# Example: July
+month: ""
+
+
+# Four-digit year
+# Example: 2026
+year: 2026
+
+
+# Showcase title
+# Example: Villa Montalvo
+theme: ""
+
+
+# Short description of the showcase
+description: ""
+
+
+# Exact path to the photo folder
+# Example:
+# folder: "/uploads/Showcase/2026/2026-07 Villa Montalvo"
+folder: ""
+
+---
