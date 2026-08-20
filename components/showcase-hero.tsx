@@ -11,13 +11,13 @@ export function ShowcaseHero() {
       eyebrow=""
       title={
         language === "vi"
-          ? "Các Bộ Sưu Tập Ảnh"
-          : "Photo Collections"
+          ? "Các Bộ Ảnh Nổi Bật"
+          : "Photography Showcases"
       }
       description={
         language === "vi"
-          ? "Mỗi bộ sưu tập là một câu chuyện bằng hình ảnh, ghi lại những hành trình, khoảnh khắc và nguồn cảm hứng qua ống kính của tôi."
-          : "Each collection tells a visual story, capturing memorable journeys, inspiring moments, and the beauty I have discovered through my lens."
+          ? "Mỗi bộ ảnh là một câu chuyện riêng, ghi lại những chuyến đi, sự kiện, khoảnh khắc đáng nhớ và nguồn cảm hứng qua ống kính nhiếp ảnh."
+          : "Each showcase tells its own visual story, capturing memorable journeys, events, moments, and photographic inspiration."
       }
     />
   )

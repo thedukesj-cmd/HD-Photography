@@ -11,9 +11,9 @@ import { MemberHeaderText } from "@/components/member-header-text"
 import { MemberProfileCopy } from "@/components/member-profile-copy"
 
 interface Props {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 export function generateStaticParams() {
@@ -25,7 +25,8 @@ export function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: Props): Promise<Metadata> {
-  const member = await getMemberWithHtml(params.slug)
+  const { slug } = await params
+  const member = await getMemberWithHtml(slug)
 
   if (!member) return {}
 
@@ -33,13 +34,18 @@ export async function generateMetadata({
     title: `${member.name} — Member Gallery`,
     description: member.bio,
     openGraph: {
-      images: [{ url: member.profilePhoto }],
+      images: member.profilePhoto
+        ? [{ url: member.profilePhoto }]
+        : [],
     },
   }
 }
 
-export default async function MemberPage({ params }: Props) {
-  const member = await getMemberWithHtml(params.slug)
+export default async function MemberPage({
+  params,
+}: Props) {
+  const { slug } = await params
+  const member = await getMemberWithHtml(slug)
 
   if (!member) {
     notFound()

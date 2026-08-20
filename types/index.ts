@@ -14,22 +14,16 @@ export interface MemberGallery {
 export interface Member {
   owner?: boolean
   slug: string
-
   name: string
   nameVi?: string
-
   tagline?: string
   taglineVi?: string
-
   bio: string
   bioVi?: string
-
   profilePhoto: string
   featured: boolean
-
   galleries: MemberGallery[]
   galleryPhotos: GalleryPhoto[]
-
   website?: string
   instagram?: string
   twitter?: string
@@ -47,8 +41,8 @@ export interface ShowcasePhoto {
 
 export interface Showcase {
   slug: string
-  month: string
-  year: number
+  title: string
+  date: string
   theme: string
   description: string
   featuredImage: string

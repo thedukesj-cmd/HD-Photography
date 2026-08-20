@@ -32,19 +32,25 @@ export async function generateMetadata({
   if (!showcase) return {}
 
   return {
-    title: showcase.theme,
+    title: showcase.title,
     description: showcase.description,
     openGraph: {
-      images: [
-        {
-          url: showcase.featuredImage,
-        },
-      ],
+      title: showcase.title,
+      description: showcase.description,
+      images: showcase.featuredImage
+        ? [
+            {
+              url: showcase.featuredImage,
+            },
+          ]
+        : [],
     },
   }
 }
 
-export default async function ShowcasePage({ params }: Props) {
+export default async function ShowcasePage({
+  params,
+}: Props) {
   const { slug } = await params
   const showcase = await getShowcaseWithHtml(slug)
 
@@ -56,7 +62,9 @@ export default async function ShowcasePage({ params }: Props) {
     url: photo.url,
     title: photo.title,
     description: `${photo.photographer || ""}${
-      photo.description ? ` — ${photo.description}` : ""
+      photo.description
+        ? `${photo.photographer ? " — " : ""}${photo.description}`
+        : ""
     }`,
   }))
 
@@ -71,14 +79,16 @@ export default async function ShowcasePage({ params }: Props) {
   return (
     <div className="min-h-screen bg-zinc-950">
       <section className="relative min-h-[520px] overflow-hidden">
-        <Image
-          src={showcase.featuredImage}
-          alt={showcase.theme}
-          fill
-          className="object-cover"
-          priority
-          sizes="100vw"
-        />
+        {showcase.featuredImage && (
+          <Image
+            src={showcase.featuredImage}
+            alt={showcase.title}
+            fill
+            className="object-cover"
+            priority
+            sizes="100vw"
+          />
+        )}
 
         <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/45 to-black/20" />
 
@@ -91,21 +101,29 @@ export default async function ShowcasePage({ params }: Props) {
             <ShowcaseDetailText type="back" />
           </Link>
 
-          <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-amber-400">
-            <ShowcaseDetailText
-              type="date"
-              month={showcase.month}
-              year={showcase.year}
-            />
-          </p>
+          {showcase.date && (
+            <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-amber-400">
+              <ShowcaseDetailText
+                type="date"
+                date={showcase.date}
+              />
+            </p>
+          )}
 
           <h1 className="max-w-4xl font-playfair text-5xl font-bold text-white md:text-7xl">
-            {showcase.theme}
+            {showcase.title}
           </h1>
+
+          {showcase.theme && (
+            <p className="mt-4 max-w-3xl text-lg text-zinc-300 md:text-xl">
+              {showcase.theme}
+            </p>
+          )}
         </div>
       </section>
 
-      {showcase.description && (
+      {(showcase.description ||
+        showcase.descriptionHtml) && (
         <section className="mx-auto max-w-3xl px-4 py-14 sm:px-6 lg:px-8">
           <div
             className="prose-photography text-lg"
@@ -126,7 +144,10 @@ export default async function ShowcasePage({ params }: Props) {
           />
         </h2>
 
-        <GalleryLightbox photos={lightboxPhotos} columns={3} />
+        <GalleryLightbox
+          photos={lightboxPhotos}
+          columns={3}
+        />
 
         {photographers.length > 0 && (
           <div className="mt-12 border-t border-zinc-800 pt-8">
@@ -137,7 +158,8 @@ export default async function ShowcasePage({ params }: Props) {
             <div className="flex flex-wrap gap-4">
               {photographers.map((name: any) => {
                 const photo = showcase.photos.find(
-                  (item: any) => item.photographer === name
+                  (item: any) =>
+                    item.photographer === name
                 )
 
                 return photo?.photographerSlug ? (
@@ -149,7 +171,10 @@ export default async function ShowcasePage({ params }: Props) {
                     {name}
                   </Link>
                 ) : (
-                  <span key={name} className="text-sm text-zinc-400">
+                  <span
+                    key={name}
+                    className="text-sm text-zinc-400"
+                  >
                     {name}
                   </span>
                 )

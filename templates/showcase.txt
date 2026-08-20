@@ -1,0 +1,147 @@
+---
+# HD PHOTOGRAPHY — SHOWCASE TEMPLATE V2.1
+#
+# HOW TO USE:
+#
+# 1. Copy this file.
+#
+# 2. Paste the copy into:
+#       content/showcase/
+#
+# 3. Rename the copy using a short descriptive filename.
+#    The filename becomes the Showcase URL slug.
+#
+#    Examples:
+#       summer-photo-walk.md
+#       vietnamese-tet-festival.md
+#       yosemite-spring-trip.md
+#       balboa-park.md
+#
+#    Example URL:
+#       /showcase/summer-photo-walk
+#
+# 4. Fill in the fields below.
+#
+# 5. Create the corresponding photo folder under:
+#       public/uploads/Showcase/
+#
+# 6. Put the Showcase photographs into that folder.
+#
+# 7. Save the .md file.
+#
+#
+# IMPORTANT:
+#
+# Showcases are NOT grouped by month or year.
+#
+# The "date" field determines the display order.
+# Newest Showcase appears first.
+#
+# Use date format:
+#       YYYY-MM-DD
+#
+# Example:
+#       2026-08-20
+#
+#
+# PHOTOS:
+#
+# Photos are discovered automatically from the folder.
+# You do NOT need to list individual photographs here.
+#
+# Supported image formats:
+#       .jpg
+#       .jpeg
+#       .png
+#       .webp
+#       .gif
+#
+# Photos are displayed in alphabetical filename order.
+#
+# The first photograph in the folder is automatically
+# used as the Showcase cover/featured image unless an
+# optional featuredImage is specified.
+#
+#
+# FOLDER:
+#
+# The folder path MUST begin with:
+#       /uploads/
+#
+# and must match the actual folder name exactly.
+#
+# Example:
+#       public/uploads/Showcase/Summer Photo Walk
+#
+# becomes:
+#       folder: "/uploads/Showcase/Summer Photo Walk"
+
+
+# Showcase name
+#
+# This can be any descriptive title.
+#
+# Examples:
+#   Summer Photo Walk
+#   Vietnamese Tet Festival
+#   Yosemite in Spring
+#   Colors of San Francisco
+#
+title: ""
+
+
+# Showcase date
+#
+# Required for chronological sorting.
+# Format: YYYY-MM-DD
+#
+# Example:
+# date: "2026-08-20"
+#
+date: ""
+
+
+# Optional theme or subtitle
+#
+# This appears beneath the Showcase title.
+#
+# Leave blank if a separate theme is not needed.
+#
+# Example:
+# theme: "Summer Light and Street Photography"
+#
+theme: ""
+
+
+# Short description
+#
+# Example:
+# description: >
+#   A collection of photographs from our summer
+#   photo walk along the California coast.
+#
+description: ""
+
+
+# Exact path to the photo folder
+#
+# Example:
+# folder: "/uploads/Showcase/Summer Photo Walk"
+#
+folder: ""
+
+
+# OPTIONAL:
+#
+# Normally the first photo alphabetically is used
+# automatically as the Showcase cover image.
+#
+# Uncomment this field only if you want to choose
+# a different photograph as the cover.
+#
+# Example:
+# featuredImage: "/uploads/Showcase/Summer Photo Walk/DSC_0125.jpg"
+#
+# featuredImage: ""
+
+---
