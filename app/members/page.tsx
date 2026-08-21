@@ -1,24 +1,31 @@
 import type { Metadata } from "next"
+
 import { getAllMembers } from "@/lib/content"
 import { MembersHero } from "@/components/members-hero"
 import { MembersGrid } from "@/components/members-grid"
 import { MembersEmptyState } from "@/components/members-empty-state"
 
 export const metadata: Metadata = {
-  title: "Photographers",
-  description: "Meet the photographers whose work is featured on HD Photography.",
+  title: "Guest Photographers",
+  description:
+    "Meet the guest photographers whose work is featured on HD Photography.",
 }
 
 export default function MembersPage() {
-  const members = getAllMembers()
+  const members = getAllMembers().filter(
+    (member) => !member.owner
+  )
 
   return (
-    <div className="bg-zinc-950 min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+    <div className="min-h-screen bg-zinc-950">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 md:py-24 lg:px-8">
         <MembersHero />
-        <MembersGrid members={members} />
 
-       {members.length === 0 && <MembersEmptyState />}
+        {members.length > 0 ? (
+          <MembersGrid members={members} />
+        ) : (
+          <MembersEmptyState />
+        )}
       </div>
     </div>
   )

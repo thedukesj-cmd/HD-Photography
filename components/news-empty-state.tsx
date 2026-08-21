@@ -7,16 +7,16 @@ export function NewsEmptyState() {
 
   return (
     <div className="py-20 text-center">
-      <h2 className="font-playfair text-3xl font-bold text-white mb-3">
+      <h2 className="mb-3 font-playfair text-3xl font-bold text-white">
         {language === "vi"
           ? "Chưa có tin tức"
           : "No News Yet"}
       </h2>
 
-      <p className="max-w-lg mx-auto text-zinc-500">
+      <p className="mx-auto max-w-lg text-zinc-500">
         {language === "vi"
-          ? "Những thông tin về các bộ sưu tập ảnh mới, bài viết và cập nhật của HD Photography sẽ được đăng tại đây."
-          : "Updates about new photo collections, articles, featured photographers, and HD Photography will appear here."}
+          ? "Tin tức về các bộ ảnh nổi bật mới, bài viết, nhiếp ảnh gia khách mời và những cập nhật của HD Photography sẽ được đăng tại đây."
+          : "News about new photography showcases, articles, guest photographers, and HD Photography updates will appear here."}
       </p>
     </div>
   )

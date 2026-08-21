@@ -12,8 +12,8 @@ export function NewsHero() {
       title={language === "vi" ? "Tin Tức" : "News"}
       description={
         language === "vi"
-          ? "Theo dõi những bộ sưu tập ảnh mới, bài viết, cập nhật về HD Photography và các nhiếp ảnh gia khách mời."
-          : "Stay up to date with new photo collections, articles, website updates, and featured guest photographers on HD Photography."
+          ? "Theo dõi các bộ ảnh nổi bật mới, bài viết, cập nhật về HD Photography và các nhiếp ảnh gia khách mời."
+          : "Stay up to date with new photography showcases, articles, HD Photography updates, and featured guest photographers."
       }
     />
   )

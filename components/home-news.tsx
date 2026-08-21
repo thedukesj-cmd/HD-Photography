@@ -9,21 +9,28 @@ type HomeNewsProps = {
   news: NewsItem[]
 }
 
-export function HomeNews({ news }: HomeNewsProps) {
+export function HomeNews({
+  news,
+}: HomeNewsProps) {
   const { translations } = useLanguage()
+  const text = translations.home.news
 
   return (
     <section className="py-20 md:py-28">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionTitle
-  eyebrow={translations.home.news.eyebrow}
-  title={translations.home.news.title}
-  centered={false}
-/>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          eyebrow={text.eyebrow}
+          title={text.title}
+          centered={false}
+        />
+
+        <div className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2">
           {news.map((item) => (
-          <NewsCard key={item.slug} item={item} />
-         ))}
+            <NewsCard
+              key={item.slug}
+              item={item}
+            />
+          ))}
         </div>
       </div>
     </section>

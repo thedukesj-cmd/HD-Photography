@@ -1,8 +1,10 @@
 export const siteConfig = {
   siteName: "HD Photography",
   shortName: "HD Photography",
+  siteUrl: "https://hdphotography.com",
 
   ownerName: "Hong-Duc Nguyen",
+  ownerNameVi: "Nguyễn Hồng Đức",
   ownerSlug: "hong-duc",
 
   siteType: "personal" as "personal" | "club",
@@ -17,7 +19,7 @@ export const siteConfig = {
   },
 
   contact: {
-    email: "",
+    email: "theduke.sj@gmail.com",
     facebook: "",
     instagram: "",
   },
@@ -26,10 +28,10 @@ export const siteConfig = {
     showOwner: true,
     showGuestPhotographers: true,
     showShowcase: true,
-    showAbout: false,
-    showContact: true,
     showNews: true,
     showTutorials: true,
+    showAbout: true,
+    showContact: true,
   },
 
   gallery: {
@@ -40,11 +42,12 @@ export const siteConfig = {
   },
 
   branding: {
-    logo: "",
+    logo: "/logo.png",
     footerCredit: "Photography by Hong-Duc Nguyen",
   },
 } as const
 
 export type SiteConfig = typeof siteConfig
+
 export type LanguageCode =
   (typeof siteConfig.supportedLanguages)[number]

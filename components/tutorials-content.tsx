@@ -8,5 +8,7 @@ type TutorialsContentProps = {
 export function TutorialsContent({
   tutorials,
 }: TutorialsContentProps) {
-  return <TutorialSearch tutorials={tutorials} />
+  return (
+    <TutorialSearch tutorials={tutorials} />
+  )
 }

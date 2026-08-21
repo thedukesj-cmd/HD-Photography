@@ -12,14 +12,19 @@ export const en = {
     contact: "Contact",
   },
 footer: {
-  description: "A personal journey through nature, travel, and everyday life.",
-  explore: "Explore",
-  contact: "Contact",
-  copyright: "All rights reserved.",
-  by: "Photography by Hong-Duc Nguyen",
-  contactMe: "Contact Hong-Duc",
-},
+  description:
+    "A personal journey through nature, travel, and everyday life, shared through photography.",
 
+  explore: "Explore",
+
+  contact: "Contact",
+
+  copyright: "All rights reserved.",
+
+  by: "Photography by Hong-Duc Nguyen",
+
+  contactMe: "Contact Hong-Duc Nguyen",
+},
   homeCTA: {
   title: "Thank You for Visiting",
   description:

@@ -3,7 +3,7 @@ export const vi = {
 
   nav: {
     home: "Trang chủ",
-    photographer: "Hồng Đức Nguyễn",
+    photographer: "Nguyễn Hồng Đức",
     photographers: "Nhiếp ảnh gia khách mời",
     showcase: "Ảnh triển lãm",
     news: "Tin tức",
@@ -18,17 +18,22 @@ export const vi = {
   button: "Xem Thêm Các Bộ Ảnh",
 },
 footer: {
-  description: "Hành trình khám phá thiên nhiên, du lịch và cuộc sống qua nghệ thuật nhiếp ảnh.",
-  explore: "Khám phá",
-  contact: "Liên hệ",
-  copyright: "Bảo lưu mọi quyền.",
-  by: "Ảnh của Hồng-Đức Nguyễn",
-  contactMe: "Liên hệ Hồng-Đức Nguyễn",
-},
+  description:
+    "Hành trình khám phá thiên nhiên, du lịch và cuộc sống qua nghệ thuật nhiếp ảnh.",
 
+  explore: "Khám phá",
+
+  contact: "Liên hệ",
+
+  copyright: "Bảo lưu mọi quyền.",
+
+  by: "Ảnh của Nguyễn Hồng Đức",
+
+  contactMe: "Liên hệ Nguyễn Hồng Đức",
+},
   common: {
     explorePhotography: "Khám phá ảnh",
-    meetHongDuc: "Gặp gỡ Hồng-Đức Nguyễn",
+    meetHongDuc: "Gặp gỡ Nguyễn Hồng Đức",
     viewShowcase: "Xem toàn bộ triển lãm",
     exploreGallery: "Khám phá Các bộ ảnh của tôi",
     backToPhotographers: "Trở lại danh sách nhiếp ảnh gia",

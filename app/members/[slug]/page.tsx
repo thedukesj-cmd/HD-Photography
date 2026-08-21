@@ -55,11 +55,14 @@ export default async function MemberPage({
     <div className="min-h-screen bg-zinc-950">
       <div className="mx-auto max-w-7xl px-4 pt-8 sm:px-6 lg:px-8">
         <Link
-          href="/members"
-          className="inline-flex items-center gap-2 text-sm text-zinc-500 transition-colors hover:text-amber-400"
+        href={member.owner ? "/" : "/members"}
+        className="inline-flex items-center gap-2 text-sm text-zinc-500 transition-colors hover:text-amber-400"
         >
-          <ArrowLeft className="h-4 w-4" />
-          <MemberHeaderText type="back" />
+        <ArrowLeft className="h-4 w-4" />
+        <MemberHeaderText
+        type="back"
+        owner={member.owner}
+        />
         </Link>
       </div>
 

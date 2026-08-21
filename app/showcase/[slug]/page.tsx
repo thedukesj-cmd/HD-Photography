@@ -114,11 +114,13 @@ export default async function ShowcasePage({
             {showcase.title}
           </h1>
 
-          {showcase.theme && (
+          {showcase.theme &&
+           showcase.theme.trim().toLowerCase() !==
+            showcase.title.trim().toLowerCase() && (
             <p className="mt-4 max-w-3xl text-lg text-zinc-300 md:text-xl">
-              {showcase.theme}
-            </p>
-          )}
+            {showcase.theme}
+          </p>
+        )}
         </div>
       </section>
 

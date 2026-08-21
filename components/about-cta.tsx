@@ -1,27 +1,40 @@
-import Link from "next/link"
+"use client"
+
 import { ArrowRight } from "lucide-react"
+
 import { Button } from "@/components/ui/button"
+import { useLanguage } from "@/components/language-provider"
 
 export function AboutCTA() {
+  const { language } = useLanguage()
+
   return (
-    <section className="py-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 className="font-playfair text-4xl text-white font-bold mb-4">
-        Thank you for visiting
+    <section className="mx-auto max-w-4xl px-4 py-20 text-center sm:px-6 md:py-24 lg:px-8">
+      <h2 className="font-playfair text-4xl font-bold text-white md:text-5xl">
+        {language === "vi"
+          ? "Cảm Ơn Bạn Đã Ghé Thăm"
+          : "Thank You for Visiting"}
       </h2>
 
-      <p className="text-zinc-400 text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
-        I hope these photographs invite you to slow down, look closely, and see
-        the world with fresh eyes.
+      <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-zinc-400">
+        {language === "vi"
+          ? "Tôi hy vọng những bức ảnh nơi đây sẽ mời bạn sống chậm lại, nhìn kỹ hơn và cảm nhận thế giới bằng một góc nhìn mới."
+          : "I hope these photographs invite you to slow down, look more closely, and see the world with fresh eyes."}
       </p>
 
-         <Button
+      <div className="mt-9">
+        <Button
           href="/contact"
           size="lg"
           className="gap-2"
-          >
-        Contact Me
-        <ArrowRight className="h-4 w-4" />
-      </Button>
+        >
+          {language === "vi"
+            ? "Liên Hệ Với Tôi"
+            : "Contact Me"}
+
+          <ArrowRight className="h-4 w-4" />
+        </Button>
+      </div>
     </section>
   )
 }

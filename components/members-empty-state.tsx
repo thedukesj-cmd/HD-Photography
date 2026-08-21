@@ -1,7 +1,15 @@
+"use client"
+
+import { useLanguage } from "@/components/language-provider"
+
 export function MembersEmptyState() {
+  const { language } = useLanguage()
+
   return (
-    <div className="text-center py-20 text-zinc-600">
-      No photographers have been featured yet.
+    <div className="py-20 text-center text-zinc-500">
+      {language === "vi"
+        ? "Hiện chưa có nhiếp ảnh gia khách mời nào."
+        : "No guest photographers have been featured yet."}
     </div>
   )
 }

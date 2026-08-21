@@ -2,33 +2,42 @@
 
 import Image from "next/image"
 import { Mail, MapPin } from "lucide-react"
+
 import { useLanguage } from "@/components/language-provider"
 
 export function ContactInfo() {
   const { language } = useLanguage()
 
+  const displayName =
+    language === "vi"
+      ? "Nguyễn Hồng Đức"
+      : "Hong-Duc Nguyen"
+
   return (
     <div className="lg:col-span-2">
-      <div className="relative aspect-[4/5] overflow-hidden rounded-2xl mb-8">
+      <div className="relative mb-8 aspect-[4/5] overflow-hidden rounded-2xl bg-zinc-900">
         <Image
           src="/uploads/members/Hong-Duc/MyPortrait.jpg"
-          alt="Hong-Duc Nguyen"
+          alt={displayName}
           fill
           className="object-cover"
           sizes="(max-width: 1024px) 100vw, 40vw"
         />
-      </div>
-      <div className="mb-8 text-center">
-          <h2 className="font-playfair text-2xl font-semibold text-white">
-           Hong-Duc Nguyen
-          </h2>
 
-          <p className="mt-1 text-sm text-amber-400">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+      </div>
+
+      <div className="mb-8 text-center">
+        <h2 className="font-playfair text-2xl font-semibold text-white">
+          {displayName}
+        </h2>
+
+        <p className="mt-2 text-sm font-medium text-amber-400">
           {language === "vi"
-           ? "Nhiếp ảnh Phong cảnh • Thiên nhiên • Du lịch"
+            ? "Nhiếp ảnh Phong cảnh • Thiên nhiên • Du lịch"
             : "Landscape • Nature • Travel Photographer"}
-          </p>
-        </div>
+        </p>
+      </div>
 
       <div className="space-y-5">
         <div className="flex gap-4">
@@ -38,7 +47,9 @@ export function ContactInfo() {
 
           <div>
             <p className="mb-0.5 text-xs font-semibold uppercase tracking-widest text-zinc-600">
-              {language === "vi" ? "Địa điểm" : "Location"}
+              {language === "vi"
+                ? "Địa điểm"
+                : "Location"}
             </p>
 
             <p className="text-sm text-zinc-300">

@@ -1,7 +1,7 @@
 ---
 name:
   en: Hong-Duc Nguyen
-  vi: Hồng Đức Nguyễn
+  vi: Nguyễn Hồng Đức
 
 owner: true
 

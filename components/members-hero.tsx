@@ -11,13 +11,13 @@ export function MembersHero() {
       eyebrow="HD PHOTOGRAPHY"
       title={
         language === "vi"
-          ? "Nhiếp Ảnh Gia"
-          : "Photographers"
+          ? "Nhiếp Ảnh Gia Khách Mời"
+          : "Guest Photographers"
       }
       description={
         language === "vi"
           ? "Nhiếp ảnh là một hành trình đẹp hơn khi được sẻ chia. Đây là những nhiếp ảnh gia mà tôi trân trọng và vinh dự được giới thiệu trên HD Photography."
-          : "Photography is a journey best shared with others. These are photographers whose work I admire and am honored to feature on HD Photography."
+          : "Photography is a journey best shared with others. These are guest photographers whose work I admire and am honored to feature on HD Photography."
       }
     />
   )

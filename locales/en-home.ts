@@ -12,9 +12,9 @@ export const enHome = {
  
 
   showcase: {
-    eyebrow: "Monthly Showcase",
+    eyebrow: "Newest Album",
     themeLabel: "Theme",
-    viewFull: "View full showcase",
+    viewFull: "View full album",
     defaultPhotoAlt: "Photo",
   },
 

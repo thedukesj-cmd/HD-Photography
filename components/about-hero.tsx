@@ -8,7 +8,11 @@ export function AboutHero() {
 
   return (
     <PageHero
-      eyebrow={language === "vi" ? "GIỚI THIỆU" : "ABOUT"}
+      eyebrow={
+        language === "vi"
+          ? "GIỚI THIỆU"
+          : "ABOUT"
+      }
       title={
         language === "vi"
           ? "Về HD Photography"
@@ -16,8 +20,8 @@ export function AboutHero() {
       }
       description={
         language === "vi"
-          ? "HD Photography là không gian nơi tôi chia sẻ những hành trình, những khoảnh khắc và vẻ đẹp của thiên nhiên, du lịch cùng cuộc sống qua góc nhìn của mình."
-          : "HD Photography is my personal space for sharing the beauty of nature, travel, and everyday life through the stories I capture with my camera."
+          ? "HD Photography là không gian nơi tôi chia sẻ những hành trình, những khoảnh khắc đáng nhớ và vẻ đẹp của thiên nhiên, du lịch cùng cuộc sống qua ống kính của tôi."
+          : "HD Photography is my personal space for sharing memorable journeys, quiet moments, and the beauty of nature, travel, and everyday life through my photography."
       }
     />
   )

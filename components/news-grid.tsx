@@ -5,11 +5,16 @@ type NewsGridProps = {
   news: NewsItem[]
 }
 
-export function NewsGrid({ news }: NewsGridProps) {
+export function NewsGrid({
+  news,
+}: NewsGridProps) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
       {news.map((item) => (
-        <NewsCard key={item.slug} item={item} />
+        <NewsCard
+          key={item.slug}
+          item={item}
+        />
       ))}
     </div>
   )

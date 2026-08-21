@@ -2,9 +2,9 @@
 
 import {
   Camera,
+  Compass,
   Heart,
   Users,
-  Compass,
 } from "lucide-react"
 
 import { SectionTitle } from "@/components/ui/section-title"
@@ -20,25 +20,25 @@ export function AboutValues() {
             icon: Camera,
             title: "Nhiếp Ảnh Là Trọng Tâm",
             description:
-              "Mỗi thiết kế trên HD Photography đều hướng đến việc tôn vinh vẻ đẹp của từng bức ảnh.",
+              "Mọi thiết kế trên HD Photography đều hướng đến việc tôn vinh hình ảnh và để mỗi bức ảnh tự kể câu chuyện của mình.",
           },
           {
             icon: Heart,
             title: "Vẻ Đẹp Trong Cuộc Sống",
             description:
-              "Tôi tin rằng nhiếp ảnh giúp chúng ta sống chậm lại và trân trọng những khoảnh khắc bình dị nhưng đầy ý nghĩa.",
+              "Tôi tin rằng nhiếp ảnh giúp chúng ta sống chậm lại, quan sát kỹ hơn và trân trọng những khoảnh khắc bình dị nhưng đầy ý nghĩa.",
           },
           {
             icon: Users,
             title: "Hành Trình Được Sẻ Chia",
             description:
-              "Tôi luôn trân trọng cơ hội giới thiệu những tác phẩm của các nhiếp ảnh gia khách mời với những góc nhìn đầy cảm hứng.",
+              "Tôi trân trọng cơ hội giới thiệu tác phẩm của các nhiếp ảnh gia khách mời, mỗi người mang đến một góc nhìn và nguồn cảm hứng riêng.",
           },
           {
             icon: Compass,
             title: "Khám Phá Không Ngừng",
             description:
-              "Mỗi chuyến đi đều mang đến những câu chuyện mới, những khung cảnh mới và nguồn cảm hứng mới cho hành trình nhiếp ảnh.",
+              "Mỗi chuyến đi đều mở ra những câu chuyện, khung cảnh và trải nghiệm mới, tiếp tục nuôi dưỡng niềm đam mê nhiếp ảnh.",
           },
         ]
       : [
@@ -46,31 +46,31 @@ export function AboutValues() {
             icon: Camera,
             title: "Photography First",
             description:
-              "Every design choice on HD Photography is made to keep the focus on the photographs themselves.",
+              "Every design choice on HD Photography is intended to honor the images and give each photograph room to tell its own story.",
           },
           {
             icon: Heart,
             title: "Beauty in Everyday Life",
             description:
-              "Photography reminds me to slow down, observe, and appreciate the beauty that surrounds us every day.",
+              "Photography encourages me to slow down, observe more carefully, and appreciate the meaningful beauty found in everyday moments.",
           },
           {
             icon: Users,
             title: "A Shared Journey",
             description:
-              "I'm honored to feature guest photographers whose creativity and unique perspectives enrich this collection.",
+              "I value the opportunity to feature guest photographers, each bringing a distinctive perspective and source of inspiration.",
           },
           {
             icon: Compass,
             title: "Always Exploring",
             description:
-              "Every journey brings new places, new stories, and fresh inspiration through the lens.",
+              "Every journey brings new stories, landscapes, and experiences that continue to inspire my photography.",
           },
         ]
 
   return (
-    <section className="py-20 bg-zinc-900/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="border-y border-zinc-800/60 bg-zinc-900/30 py-20 md:py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionTitle
           eyebrow={language === "vi" ? "GIÁ TRỊ" : "VALUES"}
           title={
@@ -80,11 +80,11 @@ export function AboutValues() {
           }
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           {values.map(({ icon: Icon, title, description }) => (
             <div
               key={title}
-              className="flex gap-5 rounded-xl border border-zinc-800 bg-zinc-900/50 p-6"
+              className="flex gap-5 rounded-xl border border-zinc-800 bg-zinc-900/50 p-6 transition-colors hover:border-zinc-700"
             >
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-amber-500/20 bg-amber-500/10">
                 <Icon className="h-5 w-5 text-amber-400" />
