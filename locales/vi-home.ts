@@ -13,7 +13,7 @@ export const viHome = {
   showcase: {
     eyebrow: "BỘ ẢNH MỚI NHẤT",
     themeLabel: "Chủ đề",
-    viewFull: "Xem toàn bộ bộ sưu tập",
+    viewFull: "Xem đầy đủ bộ sưu tập",
     defaultPhotoAlt: "Ảnh",
   },
 
@@ -27,17 +27,16 @@ export const viHome = {
     title: "Hướng Dẫn Mới Nhất",
     viewAll: "Xem tất cả",
   },
+news: {
+  eyebrow: "Tin Mới",
+  title: "Tin Tức & Cập Nhật",
+  viewAll: "Xem tất cả",
+},
 
-  news: {
-    eyebrow: "Tin Mới",
-    title: "Tin Tức & Sự Kiện",
-    viewAll: "Xem tất cả",
-  },
-
-  callToAction: {
-    title: "Sẵn sàng chia sẻ góc nhìn của bạn?",
-    description:
-      "Hãy tham gia cộng đồng những người yêu nhiếp ảnh, cùng gặp gỡ hàng tháng, tham dự workshop, trao đổi tác phẩm và tôn vinh những góc nhìn độc đáo của mỗi người.",
+ callToAction: {
+  title: "Muốn trao đổi về nhiếp ảnh?",
+  description:
+    "Nếu bạn muốn chia sẻ ý tưởng, trao đổi về nhiếp ảnh, hợp tác hoặc đơn giản chỉ muốn gửi lời chào, tôi rất vui được nghe từ bạn.",
     button: "Liên Hệ",
   },
 } as const

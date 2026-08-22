@@ -30,15 +30,15 @@ export const enHome = {
   },
 
   news: {
-    eyebrow: "Stay Updated",
-    title: "News & Events",
-    viewAll: "All news",
-  },
+  eyebrow: "Latest News",
+  title: "News & Updates",
+  viewAll: "View All",
+},
 
   callToAction: {
-    title: "Ready to share your vision?",
-    description:
-      "Join a community of photographers who are as passionate about the art as you are. Monthly meetups, workshops, critique sessions, and a showcase that celebrates every perspective.",
-    button: "Get in Touch",
-  },
+  title: "Let's Talk Photography",
+  description:
+    "If you'd like to share ideas, talk about photography, explore a collaboration, or simply say hello, I'd be delighted to hear from you.",
+  button: "Contact Me",
+},
 } as const

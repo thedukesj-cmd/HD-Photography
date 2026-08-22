@@ -23,7 +23,8 @@ export function HomeHero({
     "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=2000&q=80"
 
   return (
-    <section className="relative min-h-[72vh] md:min-h-[78vh] flex items-center justify-center overflow-hidden">
+    <section className="relative flex min-h-[72vh] items-center justify-center overflow-hidden md:min-h-[78vh]">
+      {/* Background photograph */}
       <div className="absolute inset-0">
         <Image
           src={heroImage}
@@ -41,14 +42,22 @@ export function HomeHero({
         <div className="absolute inset-0 bg-gradient-to-r from-zinc-950/20 via-transparent to-zinc-950/20" />
       </div>
 
+      {/* Hero content */}
       <div className="relative z-10 mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
-        <p className="mb-6 text-sm font-semibold uppercase tracking-[0.4em] text-amber-400 sm:text-base md:text-lg">
-          {hero.eyebrow}
-        </p>
+        {/* Large HD Photography logo */}
+            <div className="mb-3 flex justify-center sm:mb-4">          <Image
+            src="/logo.png"
+            alt="HD Photography"
+            width={220}
+            height={90}
+            priority
+            className="h-auto w-[170px] drop-shadow-[0_3px_10px_rgba(0,0,0,0.7)] sm:w-[210px] md:w-[240px] lg:w-[260px]"          />
+        </div>
 
         <h1 className="font-playfair text-5xl font-bold leading-[1.05] text-white sm:text-6xl md:text-7xl lg:text-8xl">
           {hero.titleLine1}
           <br />
+
           <span className="text-amber-400">
             {hero.titleLine2}
           </span>
@@ -64,6 +73,7 @@ export function HomeHero({
             className="inline-flex items-center justify-center gap-2 rounded-full bg-amber-500 px-8 py-4 font-semibold text-zinc-950 transition-all duration-200 hover:-translate-y-0.5 hover:bg-amber-400 hover:shadow-lg hover:shadow-amber-500/20"
           >
             {hero.primaryButton}
+
             <ArrowRight className="h-4 w-4" />
           </Link>
 
