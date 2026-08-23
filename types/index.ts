@@ -5,7 +5,7 @@ export interface GalleryPhoto {
 }
 
 export interface MemberGallery {
-  name: string          // e.g. "Landscapes"
+  name: string
   description?: string
   coverPhoto?: string
   photos: GalleryPhoto[]
@@ -64,10 +64,19 @@ export interface Tutorial {
 
 export interface NewsItem {
   slug: string
+
   title: string
+  titleVi?: string
+
   date: string
   featuredImage: string
+
   excerpt: string
+  excerptVi?: string
+
   category?: string
+  categoryVi?: string
+
   content?: string
+  contentVi?: string
 }

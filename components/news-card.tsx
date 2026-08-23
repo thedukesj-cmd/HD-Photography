@@ -15,15 +15,38 @@ export function NewsCard({
 }) {
   const { language } = useLanguage()
 
-  const formattedDate = new Intl.DateTimeFormat(
-    language === "vi" ? "vi-VN" : "en-US",
-    {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-      timeZone: "UTC",
-    }
-  ).format(new Date(item.date))
+  const displayTitle =
+    language === "vi"
+      ? item.titleVi || item.title
+      : item.title
+
+  const displayExcerpt =
+    language === "vi"
+      ? item.excerptVi || item.excerpt
+      : item.excerpt
+
+  const displayCategory =
+    language === "vi"
+      ? item.categoryVi || item.category
+      : item.category
+
+  const parsedDate = new Date(item.date)
+
+  const formattedDate = Number.isNaN(
+    parsedDate.getTime()
+  )
+    ? item.date
+    : new Intl.DateTimeFormat(
+        language === "vi"
+          ? "vi-VN"
+          : "en-US",
+        {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+          timeZone: "UTC",
+        }
+      ).format(parsedDate)
 
   return (
     <Link
@@ -35,7 +58,7 @@ export function NewsCard({
           <div className="relative aspect-[16/10] overflow-hidden bg-zinc-900">
             <Image
               src={item.featuredImage}
-              alt={item.title}
+              alt={displayTitle}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 50vw"
               className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -47,9 +70,9 @@ export function NewsCard({
         )}
 
         <div className="flex flex-1 flex-col p-6">
-          {item.category && (
+          {displayCategory && (
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-amber-400">
-              {item.category}
+              {displayCategory}
             </p>
           )}
 
@@ -59,12 +82,12 @@ export function NewsCard({
           </div>
 
           <h3 className="font-playfair text-2xl font-semibold leading-snug text-white transition-colors group-hover:text-amber-400">
-            {item.title}
+            {displayTitle}
           </h3>
 
-          {item.excerpt && (
+          {displayExcerpt && (
             <p className="mt-3 line-clamp-3 leading-relaxed text-zinc-400">
-              {item.excerpt}
+              {displayExcerpt}
             </p>
           )}
 

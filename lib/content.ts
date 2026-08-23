@@ -656,8 +656,8 @@ export function getAllNews(): NewsItem[] {
 
   return fs
     .readdirSync(dir)
-    .filter(f => f.endsWith(".md"))
-    .map(f => {
+    .filter((f) => f.endsWith(".md"))
+    .map((f) => {
       const slug = f.replace(
         ".md",
         ""
@@ -677,12 +677,8 @@ export function getAllNews(): NewsItem[] {
     })
     .sort(
       (a, b) =>
-        new Date(
-          b.date
-        ).getTime() -
-        new Date(
-          a.date
-        ).getTime()
+        new Date(b.date).getTime() -
+        new Date(a.date).getTime()
     )
 }
 
@@ -692,7 +688,14 @@ function parseNews(
 ): NewsItem {
   return {
     slug,
-    title: data.title || "",
+
+    title:
+      data.title || "",
+
+    titleVi:
+      data.titleVi ||
+      data.title_vi ||
+      undefined,
 
     date: data.date
       ? String(data.date)
@@ -703,9 +706,29 @@ function parseNews(
       data.featured_image ||
       "",
 
-    excerpt: data.excerpt || "",
-    category: data.category,
-    content: data.content,
+    excerpt:
+      data.excerpt || "",
+
+    excerptVi:
+      data.excerptVi ||
+      data.excerpt_vi ||
+      undefined,
+
+    category:
+      data.category || undefined,
+
+    categoryVi:
+      data.categoryVi ||
+      data.category_vi ||
+      undefined,
+
+    content:
+      data.content || undefined,
+
+    contentVi:
+      data.contentVi ||
+      data.content_vi ||
+      undefined,
   }
 }
 
@@ -738,15 +761,114 @@ export async function getNewsWithHtml(
     )
   )
 
-  const news =
-    parseNews(
-      slug,
-      data
-    )
+  const news = parseNews(
+    slug,
+    data
+  )
+
+  const rawContent = content.trim()
+
+  const enMarker = /<!--\s*EN\s*-->/i
+  const viMarker = /<!--\s*VI\s*-->/i
+
+  const enMatch = rawContent.match(enMarker)
+  const viMatch = rawContent.match(viMarker)
+
+  let contentEn = rawContent
+
+  let contentVi =
+    data.contentVi ||
+    data.content_vi ||
+    ""
+
+  /*
+   * Recommended format:
+   *
+   * <!-- EN -->
+   * English article...
+   *
+   * <!-- VI -->
+   * Vietnamese article...
+   */
+  if (
+    enMatch &&
+    typeof enMatch.index === "number" &&
+    viMatch &&
+    typeof viMatch.index === "number"
+  ) {
+    const enIndex = enMatch.index
+    const viIndex = viMatch.index
+
+    if (enIndex < viIndex) {
+      contentEn = rawContent
+        .slice(
+          enIndex + enMatch[0].length,
+          viIndex
+        )
+        .trim()
+
+      contentVi = rawContent
+        .slice(
+          viIndex + viMatch[0].length
+        )
+        .trim()
+    } else {
+      contentVi = rawContent
+        .slice(
+          viIndex + viMatch[0].length,
+          enIndex
+        )
+        .trim()
+
+      contentEn = rawContent
+        .slice(
+          enIndex + enMatch[0].length
+        )
+        .trim()
+    }
+  } else if (
+    viMatch &&
+    typeof viMatch.index === "number"
+  ) {
+    /*
+     * Also supports:
+     *
+     * English article...
+     *
+     * <!-- VI -->
+     * Vietnamese article...
+     */
+    contentEn = rawContent
+      .slice(0, viMatch.index)
+      .trim()
+
+    contentVi = rawContent
+      .slice(
+        viMatch.index + viMatch[0].length
+      )
+      .trim()
+  } else if (
+    enMatch &&
+    typeof enMatch.index === "number"
+  ) {
+    contentEn = rawContent
+      .slice(
+        enMatch.index + enMatch[0].length
+      )
+      .trim()
+  }
 
   return {
     ...news,
-    contentHtml:
-      await markdownToHtml(content),
+
+    contentHtml: contentEn
+      ? await markdownToHtml(contentEn)
+      : "",
+
+    contentHtmlVi: contentVi
+      ? await markdownToHtml(
+          String(contentVi)
+        )
+      : "",
   }
 }
