@@ -7,6 +7,7 @@ import { ArrowLeft } from "lucide-react"
 import type { Showcase } from "@/types"
 import { GalleryLightbox } from "@/components/gallery-lightbox"
 import { ShowcaseDetailText } from "@/components/showcase-detail-text"
+import { ShowcaseViewCounter } from "@/components/showcase-view-counter"
 import { useLanguage } from "@/components/language-provider"
 
 type ShowcaseDetailContentProps = {
@@ -97,14 +98,21 @@ export function ShowcaseDetailContent({
             <ShowcaseDetailText type="back" />
           </Link>
 
-          {showcase.date && (
-            <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-amber-400">
-              <ShowcaseDetailText
-                type="date"
-                date={showcase.date}
-              />
-            </p>
-          )}
+          {/* Date + View Counter */}
+          <div className="mb-3 flex flex-wrap items-center gap-x-4 gap-y-2">
+            {showcase.date && (
+              <span className="text-xs font-semibold uppercase tracking-widest text-amber-400">
+                <ShowcaseDetailText
+                  type="date"
+                  date={showcase.date}
+                />
+              </span>
+            )}
+
+            <ShowcaseViewCounter
+              slug={showcase.slug}
+            />
+          </div>
 
           <h1 className="max-w-4xl font-playfair text-5xl font-bold text-white md:text-7xl">
             {displayTitle}

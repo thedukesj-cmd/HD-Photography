@@ -15,3 +15,7 @@ yarn-error.log*
 .vscode/
 Thumbs.db
 .DS_Store
+
+# Local Netlify folder
+.netlify
+deno.lock
