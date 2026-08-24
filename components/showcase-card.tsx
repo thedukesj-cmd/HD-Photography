@@ -1,11 +1,17 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
 import { Images } from "lucide-react"
 
 import type { Showcase } from "@/types"
 import { PhotoCard } from "@/components/ui/photo-card"
+import { useLanguage } from "@/components/language-provider"
 
-function formatShowcaseDate(date: string) {
+function formatShowcaseDate(
+  date: string,
+  language: string
+) {
   if (!date) return ""
 
   const parsed = new Date(date)
@@ -14,12 +20,17 @@ function formatShowcaseDate(date: string) {
     return date
   }
 
-  return parsed.toLocaleDateString("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-    timeZone: "UTC",
-  })
+  return new Intl.DateTimeFormat(
+    language === "vi"
+      ? "vi-VN"
+      : "en-US",
+    {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+      timeZone: "UTC",
+    }
+  ).format(parsed)
 }
 
 export function ShowcaseCard({
@@ -27,51 +38,84 @@ export function ShowcaseCard({
 }: {
   showcase: Showcase
 }) {
-  const displayDate = formatShowcaseDate(showcase.date)
+  const { language } = useLanguage()
+
+  const displayTitle =
+    language === "vi"
+      ? showcase.titleVi ||
+        showcase.title
+      : showcase.title
+
+  const displayTheme =
+    language === "vi"
+      ? showcase.themeVi ||
+        showcase.theme
+      : showcase.theme
+
+  const displayDescription =
+    language === "vi"
+      ? showcase.descriptionVi ||
+        showcase.description
+      : showcase.description
+
+  const displayDate =
+    formatShowcaseDate(
+      showcase.date,
+      language
+    )
+
+  const showTheme =
+    displayTheme &&
+    displayTheme
+      .trim()
+      .toLowerCase() !==
+      displayTitle
+        .trim()
+        .toLowerCase()
 
   return (
     <Link
       href={`/showcase/${showcase.slug}`}
       className="group block"
     >
-      <PhotoCard className="group">
-        <div className="relative aspect-video overflow-hidden">
-          <Image
-            src={showcase.featuredImage}
-            alt={showcase.title}
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-            loading="lazy"
-          />
+      <PhotoCard className="group overflow-hidden">
+        {showcase.featuredImage && (
+          <div className="relative aspect-video overflow-hidden bg-zinc-900">
+            <Image
+              src={showcase.featuredImage}
+              alt={displayTitle}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+            />
 
-          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
 
-          <div className="absolute bottom-0 left-0 right-0 p-4">
-            <h3 className="font-playfair text-xl font-bold leading-snug text-white transition-colors group-hover:text-amber-300">
-              {showcase.title}
-            </h3>
+            <div className="absolute bottom-0 left-0 right-0 p-4">
+              <h3 className="font-playfair text-xl font-bold leading-snug text-white transition-colors group-hover:text-amber-300">
+                {displayTitle}
+              </h3>
 
-            {displayDate && (
-              <p className="mt-1 text-xs font-semibold uppercase tracking-widest text-amber-400">
-                {displayDate}
-              </p>
-            )}
+              {displayDate && (
+                <p className="mt-1 text-xs font-semibold uppercase tracking-widest text-amber-400">
+                  {displayDate}
+                </p>
+              )}
+            </div>
           </div>
-        </div>
+        )}
 
         <div className="border-t border-zinc-800 px-4 py-3">
-          {showcase.theme &&
-          showcase.theme.trim().toLowerCase() !==
-          showcase.title.trim().toLowerCase() && (
-          <p className="mb-1 line-clamp-1 text-sm font-medium text-zinc-300">
-          {showcase.theme}
-          </p>
-     )}
+          {showTheme && (
+            <p className="mb-1 line-clamp-1 text-sm font-medium text-zinc-300">
+              {displayTheme}
+            </p>
+          )}
 
           <div className="flex items-center justify-between text-xs text-zinc-500">
             <span className="line-clamp-1 flex-1 pr-4">
-              {showcase.description}
+              {displayDescription}
             </span>
 
             <span className="flex shrink-0 items-center gap-1">

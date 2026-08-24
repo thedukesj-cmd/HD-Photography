@@ -8,7 +8,7 @@ export function AboutStory() {
   return (
     <section className="mx-auto max-w-4xl px-4 py-20 sm:px-6 lg:px-8 md:py-24">
       <div className="space-y-8">
-        <h2 className="font-playfair text-4xl font-bold leading-tight text-white md:text-5xl">
+           <h2 className="mx-auto max-w-3xl text-balance text-center font-playfair text-4xl font-bold leading-tight text-white md:text-5xl">
           {language === "vi"
             ? "Một hành trình nhiếp ảnh được sẻ chia"
             : "A Personal Journey Shared Through Photography"}

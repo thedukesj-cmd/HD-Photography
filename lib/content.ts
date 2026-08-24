@@ -395,7 +395,7 @@ function parseShowcase(
     try {
       const relativeFolder =
         folder.replace(
-          /^\/uploads\//,
+          /^\/?uploads\/?/i,
           ""
         )
 
@@ -406,18 +406,16 @@ function parseShowcase(
         relativeFolder
       )
 
-      if (
-        fs.existsSync(folderPath)
-      ) {
+      if (fs.existsSync(folderPath)) {
         autoPhotos = fs
           .readdirSync(folderPath)
-          .filter(file =>
+          .filter((file) =>
             /\.(jpg|jpeg|png|webp|gif)$/i.test(
               file
             )
           )
           .sort()
-          .map(file => ({
+          .map((file) => ({
             url: `${folder}/${file}`,
             title: file.replace(
               /\.[^/.]+$/,
@@ -472,6 +470,11 @@ function parseShowcase(
       data.name ||
       slug,
 
+    titleVi:
+      data.titleVi ||
+      data.title_vi ||
+      undefined,
+
     date:
       data.date
         ? String(data.date)
@@ -480,14 +483,24 @@ function parseShowcase(
     theme:
       data.theme || "",
 
+    themeVi:
+      data.themeVi ||
+      data.theme_vi ||
+      undefined,
+
     description:
       data.description || "",
 
+    descriptionVi:
+      data.descriptionVi ||
+      data.description_vi ||
+      undefined,
+
     featuredImage:
-     data.featuredImage ||
-     data.featured_image ||
+      data.featuredImage ||
+      data.featured_image ||
       photos[0]?.url ||
-    "",
+      "",
 
     photos,
   }
@@ -507,7 +520,9 @@ export async function getShowcaseWithHtml(
       file => file.slug === slug
     )
 
-  if (!match) return null
+  if (!match) {
+    return null
+  }
 
   const { data, content } = matter(
     fs.readFileSync(
@@ -523,11 +538,11 @@ export async function getShowcaseWithHtml(
 
   return {
     ...showcase,
+
     descriptionHtml:
       await markdownToHtml(content),
   }
 }
-
 // ─── Tutorials ────────────────────────────────────────────────────────────────
 
 export function getAllTutorials(): Tutorial[] {
@@ -576,10 +591,18 @@ function parseTutorial(
 ): Tutorial {
   return {
     slug,
-    title: data.title || "",
+
+    title:
+      data.title || "",
+
+    titleVi:
+      data.titleVi ||
+      data.title_vi ||
+      undefined,
+
     author:
       data.author ||
-      "Aperture Club",
+      "Hong-Duc Nguyen",
 
     date: data.date
       ? String(data.date)
@@ -590,15 +613,49 @@ function parseTutorial(
       data.featured_image ||
       "",
 
-    excerpt: data.excerpt || "",
-    difficulty: data.difficulty,
+    excerpt:
+      data.excerpt || "",
+
+    excerptVi:
+      data.excerptVi ||
+      data.excerpt_vi ||
+      undefined,
+
+    difficulty:
+      data.difficulty ||
+      undefined,
+
+    difficultyVi:
+      data.difficultyVi ||
+      data.difficulty_vi ||
+      undefined,
 
     readTime:
       data.readTime ||
-      data.read_time,
+      data.read_time ||
+      undefined,
 
-    tags: data.tags || [],
-    content: data.content,
+    readTimeVi:
+      data.readTimeVi ||
+      data.read_time_vi ||
+      undefined,
+
+    tags:
+      data.tags || [],
+
+    tagsVi:
+      data.tagsVi ||
+      data.tags_vi ||
+      undefined,
+
+    content:
+      data.content ||
+      undefined,
+
+    contentVi:
+      data.contentVi ||
+      data.content_vi ||
+      undefined,
   }
 }
 
@@ -631,16 +688,113 @@ export async function getTutorialWithHtml(
     )
   )
 
-  const tutorial =
-    parseTutorial(
-      slug,
-      data
-    )
+  const tutorial = parseTutorial(
+    slug,
+    data
+  )
+
+  const rawContent = content.trim()
+
+  const enMarker =
+    /<!--\s*EN\s*-->/i
+
+  const viMarker =
+    /<!--\s*VI\s*-->/i
+
+  const enMatch =
+    rawContent.match(enMarker)
+
+  const viMatch =
+    rawContent.match(viMarker)
+
+  let contentEn = rawContent
+
+  let contentVi =
+    data.contentVi ||
+    data.content_vi ||
+    ""
+
+  if (
+    enMatch &&
+    typeof enMatch.index === "number" &&
+    viMatch &&
+    typeof viMatch.index === "number"
+  ) {
+    const enIndex = enMatch.index
+    const viIndex = viMatch.index
+
+    if (enIndex < viIndex) {
+      contentEn = rawContent
+        .slice(
+          enIndex + enMatch[0].length,
+          viIndex
+        )
+        .trim()
+
+      contentVi = rawContent
+        .slice(
+          viIndex + viMatch[0].length
+        )
+        .trim()
+    } else {
+      contentVi = rawContent
+        .slice(
+          viIndex + viMatch[0].length,
+          enIndex
+        )
+        .trim()
+
+      contentEn = rawContent
+        .slice(
+          enIndex + enMatch[0].length
+        )
+        .trim()
+    }
+  } else if (
+    viMatch &&
+    typeof viMatch.index === "number"
+  ) {
+    contentEn = rawContent
+      .slice(
+        0,
+        viMatch.index
+      )
+      .trim()
+
+    contentVi = rawContent
+      .slice(
+        viMatch.index +
+          viMatch[0].length
+      )
+      .trim()
+  } else if (
+    enMatch &&
+    typeof enMatch.index === "number"
+  ) {
+    contentEn = rawContent
+      .slice(
+        enMatch.index +
+          enMatch[0].length
+      )
+      .trim()
+  }
 
   return {
     ...tutorial,
+
     contentHtml:
-      await markdownToHtml(content),
+      contentEn
+        ? await markdownToHtml(
+            contentEn
+          )
+        : "",
+
+    contentHtmlVi:
+      contentVi
+        ? await markdownToHtml(
+            String(contentVi)
+          )
+        : "",
   }
 }
 
@@ -761,18 +915,24 @@ export async function getNewsWithHtml(
     )
   )
 
-  const news = parseNews(
+  const newsItem = parseNews(
     slug,
     data
   )
 
   const rawContent = content.trim()
 
-  const enMarker = /<!--\s*EN\s*-->/i
-  const viMarker = /<!--\s*VI\s*-->/i
+  const enMarker =
+    /<!--\s*EN\s*-->/i
 
-  const enMatch = rawContent.match(enMarker)
-  const viMatch = rawContent.match(viMarker)
+  const viMarker =
+    /<!--\s*VI\s*-->/i
+
+  const enMatch =
+    rawContent.match(enMarker)
+
+  const viMatch =
+    rawContent.match(viMarker)
 
   let contentEn = rawContent
 
@@ -781,15 +941,6 @@ export async function getNewsWithHtml(
     data.content_vi ||
     ""
 
-  /*
-   * Recommended format:
-   *
-   * <!-- EN -->
-   * English article...
-   *
-   * <!-- VI -->
-   * Vietnamese article...
-   */
   if (
     enMatch &&
     typeof enMatch.index === "number" &&
@@ -830,21 +981,17 @@ export async function getNewsWithHtml(
     viMatch &&
     typeof viMatch.index === "number"
   ) {
-    /*
-     * Also supports:
-     *
-     * English article...
-     *
-     * <!-- VI -->
-     * Vietnamese article...
-     */
     contentEn = rawContent
-      .slice(0, viMatch.index)
+      .slice(
+        0,
+        viMatch.index
+      )
       .trim()
 
     contentVi = rawContent
       .slice(
-        viMatch.index + viMatch[0].length
+        viMatch.index +
+          viMatch[0].length
       )
       .trim()
   } else if (
@@ -853,22 +1000,27 @@ export async function getNewsWithHtml(
   ) {
     contentEn = rawContent
       .slice(
-        enMatch.index + enMatch[0].length
+        enMatch.index +
+          enMatch[0].length
       )
       .trim()
   }
 
   return {
-    ...news,
+    ...newsItem,
 
-    contentHtml: contentEn
-      ? await markdownToHtml(contentEn)
-      : "",
+    contentHtml:
+      contentEn
+        ? await markdownToHtml(
+            contentEn
+          )
+        : "",
 
-    contentHtmlVi: contentVi
-      ? await markdownToHtml(
-          String(contentVi)
-        )
-      : "",
+    contentHtmlVi:
+      contentVi
+        ? await markdownToHtml(
+            String(contentVi)
+          )
+        : "",
   }
 }

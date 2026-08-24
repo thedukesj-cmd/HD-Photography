@@ -25,13 +25,16 @@ const difficultyColor: Record<string, string> = {
     "bg-red-500/20 text-red-400 border-red-500/30",
 }
 
-const difficultyVi: Record<string, string> = {
+const defaultDifficultyVi: Record<string, string> = {
   Beginner: "Cơ bản",
   Intermediate: "Trung cấp",
   Advanced: "Nâng cao",
 }
 
-function formatDate(date: string, language: string) {
+function formatDate(
+  date: string,
+  language: string
+) {
   if (!date) return ""
 
   const parsed = new Date(date)
@@ -41,7 +44,9 @@ function formatDate(date: string, language: string) {
   }
 
   return new Intl.DateTimeFormat(
-    language === "vi" ? "vi-VN" : "en-US",
+    language === "vi"
+      ? "vi-VN"
+      : "en-US",
     {
       day: "numeric",
       month: "short",
@@ -59,35 +64,52 @@ export function TutorialSearch({
   const [query, setQuery] = useState("")
   const { language } = useLanguage()
 
-  const normalizedQuery = query.trim().toLowerCase()
+  const normalizedQuery =
+    query.trim().toLowerCase()
 
-  const filtered = tutorials.filter((tutorial) => {
-    if (!normalizedQuery) return true
+  const filtered = tutorials.filter(
+    (tutorial) => {
+      if (!normalizedQuery) {
+        return true
+      }
 
-    const translatedDifficulty = tutorial.difficulty
-      ? difficultyVi[tutorial.difficulty] || tutorial.difficulty
-      : ""
+      const searchableValues = [
+        tutorial.title,
+        tutorial.titleVi,
+        tutorial.author,
+        tutorial.excerpt,
+        tutorial.excerptVi,
+        tutorial.difficulty,
+        tutorial.difficultyVi,
+        tutorial.readTime,
+        tutorial.readTimeVi,
+        ...tutorial.tags,
+        ...(tutorial.tagsVi || []),
+      ]
+        .filter(Boolean)
+        .map((value) =>
+          String(value).toLowerCase()
+        )
 
-    return (
-      tutorial.title.toLowerCase().includes(normalizedQuery) ||
-      tutorial.author.toLowerCase().includes(normalizedQuery) ||
-      tutorial.excerpt.toLowerCase().includes(normalizedQuery) ||
-      tutorial.tags.some((tag) =>
-        tag.toLowerCase().includes(normalizedQuery)
-      ) ||
-      tutorial.difficulty
-        ?.toLowerCase()
-        .includes(normalizedQuery) ||
-      translatedDifficulty
-        .toLowerCase()
-        .includes(normalizedQuery)
-    )
-  })
+      if (
+        tutorial.difficulty &&
+        defaultDifficultyVi[
+          tutorial.difficulty
+        ]
+      ) {
+        searchableValues.push(
+          defaultDifficultyVi[
+            tutorial.difficulty
+          ].toLowerCase()
+        )
+      }
 
-  const difficultyLabel = (difficulty: string) =>
-    language === "vi"
-      ? difficultyVi[difficulty] ?? difficulty
-      : difficulty
+      return searchableValues.some(
+        (value) =>
+          value.includes(normalizedQuery)
+      )
+    }
+  )
 
   if (tutorials.length === 0) {
     return (
@@ -111,6 +133,7 @@ export function TutorialSearch({
 
   return (
     <div className="space-y-8">
+      {/* Search */}
       <div className="relative mx-auto max-w-2xl">
         <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-500" />
 
@@ -122,7 +145,9 @@ export function TutorialSearch({
               : "Search articles, tags, or authors..."
           }
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(e) =>
+            setQuery(e.target.value)
+          }
           className="w-full rounded-xl border border-zinc-700 bg-zinc-900 py-3 pl-11 pr-16 text-zinc-100 placeholder:text-zinc-500 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-amber-400"
         />
 
@@ -132,11 +157,14 @@ export function TutorialSearch({
             onClick={() => setQuery("")}
             className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-zinc-500 transition-colors hover:text-zinc-300"
           >
-            {language === "vi" ? "Xóa" : "Clear"}
+            {language === "vi"
+              ? "Xóa"
+              : "Clear"}
           </button>
         )}
       </div>
 
+      {/* Search result count */}
       {query && (
         <p className="text-center text-sm text-zinc-500">
           {filtered.length === 0
@@ -153,12 +181,59 @@ export function TutorialSearch({
         </p>
       )}
 
+      {/* Article cards */}
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
         {filtered.map((tutorial) => {
-          const displayDate = formatDate(
-            tutorial.date,
-            language
-          )
+
+
+          const displayTitle =
+            language === "vi"
+              ? tutorial.titleVi ||
+                tutorial.title
+              : tutorial.title
+
+          const displayExcerpt =
+            language === "vi"
+              ? tutorial.excerptVi ||
+                tutorial.excerpt
+              : tutorial.excerpt
+
+          const displayReadTime =
+            language === "vi"
+              ? tutorial.readTimeVi ||
+                tutorial.readTime
+              : tutorial.readTime
+
+          const displayTags =
+            language === "vi" &&
+            tutorial.tagsVi?.length
+              ? tutorial.tagsVi
+              : tutorial.tags
+
+
+          const displayDifficulty =
+            language === "vi"
+              ? tutorial.difficultyVi ||
+                (tutorial.difficulty
+                  ? defaultDifficultyVi[
+                      tutorial.difficulty
+                    ] ||
+                    tutorial.difficulty
+                  : "")
+              : tutorial.difficulty || ""
+
+          const displayDate =
+            formatDate(
+              tutorial.date,
+              language
+            )
+
+          const displayAuthor =
+            language === "vi" &&
+            tutorial.author === "Hong-Duc Nguyen"
+            ? "Nguyễn Hồng Đức"
+            : tutorial.author
+
 
           return (
             <PhotoCard
@@ -172,8 +247,10 @@ export function TutorialSearch({
                 {tutorial.featuredImage && (
                   <div className="relative aspect-video overflow-hidden bg-zinc-900">
                     <Image
-                      src={tutorial.featuredImage}
-                      alt={tutorial.title}
+                      src={
+                        tutorial.featuredImage
+                      }
+                      alt={displayTitle}
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -182,32 +259,34 @@ export function TutorialSearch({
 
                     <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
 
-                    {tutorial.difficulty && (
-                      <span
-                        className={cn(
-                          "absolute left-3 top-3 rounded-full border px-2.5 py-1 text-xs font-medium",
-                          difficultyColor[
-                            tutorial.difficulty
-                          ] ||
-                            difficultyColor.Beginner
-                        )}
-                      >
-                        {difficultyLabel(
-                          tutorial.difficulty
-                        )}
-                      </span>
-                    )}
+                    {tutorial.difficulty &&
+                      displayDifficulty && (
+                        <span
+                          className={cn(
+                            "absolute left-3 top-3 rounded-full border px-2.5 py-1 text-xs font-medium",
+                            difficultyColor[
+                              tutorial
+                                .difficulty
+                            ] ||
+                              difficultyColor.Beginner
+                          )}
+                        >
+                          {
+                            displayDifficulty
+                          }
+                        </span>
+                      )}
                   </div>
                 )}
 
                 <div className="flex flex-1 flex-col p-5">
                   <h3 className="font-playfair text-xl font-semibold leading-snug text-white transition-colors group-hover:text-amber-400">
-                    {tutorial.title}
+                    {displayTitle}
                   </h3>
 
-                  {tutorial.excerpt && (
+                  {displayExcerpt && (
                     <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-zinc-400">
-                      {tutorial.excerpt}
+                      {displayExcerpt}
                     </p>
                   )}
 
@@ -215,7 +294,7 @@ export function TutorialSearch({
                     <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-zinc-500">
                       <span className="flex items-center gap-1">
                         <User className="h-3 w-3" />
-                        {tutorial.author}
+                        {displayAuthor}
                       </span>
 
                       {displayDate && (
@@ -225,17 +304,18 @@ export function TutorialSearch({
                         </span>
                       )}
 
-                      {tutorial.readTime && (
+                      {displayReadTime && (
                         <span className="flex items-center gap-1">
                           <Clock className="h-3 w-3" />
-                          {tutorial.readTime}
+                          {displayReadTime}
                         </span>
                       )}
                     </div>
 
-                    {tutorial.tags.length > 0 && (
+                    {displayTags.length >
+                      0 && (
                       <div className="mt-4 flex flex-wrap gap-1.5">
-                        {tutorial.tags
+                        {displayTags
                           .slice(0, 3)
                           .map((tag) => (
                             <span
@@ -255,17 +335,18 @@ export function TutorialSearch({
         })}
       </div>
 
-      {filtered.length === 0 && query && (
-        <div className="py-12 text-center">
-          <BookOpen className="mx-auto mb-4 h-12 w-12 text-zinc-700" />
+      {filtered.length === 0 &&
+        query && (
+          <div className="py-12 text-center">
+            <BookOpen className="mx-auto mb-4 h-12 w-12 text-zinc-700" />
 
-          <p className="text-zinc-500">
-            {language === "vi"
-              ? "Hãy thử một từ khóa khác."
-              : "Try a different search term."}
-          </p>
-        </div>
-      )}
+            <p className="text-zinc-500">
+              {language === "vi"
+                ? "Hãy thử một từ khóa khác."
+                : "Try a different search term."}
+            </p>
+          </div>
+        )}
     </div>
   )
 }

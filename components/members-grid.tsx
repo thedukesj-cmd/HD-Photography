@@ -8,8 +8,15 @@ type MembersGridProps = {
 export function MembersGrid({
   members,
 }: MembersGridProps) {
+  const gridClassName =
+    members.length === 1
+      ? "mx-auto grid max-w-sm grid-cols-1 gap-6"
+      : members.length === 2
+        ? "mx-auto grid max-w-2xl grid-cols-1 gap-6 sm:grid-cols-2"
+        : "grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+
   return (
-    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    <div className={gridClassName}>
       {members.map((member) => (
         <MemberCard
           key={member.slug}

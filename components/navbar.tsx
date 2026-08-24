@@ -283,12 +283,12 @@ const navLinks = [
         <div
           id="mobile-navigation"
           className={cn(
-            "overflow-hidden transition-all duration-300 lg:hidden",
-            open
-              ? "max-h-[520px] pb-4"
-              : "max-h-0"
+          "overflow-hidden border-t border-zinc-800 bg-zinc-950 transition-all duration-300 lg:hidden",
+          open
+          ? "max-h-[520px] py-3"
+         : "max-h-0"
           )}
-        >
+          >
           <div className="flex flex-col gap-1 border-t border-zinc-800 pt-2">
             {navLinks.map((link) => (
               <Link

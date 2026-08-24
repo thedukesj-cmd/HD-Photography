@@ -1,7 +1,8 @@
 "use client"
 
 import Link from "next/link"
-import { Aperture, Mail, MapPin } from "lucide-react"
+import Image from "next/image"
+import { Mail, MapPin } from "lucide-react"
 
 import { useLanguage } from "@/components/language-provider"
 import { siteConfig } from "@/config/site"
@@ -66,19 +67,19 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
           {/* Brand */}
           <div className="space-y-4">
-            <Link
-              href="/"
-              className="group flex w-fit items-center gap-2.5"
-            >
-              <Aperture className="h-6 w-6 text-amber-400" />
-
-              <span className="font-playfair text-lg font-semibold text-white">
-                HD{" "}
-                <span className="text-amber-400">
-                  Photography
-                </span>
-              </span>
-            </Link>
+        <Link
+        href="/"
+        className="group flex w-fit items-center"
+        aria-label={siteConfig.siteName}
+          >
+        <Image
+        src="/logo.png"
+        alt={siteConfig.siteName}
+        width={150}
+        height={70}
+        className="h-auto w-[135px] object-contain"
+        />
+      </Link>
 
             <p className="max-w-xs text-sm leading-relaxed">
               {footer.description}

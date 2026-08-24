@@ -41,25 +41,48 @@ export interface ShowcasePhoto {
 
 export interface Showcase {
   slug: string
+
   title: string
+  titleVi?: string
+
   date: string
+
   theme: string
+  themeVi?: string
+
   description: string
+  descriptionVi?: string
+
   featuredImage: string
+
   photos: ShowcasePhoto[]
 }
-
 export interface Tutorial {
   slug: string
+
   title: string
+  titleVi?: string
+
   author: string
+
   date: string
+
   featuredImage: string
+
   excerpt: string
+  excerptVi?: string
+
   difficulty?: string
+  difficultyVi?: string
+
   readTime?: string
+  readTimeVi?: string
+
   tags: string[]
+  tagsVi?: string[]
+
   content?: string
+  contentVi?: string
 }
 
 export interface NewsItem {
