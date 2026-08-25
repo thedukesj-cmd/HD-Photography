@@ -1,22 +1,22 @@
 ---
-title: "Guest Photographer Spotlight — Bích Liên Phan"
-titleVi: "Nhiếp Ảnh Gia Khách Mời — Bích Liên Phan"
+title: "Fellow Photographer Spotlight — Bích Liên Phan"
+titleVi: "hiếp ảnh gia thân hữu — Bích Liên Phan"
 
 date: "2026-08-19"
 
 featuredImage: "/uploads/members/bichlien-phan/profile.jpg"
 
-excerpt: "HD Photography welcomes Bích Liên Phan as a guest photographer, featuring her gentle approach to flowers, landscapes, nature, travel, and everyday moments."
+excerpt: "HD Photography welcomes Bích Liên Phan as a fellow photographer, featuring her gentle approach to flowers, landscapes, nature, travel, and everyday moments."
 
-excerptVi: "HD Photography trân trọng giới thiệu Bích Liên Phan như một nhiếp ảnh gia khách mời, với góc nhìn nhẹ nhàng và tinh tế về hoa, phong cảnh, thiên nhiên, du lịch và những khoảnh khắc đời thường."
+excerptVi: "HD Photography trân trọng giới thiệu Bích Liên Phan như một Nhiếp ảnh gia thân hữu, với góc nhìn nhẹ nhàng và tinh tế về hoa, phong cảnh, thiên nhiên, du lịch và những khoảnh khắc đời thường."
 
-category: "Guest Photographer"
-categoryVi: "Nhiếp Ảnh Gia Khách Mời"
+category: "Photographer Friend"
+categoryVi: "Nhiếp ảnh gia thân hữu"
 ---
 
 <!-- EN -->
 
-HD Photography is pleased to introduce **Bích Liên Phan** as a featured guest photographer.
+HD Photography is pleased to introduce **Bích Liên Phan** as a featured fellow photographer.
 
 Her photographs bring a gentle and thoughtful perspective to flowers, landscapes, nature, travel, and the quiet beauty found in everyday life.
 
@@ -40,9 +40,9 @@ Travel provides new places, changing light, and unexpected moments to photograph
 
 From broader landscapes to smaller details discovered along the way, these images preserve both the character of a place and the photographer's personal experience of being there.
 
-## A Guest Photographer on HD Photography
+## A Fellow Photographer on HD Photography
 
-The Guest Photographers section of HD Photography was created to share the work of photographers whose images and perspectives I appreciate.
+The Photographer Friends section of HD Photography was created to share the work of photographers whose images and perspectives I appreciate.
 
 Rather than presenting every photographer in the same way, each profile provides a personal introduction followed by their own photographic collection.
 
@@ -53,11 +53,11 @@ Bích Liên Phan's profile currently includes work across:
 - Nature
 - Travel
 
-Visitors can explore her full profile and photography through the **Guest Photographers** section of HD Photography.
+Visitors can explore her full profile and photography through the **Photographer Friends** section of HD Photography.
 
 <!-- VI -->
 
-HD Photography trân trọng giới thiệu **Bích Liên Phan** như một nhiếp ảnh gia khách mời.
+HD Photography trân trọng giới thiệu **Bích Liên Phan** như một nhiếp ảnh gia thân hữu.
 
 Những bức ảnh của chị mang đến một góc nhìn nhẹ nhàng và tinh tế về hoa, phong cảnh, thiên nhiên, du lịch và vẻ đẹp bình dị trong cuộc sống thường ngày.
 
@@ -81,9 +81,9 @@ Du lịch mang đến những vùng đất mới, nguồn ánh sáng thay đổi
 
 Từ những phong cảnh rộng lớn đến những chi tiết nhỏ bắt gặp trên đường đi, những bức ảnh lưu giữ cả nét đặc trưng của nơi chốn lẫn trải nghiệm riêng của người chụp.
 
-## Nhiếp Ảnh Gia Khách Mời Trên HD Photography
+## Nhiếp ảnh gia thân hữu Trên HD Photography
 
-Phần **Nhiếp Ảnh Gia Khách Mời** của HD Photography được tạo ra để giới thiệu tác phẩm của những nhiếp ảnh gia có hình ảnh và góc nhìn mà tôi yêu thích.
+Phần **Nhiếp ảnh gia thân hữu** của HD Photography được tạo ra để giới thiệu tác phẩm của những nhiếp ảnh gia có hình ảnh và góc nhìn mà tôi yêu thích.
 
 Thay vì trình bày tất cả mọi người theo cùng một cách, mỗi hồ sơ mang đến một phần giới thiệu riêng cùng với bộ ảnh của chính nhiếp ảnh gia đó.
 
@@ -94,4 +94,4 @@ Hồ sơ của Bích Liên Phan hiện gồm các thể loại:
 - Thiên nhiên
 - Du lịch
 
-Bạn có thể khám phá đầy đủ hồ sơ và các tác phẩm của Bích Liên trong phần **Nhiếp Ảnh Gia Khách Mời** của HD Photography.
+Bạn có thể khám phá đầy đủ hồ sơ và các tác phẩm của Bích Liên trong phần **Nhiếp ảnh gia thân hữu** của HD Photography.

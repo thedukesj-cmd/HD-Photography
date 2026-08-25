@@ -59,72 +59,163 @@ export function getAllMembers(): Member[] {
 function parseMember(slug: string, data: any): Member {
   const folder = data.folder || data.photoFolder || ""
 
-  let autoGalleries: MemberGallery[] = []
+let autoGalleries: MemberGallery[] = []
 
-  if (folder) {
-    try {
-      const relativeFolder = folder.replace(/^\/uploads\//, "")
-      const memberFolderPath = path.join(
+const imagePattern =
+  /\.(jpg|jpeg|png|webp|gif)$/i
+
+if (folder) {
+  try {
+    const relativeFolder =
+      folder.replace(
+        /^\/?uploads\/?/i,
+        ""
+      )
+
+    const memberFolderPath =
+      path.join(
         process.cwd(),
         "public",
         "uploads",
         relativeFolder
       )
 
-      if (fs.existsSync(memberFolderPath)) {
-        autoGalleries = fs
-          .readdirSync(memberFolderPath)
-          .filter(categoryName =>
-            fs
-              .statSync(path.join(memberFolderPath, categoryName))
-              .isDirectory()
-          )
-          .sort()
-          .flatMap(categoryName => {
-            const categoryPath = path.join(
-              memberFolderPath,
-              categoryName
-            )
+    function scanGalleryFolder(
+      currentPath: string,
+      relativeParts: string[]
+    ): MemberGallery[] {
+      const galleries: MemberGallery[] = []
 
-            return fs
-              .readdirSync(categoryPath)
-              .filter(albumName =>
-                fs
-                  .statSync(path.join(categoryPath, albumName))
-                  .isDirectory()
+      const entries =
+        fs.readdirSync(
+          currentPath,
+          {
+            withFileTypes: true,
+          }
+        )
+
+      const photos: GalleryPhoto[] =
+        entries
+          .filter(
+            (entry) =>
+              entry.isFile() &&
+              imagePattern.test(
+                entry.name
               )
-              .sort()
-              .map(albumName => {
-                const albumPath = path.join(
-                  categoryPath,
-                  albumName
-                )
+          )
+          .sort((a, b) =>
+            a.name.localeCompare(
+              b.name
+            )
+          )
+          .map((entry) => ({
+            url: `${folder}/${relativeParts.join(
+              "/"
+            )}/${entry.name}`,
 
-                const photos = fs
-                  .readdirSync(albumPath)
-                  .filter(file =>
-                    /\.(jpg|jpeg|png|webp|gif)$/i.test(file)
-                  )
-                  .sort()
-                  .map(file => ({
-                    url: `${folder}/${categoryName}/${albumName}/${file}`,
-                    title: file.replace(/\.[^/.]+$/, ""),
-                  }))
+            title:
+              entry.name.replace(
+                /\.[^/.]+$/,
+                ""
+              ),
+          }))
 
-                return {
-                  name: `${categoryName} / ${albumName}`,
-                  description: categoryName,
-                  coverPhoto: photos[0]?.url || "",
-                  photos,
-                }
-              })
-              .filter(gallery => gallery.photos.length > 0)
-          })
+      // If this folder contains photos,
+      // treat it as a gallery.
+      if (photos.length > 0) {
+        galleries.push({
+          name:
+            relativeParts.join(
+              " / "
+            ),
+
+          description:
+            relativeParts[0] || "",
+
+          coverPhoto:
+            photos[0]?.url || "",
+
+          photos,
+        })
       }
-    } catch (error) {
-      autoGalleries = []
+
+      // Continue into subfolders.
+      const subfolders =
+        entries
+          .filter(
+            (entry) =>
+              entry.isDirectory()
+          )
+          .sort((a, b) =>
+            a.name.localeCompare(
+              b.name
+            )
+          )
+
+      for (const subfolder of subfolders) {
+        galleries.push(
+          ...scanGalleryFolder(
+            path.join(
+              currentPath,
+              subfolder.name
+            ),
+            [
+              ...relativeParts,
+              subfolder.name,
+            ]
+          )
+        )
+      }
+
+      return galleries
     }
+
+    if (
+      fs.existsSync(
+        memberFolderPath
+      )
+    ) {
+      // Start one level below the member root.
+      // profile.jpg at the root will not
+      // become a gallery photo.
+      const topLevelFolders =
+        fs.readdirSync(
+          memberFolderPath,
+          {
+            withFileTypes: true,
+          }
+        )
+          .filter(
+            (entry) =>
+              entry.isDirectory()
+          )
+          .sort((a, b) =>
+            a.name.localeCompare(
+              b.name
+            )
+          )
+
+      autoGalleries =
+        topLevelFolders.flatMap(
+          (entry) =>
+            scanGalleryFolder(
+              path.join(
+                memberFolderPath,
+                entry.name
+              ),
+              [entry.name]
+            )
+        )
+    }
+  } catch (error) {
+    console.error(
+      `Unable to scan galleries for ${slug}:`,
+      error
+    )
+
+    autoGalleries = []
   }
+}
 
   let manualGalleries: MemberGallery[] = []
 
@@ -230,7 +321,14 @@ function parseMember(slug: string, data: any): Member {
     twitter: data.twitter,
     joinedYear:
       data.joinedYear || data.joined_year,
-    specialties: data.specialties || [],
+    specialties:
+  data.specialties ||
+  [],
+
+  specialtiesVi:
+    data.specialtiesVi ||
+    data.specialties_vi ||
+    [],
   }
 }
 

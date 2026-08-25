@@ -32,7 +32,7 @@ export function AboutValues() {
             icon: Users,
             title: "Hành Trình Được Sẻ Chia",
             description:
-              "Tôi trân trọng cơ hội giới thiệu tác phẩm của các nhiếp ảnh gia khách mời, mỗi người mang đến một góc nhìn và nguồn cảm hứng riêng.",
+              "Tôi trân trọng cơ hội giới thiệu tác phẩm của các nhiếp ảnh gia thân hữu, mỗi người mang đến một góc nhìn và nguồn cảm hứng riêng.",
           },
           {
             icon: Compass,
@@ -58,7 +58,7 @@ export function AboutValues() {
             icon: Users,
             title: "A Shared Journey",
             description:
-              "I value the opportunity to feature guest photographers, each bringing a distinctive perspective and source of inspiration.",
+              "I value the opportunity to feature Photographer Friends, each bringing a distinctive perspective and source of inspiration.",
           },
           {
             icon: Compass,

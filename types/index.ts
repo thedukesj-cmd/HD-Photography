@@ -29,6 +29,7 @@ export interface Member {
   twitter?: string
   joinedYear?: number
   specialties?: string[]
+  specialtiesVi?: string[]
 }
 
 export interface ShowcasePhoto {

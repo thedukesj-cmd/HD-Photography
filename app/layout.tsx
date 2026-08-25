@@ -9,7 +9,7 @@ import { Navbar } from "@/components/navbar"
 import { siteConfig } from "@/config/site"
 
 const siteDescription =
-  "A personal photography portfolio by Hong-Duc Nguyen, featuring nature, travel, landscapes, and selected guest photographers."
+  "A personal photography portfolio by Hong-Duc Nguyen, featuring nature, travel, landscapes, and selected fellow photographers."
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     "travel photography",
     "fine art photography",
     "California photography",
-    "guest photographers",
+    "featured photographers",
     "Hong-Duc Nguyen",
     siteConfig.siteName,
   ],

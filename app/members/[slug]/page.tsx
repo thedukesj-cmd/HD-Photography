@@ -104,6 +104,8 @@ export default async function MemberPage({
                 member.specialties.length > 0 && (
                   <MemberSpecialties
                     specialties={member.specialties}
+                    specialtiesVi={member.specialtiesVi}
+                  
                   />
                 )}
             </div>

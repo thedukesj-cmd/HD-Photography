@@ -15,8 +15,8 @@ export function NewsEmptyState() {
 
       <p className="mx-auto max-w-lg text-zinc-500">
         {language === "vi"
-          ? "Tin tức về các bộ ảnh nổi bật mới, bài viết, nhiếp ảnh gia khách mời và những cập nhật của HD Photography sẽ được đăng tại đây."
-          : "News about new photography showcases, articles, guest photographers, and HD Photography updates will appear here."}
+          ? "Tin tức về các bộ ảnh nổi bật mới, bài viết, nhiếp ảnh gia thân hữu và những cập nhật của HD Photography sẽ được đăng tại đây."
+          : "News about new photography showcases, articles, Photographer Friends, and HD Photography updates will appear here."}
       </p>
     </div>
   )

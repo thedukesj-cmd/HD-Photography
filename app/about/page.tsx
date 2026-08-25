@@ -8,7 +8,7 @@ import { AboutCTA } from "@/components/about-cta"
 export const metadata: Metadata = {
   title: "About HD Photography",
   description:
-    "Discover HD Photography, the personal photography gallery of Hong-Duc Nguyen, featuring nature, travel, everyday life, photography stories, and guest photographers.",
+    "Discover HD Photography, the personal photography gallery of Hong-Duc Nguyen, featuring nature, travel, everyday life, photography stories, and fellow photographers.",
 }
 
 export default function AboutPage() {

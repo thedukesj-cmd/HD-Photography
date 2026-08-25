@@ -31,7 +31,7 @@ export function AboutStory() {
 
             <p className="text-lg leading-relaxed text-zinc-400">
               Theo thời gian, HD Photography cũng trở thành nơi tôi trân trọng
-              giới thiệu tác phẩm của những nhiếp ảnh gia khách mời mà tôi yêu
+              giới thiệu tác phẩm của những nhiếp ảnh gia thân hữu mà tôi yêu
               mến và ngưỡng mộ. Mỗi người mang đến một góc nhìn riêng, góp phần
               làm cho không gian này phong phú và nhiều cảm hứng hơn.
             </p>
@@ -53,7 +53,7 @@ export function AboutStory() {
 
             <p className="text-lg leading-relaxed text-zinc-400">
               Over time, HD Photography has also become a place where I am
-              honored to feature guest photographers whose work I admire. Each
+              honored to feature Photographer Friends whose work I admire. Each
               brings a unique perspective that adds richness and inspiration to
               this shared photographic space.
             </p>

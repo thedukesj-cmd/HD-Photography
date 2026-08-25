@@ -23,7 +23,7 @@
 name: ""
 
 
-# Set to false for a guest photographer.
+# Set to false for a photographer friend.
 featured: false
 
 

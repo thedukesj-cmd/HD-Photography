@@ -4,7 +4,7 @@ export const en = {
   nav: {
     home: "Home",
     photographer: "Hong-Duc Nguyen",
-    photographers: "Guest Photographers",
+    photographers: "Photographer Friends",
     showcase: "Showcase",
     news: "News",
     articles: "Articles",
@@ -37,9 +37,9 @@ footer: {
     meetHongDuc: "Meet Hong-Duc Nguyen",
     viewShowcase: "View full showcase",
     exploreGallery: "Explore My Gallery",
-    backToPhotographers: "Back to Guest Photographers",
-    backToGuestPhotographers: "Back to Guest Photographers",
-    guestPhotographer: "Guest Photographer",
+    backToPhotographers: "Back to Photographer Friends",
+    backToGuestPhotographers: "Back to Photographer Friends",
+    guestPhotographer: "Photographer Friend",
   },
   lightbox: {
   photo: "Photo",
@@ -62,7 +62,7 @@ member: {
 
     Whether exploring the quiet wonders of nature, discovering new destinations, or capturing everyday life, every photograph becomes part of my journey and a story worth remembering.
 
-    HD Photography is my personal gallery—a place where I share those moments and welcome guest photographers whose creativity and unique perspectives continue to inspire me.
+    HD Photography is my personal gallery—a place where I share those moments and welcome fellow photographers whose creativity and unique perspectives continue to inspire me.
 `,
  specialties: {
     Landscape: "Landscape",

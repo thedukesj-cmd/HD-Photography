@@ -8,8 +8,8 @@ export function MembersEmptyState() {
   return (
     <div className="py-20 text-center text-zinc-500">
       {language === "vi"
-        ? "Hiện chưa có nhiếp ảnh gia khách mời nào."
-        : "No guest photographers have been featured yet."}
+        ? "Hiện chưa có nhiếp ảnh gia thân hữu nào."
+        : "No Photographer Friends have been featured yet."}
     </div>
   )
 }

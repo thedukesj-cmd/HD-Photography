@@ -4,7 +4,7 @@ export const vi = {
   nav: {
     home: "Trang chủ",
     photographer: "Nguyễn Hồng Đức",
-    photographers: "Nhiếp ảnh gia khách mời",
+    photographers: "Nhiếp ảnh gia thân hữu",
     showcase: "Ảnh triển lãm",
     news: "Tin tức",
     articles: "Bài viết",
@@ -37,8 +37,8 @@ footer: {
     viewShowcase: "Xem toàn bộ triển lãm",
     exploreGallery: "Khám phá Các bộ ảnh của tôi",
     backToPhotographers: "Trở lại danh sách nhiếp ảnh gia",
-    backToGuestPhotographers: "Quay lại Nhiếp ảnh gia khách mời",
-    guestPhotographer: "Nhiếp ảnh gia khách mời",
+    backToGuestPhotographers: "Quay lại Nhiếp ảnh gia thân hữu",
+    guestPhotographer: "Nhiếp ảnh gia thân hữu",
   },
   lightbox: {
   photo: "Ảnh",
@@ -62,7 +62,7 @@ footer: {
 
   Dù là giữa thiên nhiên hùng vĩ, trên những hành trình khám phá hay trong những khoảnh khắc đời thường, mỗi bức ảnh đều lưu giữ một câu chuyện và một kỷ niệm đáng nhớ.
 
-  HD Photography là không gian nơi tôi chia sẻ những hành trình ấy, đồng thời giới thiệu những tác phẩm của các nhiếp ảnh gia khách mời với những góc nhìn sáng tạo và đầy cảm hứng.
+  HD Photography là không gian nơi tôi chia sẻ những hành trình ấy, đồng thời giới thiệu những tác phẩm của các nhiếp ảnh gia thân hữu với những góc nhìn sáng tạo và đầy cảm hứng.
 `,
 
  specialties: {

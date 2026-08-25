@@ -117,7 +117,7 @@ const navLinks = [
     }
 
     /*
-     * Guest Photographers:
+     * Photographer Friends:
      *
      * Active for:
      * /members

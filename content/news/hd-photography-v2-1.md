@@ -6,9 +6,9 @@ date: "2026-08-21"
 
 featuredImage: "/logo.png"
 
-excerpt: "HD Photography has been refreshed with a cleaner design, improved showcases, bilingual navigation, guest photographer profiles, and a new HĐ Photography identity."
+excerpt: "HD Photography has been refreshed with a cleaner design, improved showcases, bilingual navigation, profiles of fellow photographers, and a new HĐ Photography identity."
 
-excerptVi: "HD Photography vừa được làm mới với thiết kế gọn gàng hơn, các bộ ảnh được cải tiến, điều hướng song ngữ, hồ sơ nhiếp ảnh gia khách mời và nhận diện HĐ Photography mới."
+excerptVi: "HD Photography vừa được làm mới với thiết kế gọn gàng hơn, các bộ ảnh được cải tiến, điều hướng song ngữ, hồ sơ nhiếp ảnh gia thân hữu và nhận diện HĐ Photography mới."
 
 category: "Site Update"
 categoryVi: "Cập Nhật Website"
@@ -24,7 +24,7 @@ The goal of **HD Photography V2.1** is simple: keep the photographs at the cente
 
 HD Photography is now presented as my personal photography space — a place to share photographs from nature, travel, landscapes, and everyday life.
 
-The site also provides a place to introduce selected **guest photographers** whose work and perspectives I admire.
+The site also provides a place to introduce selected **fellow photographers** whose work and perspectives I admire.
 
 ## A New HĐ Photography Identity
 
@@ -42,11 +42,11 @@ A showcase can now have its own descriptive name and date, making it easier to p
 
 New showcases are displayed automatically with the most recent collection first.
 
-## Guest Photographers
+## Photographer Friends
 
-Guest photographer pages have also been simplified.
+Photographer Friend pages have also been simplified.
 
-The Guest Photographers gallery now focuses on the photographer's portrait and name, inviting visitors to open the individual profile to learn more about the photographer, their specialties, and their work.
+The Photographer Friends section now focuses on the photographer's portrait and name, inviting visitors to open the individual profile to learn more about the photographer, their specialties, and their work.
 
 ## English & Vietnamese
 
@@ -64,7 +64,7 @@ Mục tiêu của **HD Photography V2.1** rất đơn giản: đặt những b�
 
 HD Photography giờ đây được giới thiệu như một không gian nhiếp ảnh cá nhân của tôi — nơi tôi chia sẻ những hình ảnh về thiên nhiên, du lịch, phong cảnh và những khoảnh khắc trong cuộc sống thường ngày.
 
-Website cũng là nơi tôi trân trọng giới thiệu một số **nhiếp ảnh gia khách mời** có tác phẩm và góc nhìn mà tôi yêu thích.
+Website cũng là nơi tôi trân trọng giới thiệu một số **nhiếp ảnh gia thân hữu** có tác phẩm và góc nhìn mà tôi yêu thích.
 
 ## Nhận Diện HĐ Photography Mới
 
@@ -82,11 +82,11 @@ Mỗi bộ ảnh giờ đây có thể có tên riêng và ngày thực hiện, 
 
 Các bộ ảnh mới nhất sẽ tự động được hiển thị trước.
 
-## Nhiếp Ảnh Gia Khách Mời
+## Nhiếp Ảnh Gia Thân Hữu
 
-Trang Nhiếp Ảnh Gia Khách Mời cũng được đơn giản hóa.
+Trang Nhiếp Ảnh Gia Thân Hữu cũng được đơn giản hóa.
 
-Thư viện khách mời giờ đây tập trung vào chân dung và tên của từng nhiếp ảnh gia, khuyến khích người xem mở trang cá nhân để tìm hiểu thêm về họ, thể loại nhiếp ảnh và các tác phẩm của họ.
+Khu vực Nhiếp Ảnh Gia Thân Hữu giờ đây tập trung vào chân dung và tên của từng nhiếp ảnh gia, khuyến khích người xem mở trang cá nhân để tìm hiểu thêm về họ, thể loại nhiếp ảnh và các tác phẩm của họ.
 
 ## Tiếng Anh & Tiếng Việt
 

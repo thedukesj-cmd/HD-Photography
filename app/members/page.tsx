@@ -6,9 +6,9 @@ import { MembersGrid } from "@/components/members-grid"
 import { MembersEmptyState } from "@/components/members-empty-state"
 
 export const metadata: Metadata = {
-  title: "Guest Photographers",
+  title: "Photographer Friends",
   description:
-    "Meet the guest photographers whose work is featured on HD Photography.",
+    "Meet the Photographer Friends whose work is featured on HD Photography.",
 }
 
 export default function MembersPage() {
