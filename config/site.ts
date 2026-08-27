@@ -1,13 +1,13 @@
 export const siteConfig = {
-  siteName: "HD Photography",
-  shortName: "HD Photography",
-  siteUrl: "https://hdphotography.com",
+  siteName: "TrucVien Photography Club",
+  shortName: "TrucVien",
+  siteUrl: "http://localhost:8888",
 
-  ownerName: "Hong-Duc Nguyen",
-  ownerNameVi: "Nguyễn Hồng Đức",
-  ownerSlug: "hong-duc",
+  ownerName: "TrucVien Photography Club",
+  ownerNameVi: "Hội Nhiếp ảnh Trúc Viên",
+  ownerSlug: "trucvien",
 
-  siteType: "personal" as "personal" | "club",
+  siteType: "club" as "personal" | "club",
 
   defaultLanguage: "vi" as "vi" | "en",
   supportedLanguages: ["en", "vi"] as const,
@@ -19,7 +19,7 @@ export const siteConfig = {
   },
 
   contact: {
-    email: "theduke.sj@gmail.com",
+    email: "",
     facebook: "",
     instagram: "",
   },
@@ -43,7 +43,7 @@ export const siteConfig = {
 
   branding: {
     logo: "/logo.png",
-    footerCredit: "Photography by Hong-Duc Nguyen",
+  footerCredit: "© TrucVien Photography Club",
   },
 } as const
 
