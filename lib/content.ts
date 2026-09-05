@@ -445,25 +445,33 @@ export function getAllShowcases(): Showcase[] {
         )
       )
 
-      return parseShowcase(
+      const showcase = parseShowcase(
         slug,
         data
       )
+
+      const modifiedTime =
+        fs.statSync(filePath).mtimeMs
+
+      return {
+        showcase,
+        modifiedTime,
+      }
     })
     .sort((a, b) => {
       const dateA = new Date(
-        a.date
+        a.showcase.date
       ).getTime()
 
       const dateB = new Date(
-        b.date
+        b.showcase.date
       ).getTime()
 
       if (
         Number.isNaN(dateA) &&
         Number.isNaN(dateB)
       ) {
-        return 0
+        return b.modifiedTime - a.modifiedTime
       }
 
       if (Number.isNaN(dateA)) {
@@ -474,8 +482,13 @@ export function getAllShowcases(): Showcase[] {
         return -1
       }
 
-      return dateB - dateA
+      if (dateA !== dateB) {
+        return dateB - dateA
+      }
+
+      return b.modifiedTime - a.modifiedTime
     })
+    .map(({ showcase }) => showcase)
 }
 
 function parseShowcase(

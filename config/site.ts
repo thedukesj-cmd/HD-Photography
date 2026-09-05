@@ -1,13 +1,13 @@
 export const siteConfig = {
-  siteName: "TrucVien Photography Club",
-  shortName: "TrucVien",
+  siteName: "HD Photography",
+  shortName: "HD Photography",
   siteUrl: "http://localhost:8888",
 
-  ownerName: "TrucVien Photography Club",
-  ownerNameVi: "Hội Nhiếp ảnh Trúc Viên",
-  ownerSlug: "trucvien",
+  ownerName: "Nguyễn Hồng Đức",
+  ownerNameVi: "Nguyễn Hồng Đức",
+  ownerSlug: "hong-duc",
 
-  siteType: "club" as "personal" | "club",
+  siteType: "personal" as "personal" | "club",
 
   defaultLanguage: "vi" as "vi" | "en",
   supportedLanguages: ["en", "vi"] as const,
@@ -43,7 +43,7 @@ export const siteConfig = {
 
   branding: {
     logo: "/logo.png",
-  footerCredit: "© TrucVien Photography Club",
+    footerCredit: "© HD Photography",
   },
 } as const
 
