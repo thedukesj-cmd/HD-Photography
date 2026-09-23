@@ -70,7 +70,7 @@ export function ContactInfo() {
 
             <p className="text-sm text-zinc-300">
               {language === "vi"
-                ? "Vui lòng sử dụng biểu mẫu liên hệ."
+                ? "Vui lòng sử dụng biểu mẫu liên lạc."
                 : "Please use the contact form."}
             </p>
           </div>

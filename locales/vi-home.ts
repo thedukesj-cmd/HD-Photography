@@ -37,6 +37,6 @@ news: {
   title: "Muốn trao đổi về nhiếp ảnh?",
   description:
     "Nếu bạn muốn chia sẻ ý tưởng, trao đổi về nhiếp ảnh, hợp tác hoặc đơn giản chỉ muốn gửi lời chào, tôi rất vui được nghe từ bạn.",
-    button: "Liên Hệ",
+    button: "Liên Lạc",
   },
 } as const

@@ -10,12 +10,12 @@ export function ContactHero() {
     <PageHero
       eyebrow={
         language === "vi"
-          ? "LIÊN HỆ"
+          ? "LIÊN LẠC"
           : "CONTACT"
       }
       title={
         language === "vi"
-          ? "Liên Hệ"
+          ? "Liên Lạc"
           : "Contact"
       }
       description={

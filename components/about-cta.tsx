@@ -29,7 +29,7 @@ export function AboutCTA() {
           className="gap-2"
         >
           {language === "vi"
-            ? "Liên Hệ Với Tôi"
+            ? "Liên lạc Với Tôi"
             : "Contact Me"}
 
           <ArrowRight className="h-4 w-4" />

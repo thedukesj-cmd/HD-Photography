@@ -9,7 +9,7 @@ export const vi = {
     news: "Tin tức",
     articles: "Bài viết",
     about: "Giới thiệu",
-    contact: "Liên hệ",
+    contact: "Liên lạc",
   },
   homeCTA: {
   title: "Cảm Ơn Bạn Đã Ghé Thăm",
@@ -23,13 +23,13 @@ footer: {
 
   explore: "Khám phá",
 
-  contact: "Liên hệ",
+  contact: "Liên lạc",
 
   copyright: "Bảo lưu mọi quyền.",
 
   by: "Ảnh của Nguyễn Hồng Đức",
 
-  contactMe: "Liên hệ Nguyễn Hồng Đức",
+  contactMe: "Liên lạc Nguyễn Hồng Đức",
 },
   common: {
     explorePhotography: "Khám phá ảnh",
